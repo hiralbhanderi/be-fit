@@ -1,0 +1,702 @@
+[
+  {
+    "id": 1,
+    "name": "ANKLE BOUNCES",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.With your legs shoulder-width apart; \n2.rapidly jump up and down, generating the force from your ankles.",
+    "filePath": "action_json/ankle_bounces.json",
+    "thumbnails": "assets/action_image/ankle_bounces.png"
+  },
+  {
+    "id": 2,
+    "name": "BACK ROLLS",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "Sit on a mat and lock your knees to your chest and lay back into rolling and roll back to sit.",
+    "filePath": "action_json/back_rolls.json",
+    "thumbnails": "assets/action_image/back_rolls.png"
+  },
+  {
+    "id": 3,
+    "name": "BUTT KICKS",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.Stand with your feet shoulder-width apart; \n2.Start kicking your feet up until the heel touches the glutes; \n3.Pump your arms at the same time.",
+    "filePath": "action_json/butt_kicks.json",
+    "thumbnails": "assets/action_image/butt_kicks.png"
+  },
+  {
+    "id": 4,
+    "name": "FORWARD FOLD",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.Clasp your hands behind back, then fold forward, letting head fall toward the ground and gently releasing neck; \n2.Stay for 1 second and back to start.",
+    "filePath": "action_json/forward_fold.json",
+    "thumbnails": "assets/action_image/forward_fold.png"
+  },
+  {
+    "id": 5,
+    "name": "HIGH KNEES SKIPS",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.Stand with your feet hip-width apart; \n2.Drive the right knee up to meet your left elbow; \n3.Immediately repeat with the left knee meeting your right elbow.",
+    "filePath": "action_json/high_knees_skips.json",
+    "thumbnails": "assets/action_image/high_knees_skips.png"
+  },
+  {
+    "id": 6,
+    "name": "JUMPING JACKS",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.Stand with your feet together; \n2.jump up with your legs spread wider than hip width apart while raising arms above your head; \n3.Quickly reverse and repeat.",
+    "filePath": "action_json/jumping_jacks.json",
+    "thumbnails": "assets/action_image/jumping_jacks.png"
+  },
+  {
+    "id": 7,
+    "name": "KNEE LIFTS",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.Stand up and bring up knees to touch the opposite hand alternately; \n2.Keep your back straight and a slight bend in the supporting leg.",
+    "filePath": "action_json/knee_lifts.json",
+    "thumbnails": "assets/action_image/knee_lifts.png"
+  },
+  {
+    "id": 8,
+    "name": "LATERAL FLEXION MOTIONS",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.Start with wide step-and-touch; \n2.lean down to the side with an arm straight and the other arm bent; \n3.Alternate while stepping side to side.",
+    "filePath": "action_json/lateral_flexion_motions.json",
+    "thumbnails": "assets/action_image/lateral_flexion_motions.png"
+  },
+  {
+    "id": 9,
+    "name": "MARCH ON THE SPOT",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.Start off marching on the spot and pump your arms up and down in rhythm with your steps; \n2.keeping the elbows bent and the fists soft.",
+    "filePath": "action_json/march_on_the_spot.json",
+    "thumbnails": "assets/action_image/march_on_the_spot.png"
+  },
+  {
+    "id": 10,
+    "name": "NECK CIRCLES",
+    "unit": "s",
+    "type": "warm up",
+    "relation": 0,
+    "introduce": "1.Tilt your head to one side, slowly roll backward to raise your chin up; \n2.Continue to roll your head to the other side until you feel stretched.",
+    "filePath": "action_json/neck_circles.json",
+    "thumbnails": "assets/action_image/neck_circles.png"
+  },
+  {
+    "id": 11,
+    "name": "AIR BIKE CRUNCHES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start lying down on a mat; \n2.Move your legs in a bicycle motion several inches off the floor; \n3.Keep your arms extended and your chest open.",
+    "filePath": "action_json/air_bike_crunches.json",
+    "thumbnails": "assets/action_image/air_bike_crunches.png"
+  },
+  {
+    "id": 12,
+    "name": "ALT ARM LEG PLANK",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start in a push up position, raise one arm and the opposite leg at a time; \n2.Hold for a second before repeating on the other side.",
+    "filePath": "action_json/alt_arm_leg_plank.json",
+    "thumbnails": "assets/action_image/alt_arm_leg_plank.png"
+  },
+  {
+    "id": 13,
+    "name": "BOAT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Sit with your knees bent, hands on your knees; \n2.Lean back slightly with your arms extended; \n3.Straighten and raise your legs toward the ceiling until your body forms a V shape. Hold the position.",
+    "filePath": "action_json/boat.json",
+    "thumbnails": "assets/action_image/boat.png"
+  },
+  {
+    "id": 14,
+    "name": "BODY SAW",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start off with a plank position; \n2.Rock forward on your toes until your chin is over your fingertips; \n3.Hold for a second before returning to the start position.",
+    "filePath": "action_json/body_saw.json",
+    "thumbnails": "assets/action_image/body_saw.png"
+  },
+  {
+    "id": 15,
+    "name": "BOTTOM LEG LIFT LEFT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lying on your side, lengthen your bottom leg and cross your top leg over it; \n2.Lift your bottom leg up and lower it back down.",
+    "filePath": "action_json/bottom_leg_lift_left.json",
+    "thumbnails": "assets/action_image/bottom_leg_lift_left.png"
+  },
+  {
+    "id": 16,
+    "name": "BOTTOM LEG LIFT RIGHT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lying on your side, lengthen your bottom leg and cross your top leg over it; \n2.Lift your bottom leg up and lower it back down.",
+    "filePath": "action_json/bottom_leg_lift_right.json",
+    "thumbnails": "assets/action_image/bottom_leg_lift_right.png"
+  },
+  {
+    "id": 17,
+    "name": "BRIDGE",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on back with knees bent and feet on floor; \n2.Raise hips by pressing weight into heels; \n3.Lower back to the start position.",
+    "filePath": "action_json/bridge.json",
+    "thumbnails": "assets/action_image/bridge.png"
+  },
+  {
+    "id": 18,
+    "name": "BURPEES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand and squat down with your hands on the floor; \n2.Then jump your feet back into a plank position; \n3.Do one basic push-up, jump the feet forward and back into a squat; \n4.Explode to a jump and land softly.",
+    "filePath": "action_json/burpees.json",
+    "thumbnails": "assets/action_image/burpees.png"
+  },
+  {
+    "id": 19,
+    "name": "BUTT UPS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie down with your knees bent, put you arms on the mat with palms facing down to find balance; \n2.Raise up your legs and hip, trying to reach the straight up position.",
+    "filePath": "action_json/butt_ups.json",
+    "thumbnails": "assets/action_image/butt_ups.png"
+  },
+  {
+    "id": 20,
+    "name": "CLIMBER TAPS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start off a plank position; \n2.Reach and tap your foot with your opposite hand; \n3.Pull your knee to your shoulder; \n4.reverse the movement and repeat.",
+    "filePath": "action_json/climber_taps.json",
+    "thumbnails": "assets/action_image/climber_taps.png"
+  },
+  {
+    "id": 21,
+    "name": "DIVE BOMBERS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start in a downward facing position; \n2.Slowly lower your arms and slide your torso forward, then your arms to push your torso up as your hips come toward the ground. ",
+    "filePath": "action_json/dive_bombers.json",
+    "thumbnails": "assets/action_image/dive_bombers.png"
+  },
+  {
+    "id": 22,
+    "name": "ELBOW PLANK",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start face down on the floor resting on your forearms and knees; \n2.Push off the floor with your elbows, raising up off your knees onto your toes; \n3.Hold the position.",
+    "filePath": "action_json/elbow_plank.json",
+    "thumbnails": "assets/action_image/elbow_plank.png"
+  },
+  {
+    "id": 23,
+    "name": "FLUTTER KICKS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your back with hands under hips; \n2.Keep legs straight and off the floor, move legs alternately up and down. Repeat.",
+    "filePath": "action_json/flutter_kicks.json",
+    "thumbnails": "assets/action_image/flutter_kicks.png"
+  },
+  {
+    "id": 24,
+    "name": "FORWARD LUNGE",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand with your feet shoulder-width apart; \n2.Step one leg out, bend the other knee until it nearly touches the floor; \n3.Return to the start position; \n4.Reverse and repeat.",
+    "filePath": "action_json/forward_lunge.json",
+    "thumbnails": "assets/action_image/forward_lunge.png"
+  },
+  {
+    "id": 25,
+    "name": "HIGH CRUNCHES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your back with your knees bent at 90 degrees; \n2.Raise your arms straight overhead, pointing up throughout the exercise;\n3.Sit up halfway, then return to the floor.",
+    "filePath": "action_json/high_crunches.json",
+    "thumbnails": "assets/action_image/high_crunches.png"
+  },
+  {
+    "id": 26,
+    "name": "HIGH KNEES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand with hands raised to hip height; \n2.Run in place while lifting your knees as high as possible; \n3.Pump your arms at the same time.",
+    "filePath": "action_json/high_knees.json",
+    "thumbnails": "assets/action_image/high_knees.png"
+  },
+  {
+    "id": 27,
+    "name": "HUNDREDS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your back with your knees bent, feet lifted and parallel to the floor; \n2.Then reach your arms toward your feet as you lift your head and keep your shoulder off the floor.",
+    "filePath": "action_json/hundreds.json",
+    "thumbnails": "assets/action_image/hundreds.png"
+  },
+  {
+    "id": 28,
+    "name": "INCHWORM",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start by standing with your feet hip-width apart; \n2.Bend forward to place your hands on the mat, walk your hands out all the way into a full plank position; \n3.Hold for seconds, walk your hands back and roll up to standing.",
+    "filePath": "action_json/inchworm.json",
+    "thumbnails": "assets/action_image/inchworm.png"
+  },
+  {
+    "id": 29,
+    "name": "INCLINE PUSH-UPS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Place your hands on a surface shoulder width apart; \n2.Step legs behind to create a straight line from head to heels; \n3.Slowly lower your chest to the surface; \n4.Press upwards to start position.",
+    "filePath": "action_json/incline_push_ups.json",
+    "thumbnails": "assets/action_image/incline_push_ups.png"
+  },
+  {
+    "id": 30,
+    "name": "JACK KNIFES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on the floor with both hands clasped, arms straight and overhead; \n2.Bring your upper body up and over while lifting your straightened legs until your hands and legs meet; \n3.Lower back to starting position.",
+    "filePath": "action_json/jack_knifes.json",
+    "thumbnails": "assets/action_image/jack_knifes.png"
+  },
+  {
+    "id": 31,
+    "name": "JUMPING LUNGES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Get to a basic lunge; \n2.With one foot ahead of the other, drop into a low lunge, bending both knees to 90 degrees; \n3.Then jump up switching feet in midair and drop into a low lunge on the other side. ",
+    "filePath": "action_json/jumping_lunges.json",
+    "thumbnails": "assets/action_image/jumping_lunges.png"
+  },
+  {
+    "id": 32,
+    "name": "KNEE PUSH UP",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start in a full plank position; \n2.Lower your knees to the mat, keep the straight line from your head to your knees;\n3.Then lower down, bending the elbows, and push up.",
+    "filePath": "action_json/knee_push_up.json",
+    "thumbnails": "assets/action_image/knee_push_up.png"
+  },
+  {
+    "id": 33,
+    "name": "KNEE UPS LEFT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand in lunge with your left foot behind you, your hands in running stance; \n2.Quickly bring your left knee toward your chest, and then back to tap the floor.",
+    "filePath": "action_json/knee_ups_left.json",
+    "thumbnails": "assets/action_image/knee_ups_left.png"
+  },
+  {
+    "id": 34,
+    "name": "KNEE UPS RIGHT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand in lunge with your right foot behind you, your hands in running stance; \n2.Quickly bring your right knee toward your chest, and then back to tap the floor.",
+    "filePath": "action_json/knee_ups_right.json",
+    "thumbnails": "assets/action_image/knee_ups_right.png"
+  },
+  {
+    "id": 35,
+    "name": "KNEELING LEG LIFT LEFT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start with your knees and hands on floor; \n2.Extend your left leg behind you, then lift the leg to hip level and then slowly lower it back down.",
+    "filePath": "action_json/kneeling_leg_lift_left.json",
+    "thumbnails": "assets/action_image/kneeling_leg_lift_left.png"
+  },
+  {
+    "id": 36,
+    "name": "KNEELING LEG LIFT RIGHT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start with your knees and hands on floor; \n2.Extend your right leg behind you, then lift the leg to hip level and then slowly lower it back down.",
+    "filePath": "action_json/kneeling_leg_lift_right.json",
+    "thumbnails": "assets/action_image/kneeling_leg_lift_right.png"
+  },
+  {
+    "id": 37,
+    "name": "LEG HIP RAISE LEFT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your back, bend in the right knee; \n2.Bring on the left leg off the ground and straighten it; \n3.Drive the hips upwards away from the floor, then return to the start position.",
+    "filePath": "action_json/leg_hip_raise_left.json",
+    "thumbnails": "assets/action_image/leg_hip_raise_left.png"
+  },
+  {
+    "id": 38,
+    "name": "LEG HIP RAISE RIGHT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your back, bend in the left knee; \n2.Bring on the right leg off the ground and straighten it; \n3.Drive the hips upwards away from the floor, then return to the start position.",
+    "filePath": "action_json/leg_hip_raise_right.json",
+    "thumbnails": "assets/action_image/leg_hip_raise_right.png"
+  },
+  {
+    "id": 39,
+    "name": "LEG RAISES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie down with hands under hips; \n2.Lift your legs slowly off the ground to a 90 degrees angle, then slowly lower them back several inches off ground.",
+    "filePath": "action_json/leg_raises.json",
+    "thumbnails": "assets/action_image/leg_raises.png"
+  },
+  {
+    "id": 40,
+    "name": "LOWER BACK CURLS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your stomach with face down; \n2.Keep your legs hip-distance apart, arms at sides with palms facing up. Lift your upper body off the ground. Slowly lower to start position.",
+    "filePath": "action_json/lower_back_curls.json",
+    "thumbnails": "assets/action_image/lower_back_curls.png"
+  },
+  {
+    "id": 41,
+    "name": "MOUNTAIN CLIMBER",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start in plank position, keeping your legs straight; \n2.Bring one knee quickly into your chest and then back to plank; \n3.Quickly bring the opposite knee into your chest; \n4.Repeat.",
+    "filePath": "action_json/mountain_climber.json",
+    "thumbnails": "assets/action_image/mountain_climber.png"
+  },
+  {
+    "id": 42,
+    "name": "MOUNTAIN CLIMBER JUMPS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.From a plank position, bring one foot forward to the outside of right hand so you are in a low lunge position; \n2.Jump and switch feet in midair; \n3.Continue to alternate as quickly as possible.",
+    "filePath": "action_json/mountain_climber_jumps.json",
+    "thumbnails": "assets/action_image/mountain_climber_jumps.png"
+  },
+  {
+    "id": 43,
+    "name": "PLANK",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Place your hands directly under shoulders in a push-up position; \n2.Use your glutes to stabilize your body; \n3.Keep your head in line with your back. Hold the position.",
+    "filePath": "action_json/plank.json",
+    "thumbnails": "assets/action_image/plank.png"
+  },
+  {
+    "id": 44,
+    "name": "PLANK TO DOWN DOG",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start in a high plank position; \n2.Push through your palms and lift your hips into a downward dog; \n3.Return to high plank.",
+    "filePath": "action_json/plank_to_down_dog.json",
+    "thumbnails": "assets/action_image/plank_to_down_dog.png"
+  },
+  {
+    "id": 45,
+    "name": "REVERSE CRUNCHES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on a mat with your hands under hips; \n2.Lift legs and bend knees to 90 degrees; \n3.Keep your knees bent and lift them close to your head; \n4.Slowly lower legs back to starting position.",
+    "filePath": "action_json/reverse_crunches.json",
+    "thumbnails": "assets/action_image/reverse_crunches.png"
+  },
+  {
+    "id": 46,
+    "name": "REVERSE PLANK",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start in a seated position; \n2.Bring your palms to the ground, directly under shoulders; \n3.Lean back and then bridge your body upwards.",
+    "filePath": "action_json/reverse_plank.json",
+    "thumbnails": "assets/action_image/reverse_plank.png"
+  },
+  {
+    "id": 47,
+    "name": "SHOULDER PULSES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand with your feet shoulder-width apart; \n2.Raise arms out, parallel to floor; \n3.Quickly raise and lower arms within a controlled range.",
+    "filePath": "action_json/shoulder_pulses.json",
+    "thumbnails": "assets/action_image/shoulder_pulses.png"
+  },
+  {
+    "id": 48,
+    "name": "SIDE GLUTE LIFTS LEFT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand with hands on hips; \n2.Using only your glute muscle to lift your left leg to the side; \n3.Back to the start and repeat.",
+    "filePath": "action_json/side_glute_lifts_left.json",
+    "thumbnails": "assets/action_image/side_glute_lifts_left.png"
+  },
+  {
+    "id": 49,
+    "name": "SIDE GLUTE LIFTS RIGHT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand with hands on hips; \n2.Using only your glute muscle to lift your right leg to the side; \n3.Back to the start and repeat.",
+    "filePath": "action_json/side_glute_lifts_right.json",
+    "thumbnails": "assets/action_image/side_glute_lifts_right.png"
+  },
+  {
+    "id": 50,
+    "name": "SIDE JACK KNIVES",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your one side, your legs stacked and straight; \n2.Wrap your bottom arm in front of your torso; \n3.The other hand behind your head; \n4.Raise your torso and legs. Slowly return to start.",
+    "filePath": "action_json/side_jack_knives.json",
+    "thumbnails": "assets/action_image/side_jack_knives.png"
+  },
+  {
+    "id": 51,
+    "name": "SIDE LEG RAISE LEFT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your right side, have your right arm support your head; \n2.Your left palm facing down on the mat; \n3.Bring your left leg up and down, in a slow, controlled manner.",
+    "filePath": "action_json/side_leg_raise_left.json",
+    "thumbnails": "assets/action_image/side_leg_raise_left.png"
+  },
+  {
+    "id": 52,
+    "name": "SIDE LEG RAISE RIGHT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your left side, have your left arm support your head; \n2.Your right palm facing down on the mat; \n3.Bring your right leg up and down, in a slow, controlled manner.",
+    "filePath": "action_json/side_leg_raise_right.json",
+    "thumbnails": "assets/action_image/side_leg_raise_right.png"
+  },
+  {
+    "id": 53,
+    "name": "SIDE PLANKS LEFT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start with high plank position; \n2.Rotate your body to left and balance on your right arm; \n3.Extend your right hand toward the ceiling. Hold the position.",
+    "filePath": "action_json/side_planks_left.json",
+    "thumbnails": "assets/action_image/side_planks_left.png"
+  },
+  {
+    "id": 54,
+    "name": "SIDE PLANKS RIGHT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Start with high plank position; \n2.Rotate your body to right and balance on your left arm; \n3.Extend your left hand toward the ceiling. Hold the position.",
+    "filePath": "action_json/side_planks_right.json",
+    "thumbnails": "assets/action_image/side_planks_right.png"
+  },
+  {
+    "id": 55,
+    "name": "SQUATS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand with feet wider than hip width; \n2.Extend arms out in front of you; \n3.Lower your body toward the floor, bending your knees until they reach 90 degrees; \n4.Press back up to start position.",
+    "filePath": "action_json/squats.json",
+    "thumbnails": "assets/action_image/squats.png"
+  },
+  {
+    "id": 56,
+    "name": "SUPERMAN",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your stomach with arms and legs extended; \n2.Lift your arms and legs up toward the ceiling to form an \"u\" shape; \n3.Hold for seconds and lower back down.",
+    "filePath": "action_json/superman.json",
+    "thumbnails": "assets/action_image/superman.png"
+  },
+  {
+    "id": 57,
+    "name": "TRICEP DIPS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand in front of a seat; \n2.Place hands on seat with fingers pointing forward; \n3.Bend arms and lower butt toward ground; \n4.Then straighten arms.",
+    "filePath": "action_json/tricep_dips.json",
+    "thumbnails": "assets/action_image/tricep_dips.png"
+  },
+  {
+    "id": 58,
+    "name": "UP AND DOWN PLANKS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Place your elbows directly under shoulders; \n2.Keep body straight from head to toe; \n3.Push body up with one hand then the other; \n4.Lower down to one elbows then the other.",
+    "filePath": "action_json/up_and_down_planks.json",
+    "thumbnails": "assets/action_image/up_and_down_planks.png"
+  },
+  {
+    "id": 59,
+    "name": "WALL SIT",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Stand with your back against the wall; \n2.Set your feet shoulder-width apart and 2 steps out from the wall; \n3.Gradually lower your back, bending legs until they’re in a 90 degree angle. Hold the position.",
+    "filePath": "action_json/wall_sit.json",
+    "thumbnails": "assets/action_image/wall_sit.png"
+  },
+  {
+    "id": 60,
+    "name": "WINDSHIELD WIPERS",
+    "unit": "s",
+    "type": "exercise",
+    "relation": 0,
+    "introduce": "1.Lie on your back with your arms outstretched and palms facing down; \n2.Lift your legs straight up to 90 degrees and start rotating to left and right.",
+    "filePath": "action_json/windshield_wipers.json",
+    "thumbnails": "assets/action_image/windshield_wipers.png"
+  },
+  {
+    "id": 61,
+    "name": "ABDOMINAL STRETCH",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 0,
+    "introduce": "1.Lie on your stomach on a mat; \n2.Place your hands beside your chest; \n3.Keep your arms straight, while raising your torso off the floor. Hold the position.",
+    "filePath": "action_json/abdominal_stretch.json",
+    "thumbnails": "assets/action_image/abdominal_stretch.png"
+  },
+  {
+    "id": 62,
+    "name": "CALF STRETCH LEFT",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 63,
+    "introduce": "1.Stand from a wall, step right foot to touch wall, place hands on wall; \n2.Bend your left knee and lean forward, unbend left leg and press heel into the ground. Hold the position.",
+    "filePath": "action_json/calf_stretch_left.json",
+    "thumbnails": "assets/action_image/calf_stretch_left.png"
+  },
+  {
+    "id": 63,
+    "name": "CALF STRETCH RIGHT",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 62,
+    "introduce": "1.Stand from a wall, step left foot to touch wall, place hands on wall; \n2.Bend your right knee and lean forward, unbend right leg and press heel into the ground. Hold the position.",
+    "filePath": "action_json/calf_stretch_right.json",
+    "thumbnails": "assets/action_image/calf_stretch_right.png"
+  },
+  {
+    "id": 64,
+    "name": "CAMEL POSE",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 0,
+    "introduce": "1.Come onto your knees with your feet extended; \n2.Place hands at the base of your spine and open chest; \n3.Keep pressing thighs and hips forward as you slowly bend back.",
+    "filePath": "action_json/camel_pose.json",
+    "thumbnails": "assets/action_image/camel_pose.png"
+  },
+  {
+    "id": 65,
+    "name": "CAT POSE",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 0,
+    "introduce": "1.Come onto all fours with your wrists under your shoulders and knees underneath your hips; \n2.Move your weight forwards looking up toward the ceiling; \n3.Move your weight backward tucking your chin into your chest.",
+    "filePath": "action_json/cat_pose.json",
+    "thumbnails": "assets/action_image/cat_pose.png"
+  },
+  {
+    "id": 66,
+    "name": "QUAD STRETCH LEFT",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 67,
+    "introduce": "1.Take a step forward with right foot and lower body with left knee on mat; \n2.Pull your left foot to glutes and reach back to feel your quad stretched.",
+    "filePath": "action_json/quad_stretch_left.json",
+    "thumbnails": "assets/action_image/quad_stretch_left.png"
+  },
+  {
+    "id": 67,
+    "name": "QUAD STRETCH RIGHT",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 66,
+    "introduce": "1.Take a step forward with left foot and lower body with right knee on mat; \n2.Pull your right foot to glutes and reach back to feel your quad stretched.",
+    "filePath": "action_json/quad_stretch_right.json",
+    "thumbnails": "assets/action_image/quad_stretch_right.png"
+  },
+  {
+    "id": 68,
+    "name": "STRADDLE SIT",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 0,
+    "introduce": "1.Sit on mat with your legs stretched out open to the sides as far as you can; \n2.Place hand on the floor and slowly walk your hands forward until forearms are resting on the floor. Hold the position.",
+    "filePath": "action_json/straddle_sit.json",
+    "thumbnails": "assets/action_image/straddle_sit.png"
+  },
+  {
+    "id": 69,
+    "name": "TRICEPS STRETCH LEFT",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 70,
+    "introduce": "1.Reach left arm over your head, bend at the elbow, and place right hand on the left elbow; \n2.Gently pull the left elbow back and hold the position.",
+    "filePath": "action_json/triceps_stretch_left.json",
+    "thumbnails": "assets/action_image/triceps_stretch_left.png"
+  },
+  {
+    "id": 70,
+    "name": "TRICEPS STRETCH RIGHT",
+    "unit": "s",
+    "type": "stretch",
+    "relation": 69,
+    "introduce": "1.Reach right arm over your head, bend at the elbow, and place left hand on the right elbow; \n2.Gently pull the right elbow back and hold the position.",
+    "filePath": "action_json/triceps_stretch_right.json",
+    "thumbnails": "assets/action_image/triceps_stretch_right.png"
+  }
+]
