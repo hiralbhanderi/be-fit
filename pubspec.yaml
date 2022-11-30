@@ -41,6 +41,10 @@ dependencies:
   carousel_slider: ^4.1.1
   flutter_timer_countdown: ^1.0.5
   lottie: ^2.0.0
+  percent_indicator: ^4.2.2
+  circular_countdown_timer: ^0.2.3
+  custom_timer: ^0.1.2
+  neon_circular_timer: ^0.0.7
 
 dev_dependencies:
   flutter_test:

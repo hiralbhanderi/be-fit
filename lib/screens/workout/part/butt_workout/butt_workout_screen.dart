@@ -149,14 +149,19 @@ class ButtWorkoutScreen extends StatelessWidget {
                                   //   timeData: buttWorkoutController.timeList[indexFirst],
                                   //   kcalData: buttWorkoutController.kcalList[indexFirst],
                                   // ));
-                                  var data = buttWorkoutController.buttWorkoutModel[indexFirst].exercise?[indexSecond].actionId;
-                                  buttWorkoutController.buttWorkoutModelDataPass = buttWorkoutController.buttWorkoutModel[indexFirst].exercise ?? [];
-                                  var modelData = workoutController.workoutAllDataModel.firstWhere((element) => element.id == data);
-                                  // workoutController.workoutAllDataModelDataPass = modelData;
-                                  print('model data --->>>${modelData.id}');
-                                  // print('workoutAllDataModelDataPass data od fff--->>>${workoutController.workoutAllDataModelDataPass.id}');
-                                  print('buttWorkoutModelDataPass data od fff--->>>${buttWorkoutController.buttWorkoutModelDataPass.length}');
-                                  Get.toNamed(WorkoutStartScreen.routeName);
+                                  // var data = buttWorkoutController.buttWorkoutModel[indexFirst].exercise?[indexSecond].actionId;
+                                  // buttWorkoutController.buttWorkoutModelDataPass = buttWorkoutController.buttWorkoutModel[indexFirst].exercise ?? [];
+                                  // var modelData = workoutController.workoutAllDataModel.firstWhere((element) => element.id == data);
+                                  // // workoutController.workoutAllDataModelDataPass = modelData;
+                                  // print('model data --->>>${modelData.id}');
+                                  // // print('workoutAllDataModelDataPass data od fff--->>>${workoutController.workoutAllDataModelDataPass.id}');
+                                  // print('buttWorkoutModelDataPass data od fff--->>>${buttWorkoutController.buttWorkoutModelDataPass.length}');
+                                  Get.to(
+                                    WorkoutStartScreen(
+                                      dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
+                                    ),
+                                  );
+                                  buttWorkoutController.isExerciseChangeIndex.value = 0;
                                 },
                                 buttonNameColor: ColorRes.whiteColor,
                                 buttonName: 'Start now',
@@ -168,11 +173,9 @@ class ButtWorkoutScreen extends StatelessWidget {
                               height: 2.h,
                             ),
                             GestureDetector(
-                              onTap: (){
-                                print('id: ${buttWorkoutController.buttWorkoutModel[indexFirst].day.toString()}');
+                              onTap: () {
                                 Get.to(ExerciseListScreen(
-                                  dayCount: buttWorkoutController.buttWorkoutModel[indexFirst].day.toString(),
-                                  buttWorkoutModel: buttWorkoutController.buttWorkoutModel[indexFirst],
+                                  dayCount: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
                                   timeData: buttWorkoutController.timeList[indexFirst],
                                   kcalData: buttWorkoutController.kcalList[indexFirst],
                                 ));

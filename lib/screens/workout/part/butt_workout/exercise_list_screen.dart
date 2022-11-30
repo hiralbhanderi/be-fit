@@ -1,6 +1,7 @@
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
 import 'package:befit/screens/workout/part/butt_workout/workout_start_screen.dart';
+import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
@@ -14,19 +15,17 @@ class ExerciseListScreen extends StatelessWidget {
   final String? dayCount;
   final String? timeData;
   final String? kcalData;
-  ButtWorkoutModel? buttWorkoutModel = ButtWorkoutModel();
   WorkoutController workoutController = Get.find();
   ButtWorkoutController buttWorkoutController = Get.find();
 
-  ExerciseListScreen({this.dayCount, this.timeData, this.kcalData, this.buttWorkoutModel});
+  ExerciseListScreen({this.dayCount, this.timeData, this.kcalData});
 
   @override
   Widget build(BuildContext context) {
-    print('buttWorkoutModel length : ${buttWorkoutModel?.exercise?.length}');
+    print('element value ---->>>$dayCount');
     return Scaffold(
       // backgroundColor:ColorRes.blackColor.withOpacity(0.1),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Stack(
             children: [
@@ -53,7 +52,7 @@ class ExerciseListScreen extends StatelessWidget {
                         SizedBox(
                           width: 6.w,
                         ),
-                        Text(
+                        const Text(
                           'Exercise list',
                           style: TextStyle(fontSize: 21, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                         ),
@@ -67,7 +66,7 @@ class ExerciseListScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Day $dayCount',
-                          style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                          style: const TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
                           height: 3.h,
@@ -78,9 +77,9 @@ class ExerciseListScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   '$timeData',
-                                  style: TextStyle(fontSize: 18, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                  style: const TextStyle(fontSize: 18, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                 ),
-                                Text(
+                                const Text(
                                   ' MIN',
                                   style: TextStyle(fontSize: 16, color: ColorRes.whiteColor, fontWeight: FontWeight.w300),
                                 ),
@@ -93,9 +92,9 @@ class ExerciseListScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   '$kcalData',
-                                  style: TextStyle(fontSize: 18, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                  style: const TextStyle(fontSize: 18, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                 ),
-                                Text(
+                                const Text(
                                   ' KCAL',
                                   style: TextStyle(fontSize: 16, color: ColorRes.whiteColor, fontWeight: FontWeight.w300),
                                 ),
@@ -114,15 +113,8 @@ class ExerciseListScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: List.generate(
-                  buttWorkoutModel?.exercise?.length ?? 0,
+                  buttWorkoutController.buttWorkoutModel1[int.parse(dayCount!) - 1].exercise?.length ?? 0,
                   (index) {
-                    var data = buttWorkoutModel?.exercise?[index].actionId;
-                    buttWorkoutController.buttWorkoutModelDataPass = buttWorkoutModel?.exercise ?? [];
-                    var modelData = workoutController.workoutAllDataModel.firstWhere((element) => element.id == data);
-                    buttWorkoutController.workoutAllDataModelDataPass.add(modelData);
-                    print('model data --->>>${modelData.id}');
-                    print('workoutAllDataModelDataPass data od--->>>${buttWorkoutController.workoutAllDataModelDataPass.length}');
-                    print('buttWorkoutModelDataPass data od--->>>${buttWorkoutController.buttWorkoutModelDataPass.length}');
                     return Padding(
                       padding: EdgeInsets.only(bottom: 3.w, top: 3.w, left: 4.w, right: 4.w),
                       child: Container(
@@ -146,20 +138,23 @@ class ExerciseListScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      '${modelData.name ?? ' '}',
-                                      style: TextStyle(fontSize: 17, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
+                                      buttWorkoutController.buttWorkoutModel1[int.parse(dayCount!) - 1].exercise?[index].workoutAllDataModel?.name ??
+                                          "",
+                                      style: const TextStyle(fontSize: 17, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
                                     ),
                                     SizedBox(
                                       height: 5.w,
                                     ),
                                     Text(
-                                      '${buttWorkoutModel?.exercise?[index].time} ${modelData.unit ?? ''}',
-                                      style: TextStyle(fontSize: 17, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
+                                      '${buttWorkoutController.buttWorkoutModel1[int.parse(dayCount!) - 1].exercise?[index].time} ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCount!) - 1].exercise?[index].workoutAllDataModel?.unit ?? ""}',
+                                      style: const TextStyle(fontSize: 17, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
                                     ),
                                   ],
                                 ),
                               ),
-                              Image.asset(modelData.thumbnails ?? '')
+                              Image.asset(buttWorkoutController
+                                      .buttWorkoutModel1[int.parse(dayCount!) - 1].exercise?[index].workoutAllDataModel?.thumbnails ??
+                                  "")
                             ],
                           ),
                         ),
@@ -179,7 +174,7 @@ class ExerciseListScreen extends StatelessWidget {
               height: 45,
               width: double.infinity,
               onTap: () {
-                Get.toNamed(WorkoutStartScreen.routeName);
+                Get.to(WorkoutStartScreen(dayCountForWorkoutStart: dayCount,));
               },
               buttonNameColor: ColorRes.whiteColor,
               buttonName: 'Start now',

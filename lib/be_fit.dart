@@ -1,6 +1,7 @@
 import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/exercise_list_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/take_break_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/workout_start_screen.dart';
 import 'package:befit/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,11 @@ class QrCodeScan extends StatelessWidget {
               GetPage(
                 name: WorkoutStartScreen.routeName,
                 page: () => WorkoutStartScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: TakeBreakScreen.routeName,
+                page: () => TakeBreakScreen(),
                 transition: Transition.fadeIn,
               ),
             ]);
