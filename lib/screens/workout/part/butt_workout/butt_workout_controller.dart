@@ -4,6 +4,7 @@ import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart'
 import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:custom_timer/custom_timer.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
@@ -15,6 +16,7 @@ class ButtWorkoutController extends GetxController {
   CarouselController carouselController = CarouselController();
   final CountDownController controller1 = CountDownController();
   final CustomTimerController customTimerController = CustomTimerController();
+  PageController pageController = PageController(viewportFraction: 1, keepPage: true);
   List<String> timeList = [
     '07:15',
     '05:55',

@@ -1,15 +1,19 @@
 import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/congratulation_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/exercise_complete_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/exercise_list_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/rest_time_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/take_break_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/warm_up_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/workout_start_screen.dart';
 import 'package:befit/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class QrCodeScan extends StatelessWidget {
-  const QrCodeScan({Key? key}) : super(key: key);
+class BeFit extends StatelessWidget {
+  const BeFit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +56,26 @@ class QrCodeScan extends StatelessWidget {
                 page: () => TakeBreakScreen(),
                 transition: Transition.fadeIn,
               ),
+              GetPage(
+                name: WarmUpScreen.routeName,
+                page: () => WarmUpScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: CongratulationsScreen.routeName,
+                page: () => CongratulationsScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: WorkoutCompleteScreen.routeName,
+                page: () => WorkoutCompleteScreen(),
+                transition: Transition.fadeIn,
+              ),
+              // GetPage(
+              //   name: RestTimeScreen.routeName,
+              //   page: () => RestTimeScreen(),
+              //   transition: Transition.fadeIn,
+              // ),
             ]);
       },
     );

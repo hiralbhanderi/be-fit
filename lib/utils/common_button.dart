@@ -7,7 +7,7 @@ class CommonButton extends StatelessWidget {
   final double width;
   final double buttonNameSize;
   final Color buttonNameColor;
-  // final Color buttonColor;
+  final Gradient buttonColor;
   final FontWeight buttonNameWeight;
   final VoidCallback onTap;
 
@@ -17,7 +17,7 @@ class CommonButton extends StatelessWidget {
       required this.width,
       required this.buttonNameSize,
       required this.buttonNameColor,
-      // required this.buttonColor,
+      required this.buttonColor,
       required this.buttonNameWeight,
       required this.onTap});
 
@@ -28,14 +28,7 @@ class CommonButton extends StatelessWidget {
       child: Container(
         height: height,
         width: width,
-        decoration: BoxDecoration(gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.topRight,
-          colors: [
-            ColorRes.purpleColor,
-            ColorRes.pinkColor,
-          ],
-        ), borderRadius: BorderRadius.circular(15)),
+        decoration: BoxDecoration(gradient: buttonColor, borderRadius: BorderRadius.circular(15)),
         child: Center(
             child: Text(
           buttonName,

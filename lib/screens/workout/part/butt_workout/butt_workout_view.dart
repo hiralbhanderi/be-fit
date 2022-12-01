@@ -41,6 +41,14 @@ class ButtWorkoutView extends StatelessWidget {
               padding:  EdgeInsets.only(left: 6.w,right:6.w),
               child: CommonButton(
                 height: 40,
+                buttonColor: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.topRight,
+                  colors: [
+                    ColorRes.purpleColor,
+                    ColorRes.pinkColor,
+                  ],
+                ),
                 width: double.infinity,
                 onTap: () {
                   Get.toNamed(ButtWorkoutScreen.routeName);

@@ -1,5 +1,6 @@
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
+import 'package:befit/screens/workout/part/butt_workout/warm_up_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/workout_start_screen.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:befit/screens/workout/workout_controller.dart';
@@ -172,9 +173,22 @@ class ExerciseListScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: CommonButton(
               height: 45,
+              buttonColor: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.topRight,
+                colors: [
+                  ColorRes.purpleColor,
+                  ColorRes.pinkColor,
+                ],
+              ),
               width: double.infinity,
               onTap: () {
-                Get.to(WorkoutStartScreen(dayCountForWorkoutStart: dayCount,));
+                Get.toNamed(WarmUpScreen.routeName);
+                Future.delayed(Duration(seconds: 3)).then((value) {
+                  return Get.to(WorkoutStartScreen(dayCountForWorkoutStart: dayCount,));
+                });
+
+                buttWorkoutController.isExerciseChangeIndex.value = 0;
               },
               buttonNameColor: ColorRes.whiteColor,
               buttonName: 'Start now',

@@ -1,7 +1,9 @@
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/exercise_list_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/warm_up_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/workout_start_screen.dart';
 import 'package:befit/screens/workout/workout_controller.dart';
+import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -14,6 +16,7 @@ class ButtWorkoutScreen extends StatelessWidget {
 
   ButtWorkoutController buttWorkoutController = Get.put(ButtWorkoutController());
   WorkoutController workoutController = Get.find();
+  var completedWorkoutDay = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -134,37 +137,36 @@ class ButtWorkoutScreen extends StatelessWidget {
                               padding: EdgeInsets.only(left: 6.w, right: 6.w),
                               child: CommonButton(
                                 height: 40,
+                                buttonColor: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    nextIndex.value >= indexFirst ? ColorRes.purpleColor:ColorRes.lightGreyColor,
+                                    nextIndex.value >= indexFirst ? ColorRes.pinkColor:ColorRes.lightGreyColor,
+                                  ],
+                                ),
                                 width: double.infinity,
                                 onTap: () {
-                                  //
-                                  // for (var element in buttWorkoutController.buttWorkoutModel) {
-                                  //   for (var element1 in element.exercise!){
-                                  //     print('second list --->>>${element1.actionId}');
-                                  //   }
-                                  // }
-                                  // print('id: ${buttWorkoutController.buttWorkoutModel[indexFirst].day.toString()}');
-                                  // Get.to(ExerciseListScreen(
-                                  //   dayCount: buttWorkoutController.buttWorkoutModel[indexFirst].day.toString(),
-                                  //   buttWorkoutModel: buttWorkoutController.buttWorkoutModel[indexFirst],
-                                  //   timeData: buttWorkoutController.timeList[indexFirst],
-                                  //   kcalData: buttWorkoutController.kcalList[indexFirst],
-                                  // ));
-                                  // var data = buttWorkoutController.buttWorkoutModel[indexFirst].exercise?[indexSecond].actionId;
-                                  // buttWorkoutController.buttWorkoutModelDataPass = buttWorkoutController.buttWorkoutModel[indexFirst].exercise ?? [];
-                                  // var modelData = workoutController.workoutAllDataModel.firstWhere((element) => element.id == data);
-                                  // // workoutController.workoutAllDataModelDataPass = modelData;
-                                  // print('model data --->>>${modelData.id}');
-                                  // // print('workoutAllDataModelDataPass data od fff--->>>${workoutController.workoutAllDataModelDataPass.id}');
-                                  // print('buttWorkoutModelDataPass data od fff--->>>${buttWorkoutController.buttWorkoutModelDataPass.length}');
-                                  Get.to(
-                                    WorkoutStartScreen(
-                                      dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
-                                    ),
-                                  );
+                                  if(nextIndex.value >= indexFirst){
+                                    Get.toNamed(WarmUpScreen.routeName);
+                                    Future.delayed(Duration(seconds: 3)).then((value) {
+                                      return Get.to(
+                                        WorkoutStartScreen(
+                                          dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
+                                        ),
+                                      );
+                                    });
+                                  }
+
+                                  // Get.to(
+                                  //   WorkoutStartScreen(
+                                  //     dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
+                                  //   ),
+                                  // );
                                   buttWorkoutController.isExerciseChangeIndex.value = 0;
                                 },
                                 buttonNameColor: ColorRes.whiteColor,
-                                buttonName: 'Start now',
+                                buttonName: nextIndex.value >= indexFirst ? 'Start now':'Watch video to start',
                                 buttonNameSize: 17,
                                 buttonNameWeight: FontWeight.w600,
                               ),
@@ -174,11 +176,14 @@ class ButtWorkoutScreen extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Get.to(ExerciseListScreen(
-                                  dayCount: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
-                                  timeData: buttWorkoutController.timeList[indexFirst],
-                                  kcalData: buttWorkoutController.kcalList[indexFirst],
-                                ));
+                                if(nextIndex.value >= indexFirst){
+                                  Get.to(ExerciseListScreen(
+                                    dayCount: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
+                                    timeData: buttWorkoutController.timeList[indexFirst],
+                                    kcalData: buttWorkoutController.kcalList[indexFirst],
+                                  ));
+                                }
+
                               },
                               child: Text(
                                 'Exercise list',
