@@ -21,9 +21,9 @@ class TakeBreakScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        buttWorkoutController.customTimerController.start();
-        buttWorkoutController.controller1.resume();
-        return true;
+        // buttWorkoutController.customTimerController.start();
+        // buttWorkoutController.controller1.resume();
+        return false;
       },
       child: Scaffold(
         body: Column(

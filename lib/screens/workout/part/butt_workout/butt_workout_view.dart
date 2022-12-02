@@ -1,4 +1,5 @@
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
+import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +27,10 @@ class ButtWorkoutView extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '0/28 DAYS',
+                Obx(()=>Text(
+                  '${isDayChange.value}/28 DAYS',
                   style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
-                ),
+                ),),
                 SizedBox(height: 2.h,),
                 Text(
                   'Step-by-Step Exercise Guide to Strengthen your Muscles of Fill Body.',

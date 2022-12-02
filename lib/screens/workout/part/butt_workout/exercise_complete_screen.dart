@@ -1,7 +1,10 @@
+import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
+import 'package:befit/screens/workout/workout_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
+import 'package:befit/utils/shared_preferences_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -515,10 +518,16 @@ class WorkoutCompleteScreen extends StatelessWidget {
                       height: 3.h,
                     ),
                     GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         nextIndex.value = int.parse(dayNumber ?? '0');
+                        await SharedPreferencesConst.setChangeDay(nextIndex.value);
+                        isDayChange.value = nextIndex.value;
                         // buttWorkoutController.carouselController.jumpToPage(nextIndex.value + 1);
-                        Get.offAndToNamed(ButtWorkoutScreen.routeName, arguments: dayNumber);
+                        // Get.offAndToNamed(ButtWorkoutScreen.routeName);
+                        // homeController.isSelectedBottom.value == 0;
+                        Get.offNamedUntil(ButtWorkoutScreen.routeName,
+                            ModalRoute.withName(HomeScreen.routeName));
+
                       },
                       child: Container(
                         height: 11.w,

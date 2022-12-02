@@ -8,6 +8,8 @@ import 'package:befit/screens/workout/part/butt_workout/take_break_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/warm_up_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/workout_start_screen.dart';
 import 'package:befit/splash_screen.dart';
+import 'package:befit/utils/assets_paths.dart';
+import 'package:befit/utils/shared_preferences_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -22,7 +24,7 @@ class BeFit extends StatelessWidget {
         return GetMaterialApp(
             home: Container(),
             debugShowCheckedModeBanner: false,
-            // initialBinding: AppBidding(),
+            initialBinding: AppBidding(),
             // title: 'Ser Info',
             initialRoute: SplashScreen.routeName,
             getPages: [
@@ -79,5 +81,14 @@ class BeFit extends StatelessWidget {
             ]);
       },
     );
+  }
+}
+
+class AppBidding extends Bindings {
+  @override
+  Future<void> dependencies() async {
+    await SharedPreferencesConst.initMySharedPreferences();
+    isDayChange.value = SharedPreferencesConst.getsChangeDay();
+    // Get.put(PrepareExamController());
   }
 }

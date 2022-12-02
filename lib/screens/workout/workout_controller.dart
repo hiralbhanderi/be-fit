@@ -26,18 +26,18 @@ class WorkoutController extends GetxController{
 
   RxList<WorkoutAllDataModel> workoutAllDataModel = <WorkoutAllDataModel>[].obs;
 
-  @override
-  onInit() {
-    workoutAllDataJson();
-    super.onInit();
-  }
-  Future<void> workoutAllDataJson() async {
-    final response = await rootBundle.loadString('assets/train/action.json');
-    // final data = await json.decode(response);
-    workoutAllDataModel.value = workoutAllDataModelFromJson(response);
-    // languageModelData.shuffle();
-    log('workoutAllDataModel --->>${workoutAllDataModel.first.name}');
-    // });
-  }
+  // @override
+  // onInit() {
+  //   workoutAllDataJson();
+  //   super.onInit();
+  // }
+  // Future<void> workoutAllDataJson() async {
+  //   final response = await rootBundle.loadString('assets/train/action.json');
+  //   // final data = await json.decode(response);
+  //   workoutAllDataModel.value = workoutAllDataModelFromJson(response);
+  //   // languageModelData.shuffle();
+  //   log('workoutAllDataModel --->>${workoutAllDataModel.first.name}');
+  //   // });
+  // }
 
 }

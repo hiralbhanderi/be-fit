@@ -84,6 +84,7 @@ class ButtWorkoutController extends GetxController {
   // WorkoutAllDataModel buttWorkoutModelDataPass = WorkoutAllDataModel();
   List<Exercise> selectedButtWorkoutModel = <Exercise>[];
   RxBool isPlayTimer = false.obs;
+  RxBool isCountDownAnimationHide = true.obs;
   RxInt isExerciseChangeIndex = 0.obs;
 
   @override
