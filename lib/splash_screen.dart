@@ -1,4 +1,5 @@
 import 'package:befit/screens/home/home_screen.dart';
+import 'package:befit/screens/signin_flow/signin_flow_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -50,6 +51,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   data() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.toNamed(HomeScreen.routeName);
+    Get.toNamed(SignInFlowScreen.routeName);
   }
 }

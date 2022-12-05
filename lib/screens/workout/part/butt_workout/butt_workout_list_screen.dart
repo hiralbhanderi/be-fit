@@ -1,7 +1,7 @@
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
-import 'package:befit/screens/workout/part/butt_workout/warm_up_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/workout_start_screen.dart';
+import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/assets_paths.dart';
@@ -11,15 +11,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class ExerciseListScreen extends StatelessWidget {
-  static const routeName = '/ExerciseListScreen';
+class ButtWorkoutListScreen extends StatelessWidget {
+  static const routeName = '/ButtWorkoutListScreen';
   final String? dayCount;
   final String? timeData;
   final String? kcalData;
   WorkoutController workoutController = Get.find();
   ButtWorkoutController buttWorkoutController = Get.find();
 
-  ExerciseListScreen({this.dayCount, this.timeData, this.kcalData});
+  ButtWorkoutListScreen({this.dayCount, this.timeData, this.kcalData});
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +185,7 @@ class ExerciseListScreen extends StatelessWidget {
               onTap: () {
                 Get.toNamed(WarmUpScreen.routeName);
                 Future.delayed(Duration(seconds: 3)).then((value) {
-                  return Get.to(WorkoutStartScreen(dayCountForWorkoutStart: dayCount,));
+                  return Get.to(ButtWorkoutStartScreen(dayCountForWorkoutStart: dayCount,));
                 });
 
                 buttWorkoutController.isExerciseChangeIndex.value = 0;

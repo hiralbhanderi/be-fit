@@ -4,10 +4,10 @@ import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/congratulation_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/exercise_complete_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/rest_time_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/take_break_screen.dart';
+import 'package:befit/screens/workout/common_screens/congratulation_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/butt_workout_complete_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/rest_time_for_butt_workout_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/take_break_for_butt_workout_screen.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/color_res.dart';
@@ -18,8 +18,8 @@ import 'package:lottie/lottie.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 import 'package:sizer/sizer.dart';
 
-class WorkoutStartScreen extends StatelessWidget {
-  static const routeName = '/WorkoutStartScreen';
+class ButtWorkoutStartScreen extends StatelessWidget {
+  static const routeName = '/ButtWorkoutStartScreen';
   final WorkoutController workoutController = Get.find();
   ButtWorkoutController buttWorkoutController = Get.find();
 
@@ -27,7 +27,7 @@ class WorkoutStartScreen extends StatelessWidget {
   WorkoutAllDataModel modelData = WorkoutAllDataModel();
   final String? dayCountForWorkoutStart;
 
-  WorkoutStartScreen({this.dayCountForWorkoutStart});
+  ButtWorkoutStartScreen({this.dayCountForWorkoutStart});
 
   @override
   Widget build(BuildContext context) {
@@ -312,7 +312,7 @@ class WorkoutStartScreen extends StatelessWidget {
                                         buttWorkoutController.customTimerController.pause();
                                         buttWorkoutController.controller1.pause();
 
-                                        Get.to(RestTimeScreen(
+                                        Get.to(RestTimeForButtWorkoutScreen(
                                             exerciseTotalCount:
                                                 buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ??
                                                     0,
@@ -355,7 +355,7 @@ class WorkoutStartScreen extends StatelessWidget {
                                         buttWorkoutController.customTimerController.pause();
                                         buttWorkoutController.controller1.pause();
                                         Get.to(
-                                          TakeBreakScreen(
+                                          TakeBreakForButtWorkoutScreen(
                                             exerciseTotalCount:
                                                 buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ??
                                                     0,

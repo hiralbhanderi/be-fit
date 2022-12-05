@@ -1,6 +1,8 @@
-import 'dart:developer';
 import 'dart:ui';
 
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_controller.dart';
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_list_screen.dart';
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_start_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_list_screen.dart';
 import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
@@ -14,28 +16,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import 'butt_workout_model.dart';
+class AbsWorkoutScreen extends StatelessWidget {
+  static const routeName = '/AbsWorkoutScreen';
 
-class ButtWorkoutScreen extends StatelessWidget {
-  static const routeName = '/ButtWorkoutScreen';
-
-  ButtWorkoutController buttWorkoutController = Get.put(ButtWorkoutController());
+  AbsWorkoutController absWorkoutController = Get.put(AbsWorkoutController());
   // WorkoutController workoutController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-
+    // print('buttWorkoutController.buttWorkoutModel.lengt ====>>>>${buttWorkoutController.buttWorkoutModel.length}');
     return Scaffold(
       backgroundColor: ColorRes.blackColor.withOpacity(0.1),
       body: Stack(
         children: [
-          Image.asset(
-            ImagesAsset.backGroundImage,
-            height: double.infinity,
-            fit: BoxFit.cover,
-          ),
+          Image.asset(ImagesAsset.backGroundImage,height: double.infinity,fit: BoxFit.cover,),
           BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            filter: ImageFilter.blur(sigmaX: 6, sigmaY:6),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -60,7 +56,7 @@ class ButtWorkoutScreen extends StatelessWidget {
                                 width: 6.w,
                               ),
                               Text(
-                                'Butt Workout',
+                                'Abs Workout',
                                 style: TextStyle(fontSize: 21, color: ColorRes.greyColor, fontWeight: FontWeight.w500),
                               ),
                             ],
@@ -81,8 +77,8 @@ class ButtWorkoutScreen extends StatelessWidget {
                   ],
                 ),
                 Obx(
-                  () => CarouselSlider.builder(
-                    carouselController: buttWorkoutController.carouselController,
+                      () => CarouselSlider.builder(
+                    carouselController: absWorkoutController.carouselControllerForAbsWorkout,
                     options: CarouselOptions(
                       // height: (boxConstraints.maxHeight / 100) * 82,
                       initialPage: 0,
@@ -97,9 +93,9 @@ class ButtWorkoutScreen extends StatelessWidget {
                       enableInfiniteScroll: false,
                       scrollDirection: Axis.horizontal,
                     ),
-                    itemCount: buttWorkoutController.buttWorkoutModel1.length,
+                    itemCount: absWorkoutController.absWorkoutModel.length,
                     itemBuilder: (context, int indexFirst, int indexSecond) {
-                      buttWorkoutController.getKcalTotalForButtWorkout();
+                      absWorkoutController.getKcalTotalForAbsWorkout();
                       return Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -115,7 +111,7 @@ class ButtWorkoutScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Day ${buttWorkoutController.buttWorkoutModel1[indexFirst].day}',
+                                    'Day ${absWorkoutController.absWorkoutModel[indexFirst].day}',
                                     style: TextStyle(fontSize: 24, color: ColorRes.blackColor.withOpacity(0.75), fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
@@ -124,15 +120,14 @@ class ButtWorkoutScreen extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        '${buttWorkoutController.timeList[indexFirst]} min',
+                                        '${absWorkoutController.timeListForAbsWorkout[indexFirst]} min',
                                         style: TextStyle(fontSize: 18, color: ColorRes.blackColor.withOpacity(0.75), fontWeight: FontWeight.w500),
                                       ),
                                       SizedBox(
                                         width: 8.w,
                                       ),
                                       Text(
-                                        // '${buttWorkoutController.kcalList[indexFirst]} kcal',
-                                        '${buttWorkoutController.totalListOfKcal[indexFirst]} kcal',
+                                        '${absWorkoutController.kcalListForAbsWorkout[indexFirst]} kcal',
                                         style: TextStyle(fontSize: 18, color: ColorRes.blackColor.withOpacity(0.75), fontWeight: FontWeight.w500),
                                       ),
                                     ],
@@ -141,7 +136,7 @@ class ButtWorkoutScreen extends StatelessWidget {
                                     height: 2.h,
                                   ),
                                   Text(
-                                    'Step-by-Step Exercise Guide to Shape the Perfect Butt.',
+                                    'Step-by-Step exercise guide to improve your core strength.',
                                     style: TextStyle(fontSize: 15, color: ColorRes.blackColor.withOpacity(0.75), fontWeight: FontWeight.w400),
                                   ),
                                 ],
@@ -156,18 +151,18 @@ class ButtWorkoutScreen extends StatelessWidget {
                                         begin: Alignment.topLeft,
                                         end: Alignment.topRight,
                                         colors: [
-                                          isDayChange >= indexFirst ? ColorRes.purpleColor : ColorRes.lightGreyColor,
-                                          isDayChange >= indexFirst ? ColorRes.pinkColor : ColorRes.lightGreyColor,
+                                          isDayChange >= indexFirst ? ColorRes.purpleColor:ColorRes.lightGreyColor,
+                                          isDayChange >= indexFirst ? ColorRes.pinkColor:ColorRes.lightGreyColor,
                                         ],
                                       ),
                                       width: double.infinity,
                                       onTap: () {
-                                        if (isDayChange >= indexFirst) {
+                                        if(isDayChange >= indexFirst){
                                           Get.toNamed(WarmUpScreen.routeName);
                                           Future.delayed(Duration(seconds: 3)).then((value) {
                                             return Get.to(
-                                              ButtWorkoutStartScreen(
-                                                dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
+                                              AbsWorkoutStartScreen(
+                                                dayCountForWorkoutStartForAbsWorkout: absWorkoutController.absWorkoutModel[indexFirst].day.toString(),
                                               ),
                                             );
                                           });
@@ -178,10 +173,10 @@ class ButtWorkoutScreen extends StatelessWidget {
                                         //     dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
                                         //   ),
                                         // );
-                                        buttWorkoutController.isExerciseChangeIndex.value = 0;
+                                        absWorkoutController.isExerciseChangeIndexForAbsWorkout.value = 0;
                                       },
                                       buttonNameColor: ColorRes.whiteColor,
-                                      buttonName: isDayChange >= indexFirst ? 'Start now' : 'Watch video to start',
+                                      buttonName: isDayChange >= indexFirst ? 'Start now':'Watch video to start',
                                       buttonNameSize: 17,
                                       buttonNameWeight: FontWeight.w600,
                                     ),
@@ -191,13 +186,14 @@ class ButtWorkoutScreen extends StatelessWidget {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      if (isDayChange >= indexFirst) {
-                                        Get.to(ButtWorkoutListScreen(
-                                          dayCount: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
-                                          timeData: buttWorkoutController.timeList[indexFirst],
-                                          kcalData: buttWorkoutController.kcalList[indexFirst],
+                                      if(isDayChange >= indexFirst){
+                                        Get.to(AbsWorkoutListScreen(
+                                          dayCountForAbsWorkout: absWorkoutController.absWorkoutModel[indexFirst].day.toString(),
+                                          timeDataForAbsWorkout: absWorkoutController.timeListForAbsWorkout[indexFirst],
+                                          kcalDataForAbsWorkout: absWorkoutController.kcalListForAbsWorkout[indexFirst],
                                         ));
                                       }
+
                                     },
                                     child: Text(
                                       'Exercise list',

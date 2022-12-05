@@ -1,12 +1,20 @@
 import 'package:befit/screens/home/home_screen.dart';
+import 'package:befit/screens/signin_flow/signin_flow_controller.dart';
+import 'package:befit/screens/signin_flow/signin_flow_screen.dart';
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_complete_screen.dart';
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_list_screen.dart';
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_screen.dart';
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_start_screen.dart';
+import 'package:befit/screens/workout/part/abs_workout/rest_time_for_abs_workout_screen.dart';
+import 'package:befit/screens/workout/part/abs_workout/take_break_for_abs_workout_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/congratulation_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/exercise_complete_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/exercise_list_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/rest_time_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/take_break_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/warm_up_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/workout_start_screen.dart';
+import 'package:befit/screens/workout/common_screens/congratulation_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/butt_workout_complete_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/butt_workout_list_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/rest_time_for_butt_workout_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/take_break_for_butt_workout_screen.dart';
+import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';
 import 'package:befit/splash_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/shared_preferences_const.dart';
@@ -44,18 +52,18 @@ class BeFit extends StatelessWidget {
                 transition: Transition.fadeIn,
               ),
               GetPage(
-                name: ExerciseListScreen.routeName,
-                page: () => ExerciseListScreen(),
+                name: ButtWorkoutListScreen.routeName,
+                page: () => ButtWorkoutListScreen(),
                 transition: Transition.fadeIn,
               ),
               GetPage(
-                name: WorkoutStartScreen.routeName,
-                page: () => WorkoutStartScreen(),
+                name: ButtWorkoutStartScreen.routeName,
+                page: () => ButtWorkoutStartScreen(),
                 transition: Transition.fadeIn,
               ),
               GetPage(
-                name: TakeBreakScreen.routeName,
-                page: () => TakeBreakScreen(),
+                name: TakeBreakForButtWorkoutScreen.routeName,
+                page: () => TakeBreakForButtWorkoutScreen(),
                 transition: Transition.fadeIn,
               ),
               GetPage(
@@ -73,11 +81,36 @@ class BeFit extends StatelessWidget {
                 page: () => WorkoutCompleteScreen(),
                 transition: Transition.fadeIn,
               ),
-              // GetPage(
-              //   name: RestTimeScreen.routeName,
-              //   page: () => RestTimeScreen(),
-              //   transition: Transition.fadeIn,
-              // ),
+              GetPage(
+                name: AbsWorkoutScreen.routeName,
+                page: () => AbsWorkoutScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: AbsWorkoutStartScreen.routeName,
+                page: () => AbsWorkoutStartScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: AbsWorkoutCompleteScreen.routeName,
+                page: () => AbsWorkoutCompleteScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: AbsWorkoutListScreen.routeName,
+                page: () => AbsWorkoutListScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: TakeBreakForAbsWorkoutScreen.routeName,
+                page: () => TakeBreakForAbsWorkoutScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: SignInFlowScreen.routeName,
+                page: () => SignInFlowScreen(),
+                transition: Transition.fadeIn,
+              ),
             ]);
       },
     );

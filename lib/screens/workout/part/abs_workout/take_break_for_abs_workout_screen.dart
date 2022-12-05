@@ -1,3 +1,5 @@
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_controller.dart';
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
 import 'package:befit/utils/color_res.dart';
@@ -5,17 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class TakeBreakScreen extends StatelessWidget {
-  static const routeName = '/TakeBreakScreen';
+class TakeBreakForAbsWorkoutScreen extends StatelessWidget {
+  static const routeName = '/TakeBreakForAbsWorkoutScreen';
 
-  TakeBreakScreen({this.exerciseNumber, this.exerciseTotalCount, this.exerciseName, this.exerciseImage});
+  TakeBreakForAbsWorkoutScreen({this.exerciseNumberForAbsWorkout, this.exerciseTotalCountForAbsWorkout, this.exerciseNameForAbsWorkout, this.exerciseImageForAbsWorkout});
 
-  final int? exerciseNumber;
-  final int? exerciseTotalCount;
-  final String? exerciseName;
-  final String? exerciseImage;
+  final int? exerciseNumberForAbsWorkout;
+  final int? exerciseTotalCountForAbsWorkout;
+  final String? exerciseNameForAbsWorkout;
+  final String? exerciseImageForAbsWorkout;
 
-  ButtWorkoutController buttWorkoutController = Get.find();
+  AbsWorkoutController absWorkoutController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class TakeBreakScreen extends StatelessWidget {
                                                       // Get.back();
                                                       // Get.back();
                                                       // Get.back();
-                                                      Get.offAndToNamed(ButtWorkoutScreen.routeName);
+                                                      Get.offAndToNamed(AbsWorkoutScreen.routeName);
                                                       // Get.offAllNamed(ButtWorkoutScreen.routeName);
                                                       Navigator.of(context).pop();
                                                     },
@@ -132,8 +134,8 @@ class TakeBreakScreen extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: (){
-                                buttWorkoutController.customTimerController.start();
-                                buttWorkoutController.controller1.resume();
+                                absWorkoutController.customTimerControllerForAbsWorkout.start();
+                                absWorkoutController.controllerForAbsWorkout.resume();
                                 Get.back();
                               },
                               child: Container(
@@ -174,19 +176,19 @@ class TakeBreakScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'Next: $exerciseNumber/$exerciseTotalCount',
+                        'Next: $exerciseNumberForAbsWorkout/$exerciseTotalCountForAbsWorkout',
                         style: TextStyle(fontSize: 14, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
                       ),
                       SizedBox(
                         height: 5.w,
                       ),
                       Text(
-                        '$exerciseName',
+                        '$exerciseNameForAbsWorkout',
                         style: TextStyle(fontSize: 18, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
-                  Image.asset('$exerciseImage',scale: 10,)
+                  Image.asset('$exerciseImageForAbsWorkout',scale: 10,)
                 ],
               ),
             )

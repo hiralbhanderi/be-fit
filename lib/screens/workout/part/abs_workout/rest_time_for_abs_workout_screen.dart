@@ -1,29 +1,30 @@
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/congratulation_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/exercise_complete_screen.dart';
+import 'package:befit/screens/workout/common_screens/congratulation_screen.dart';
+import 'package:befit/screens/workout/part/butt_workout/butt_workout_complete_screen.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 import 'package:sizer/sizer.dart';
 
-class RestTimeScreen extends StatelessWidget {
-  static const routeName = '/RestTimeScreen';
+class RestTimeForAbsWorkoutScreen extends StatelessWidget {
+  static const routeName = '/RestTimeForAbsWorkoutScreen';
 
-  RestTimeScreen({
-    this.exerciseNumber,
-    this.exerciseTotalCount,
-    this.exerciseName,
-    this.exerciseImage,
+  RestTimeForAbsWorkoutScreen({
+    this.exerciseNumberForAbsWorkout,
+    this.exerciseTotalCountForAbsWorkout,
+    this.exerciseNameForAbsWorkout,
+    this.exerciseImageForAbsWorkout,
   });
 
-  final int? exerciseNumber;
-  final int? exerciseTotalCount;
-  final String? exerciseName;
-  final String? exerciseImage;
+  final int? exerciseNumberForAbsWorkout;
+  final int? exerciseTotalCountForAbsWorkout;
+  final String? exerciseNameForAbsWorkout;
+  final String? exerciseImageForAbsWorkout;
 
-  ButtWorkoutController buttWorkoutController = Get.find();
+  AbsWorkoutController absWorkoutController = Get.find();
 
   // RxInt addTime = 15.obs;
 
@@ -90,7 +91,7 @@ class RestTimeScreen extends StatelessWidget {
                             innerFillColor: ColorRes.greyColor.withOpacity(0.3),
                             neonColor: Colors.transparent,
                             outerStrokeColor: ColorRes.greenColor,
-                            controller: buttWorkoutController.controller1,
+                            controller: absWorkoutController.controllerForAbsWorkout,
                             isTimerTextShown: true,
                             neumorphicEffect: true,
                             innerFillGradient: const LinearGradient(colors: [
@@ -102,9 +103,9 @@ class RestTimeScreen extends StatelessWidget {
                               // buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
                               // buttWorkoutController.customTimerController.start();
                               // buttWorkoutController.controller1.resume();
-                              buttWorkoutController.isExerciseChangeIndex.value++;
-                              buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
-                              buttWorkoutController.isCountDownAnimationHide.value = true;
+                              absWorkoutController.isExerciseChangeIndexForAbsWorkout.value++;
+                              absWorkoutController.pageControllerForAbsWorkout.jumpToPage(absWorkoutController.isExerciseChangeIndexForAbsWorkout.value);
+                              absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = true;
                               Get.back();
                             },
                           ),
@@ -112,9 +113,9 @@ class RestTimeScreen extends StatelessWidget {
                               onTap: () {
                                 // buttWorkoutController.customTimerController.start();
                                 // buttWorkoutController.controller1.resume();
-                                buttWorkoutController.isExerciseChangeIndex.value++;
-                                buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
-                                buttWorkoutController.isCountDownAnimationHide.value = true;
+                                absWorkoutController.isExerciseChangeIndexForAbsWorkout.value++;
+                                absWorkoutController.pageControllerForAbsWorkout.jumpToPage(absWorkoutController.isExerciseChangeIndexForAbsWorkout.value);
+                                absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = true;
                                 Get.back();
                               },
                               child: Container(
@@ -146,20 +147,20 @@ class RestTimeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        'Next: $exerciseNumber/$exerciseTotalCount',
+                        'Next: $exerciseNumberForAbsWorkout/$exerciseTotalCountForAbsWorkout',
                         style: TextStyle(fontSize: 14, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
                       ),
                       SizedBox(
                         height: 5.w,
                       ),
                       Text(
-                        '$exerciseName',
+                        '$exerciseNameForAbsWorkout',
                         style: TextStyle(fontSize: 18, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
                   Image.asset(
-                    '$exerciseImage',
+                    '$exerciseImageForAbsWorkout',
                     scale: 10,
                   )
                 ],

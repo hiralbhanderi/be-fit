@@ -79,36 +79,37 @@ class ButtWorkoutController extends GetxController {
     '78',
   ];
 
-  RxList<ButtWorkoutModel> buttWorkoutModel = <ButtWorkoutModel>[].obs;
+  // RxList<ButtWorkoutModel> buttWorkoutModel = <ButtWorkoutModel>[].obs;
   RxList<ButtWorkoutModel> buttWorkoutModel1 = <ButtWorkoutModel>[].obs;
   // WorkoutAllDataModel buttWorkoutModelDataPass = WorkoutAllDataModel();
   List<Exercise> selectedButtWorkoutModel = <Exercise>[];
   RxBool isPlayTimer = false.obs;
   RxBool isCountDownAnimationHide = true.obs;
   RxInt isExerciseChangeIndex = 0.obs;
+  List<double> totalListOfKcal = [];
 
   @override
   onInit() {
-    buttWorkoutJson();
+    // buttWorkoutJson();
     getDataFromAsset();
     super.onInit();
   }
 
-  Future<void> buttWorkoutJson() async {
-    final response = await rootBundle.loadString('assets/train/butt_workout.json');
-    // final data = await json.decode(response);
-    buttWorkoutModel.value = buttWorkoutModelFromJson(response);
-    // languageModelData.shuffle();
-    log('languageModelData --->>${buttWorkoutModel.length}');
-    // });
-  }
+  // Future<void> buttWorkoutJson() async {
+  //   final response = await rootBundle.loadString('assets/train/butt_workout.json');
+  //   // final data = await json.decode(response);
+  //   buttWorkoutModel.value = buttWorkoutModelFromJson(response);
+  //   // languageModelData.shuffle();
+  //   log('languageModelData --->>${buttWorkoutModel.length}');
+  //   // });
+  // }
 
   Future<void> getDataFromAsset() async {
     /// day time
     final response = await rootBundle.loadString('assets/train/butt_workout.json');
     buttWorkoutModel1.value = buttWorkoutModelFromJson(response);
 
-    /// excesi list
+    /// exercise list
     final response1 = await rootBundle.loadString('assets/train/action.json');
     List<WorkoutAllDataModel> workoutAllDataModel = workoutAllDataModelFromJson(response1);
 
@@ -120,5 +121,17 @@ class ButtWorkoutController extends GetxController {
       }
     }
     log('buttWorkoutModel1 First Data : actionId: ${buttWorkoutModel1.first.exercise?.first.time} \n workout: ${buttWorkoutModel1.first.exercise?.first.workoutAllDataModel?.toJson()}');
+    // getKcalTotal();
+  }
+
+  getKcalTotalForButtWorkout(){
+    double totalKcal = 0.0;
+    for (var element in buttWorkoutModel1) {
+      totalKcal = 0;
+      for (Exercise secondElement in element.exercise ?? []) {
+        totalKcal = totalKcal + (secondElement.kcal ?? 0);
+      }
+      totalListOfKcal.add(totalKcal);
+    }
   }
 }

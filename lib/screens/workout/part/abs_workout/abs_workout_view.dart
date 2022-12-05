@@ -1,6 +1,8 @@
+import 'package:befit/screens/workout/part/abs_workout/abs_workout_screen.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class AbsWorkoutView extends StatelessWidget {
@@ -48,7 +50,9 @@ class AbsWorkoutView extends StatelessWidget {
                   ],
                 ),
                 width: double.infinity,
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(AbsWorkoutScreen.routeName);
+                },
                 buttonNameColor: ColorRes.whiteColor,
                 buttonName: 'OPEN WORKOUT',
                 buttonNameSize: 16,
