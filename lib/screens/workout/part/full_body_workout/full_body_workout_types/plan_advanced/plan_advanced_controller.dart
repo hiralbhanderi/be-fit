@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/plan_advanced_model.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:custom_timer/custom_timer.dart';
@@ -9,46 +9,46 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 
-class ButtWorkoutController extends GetxController {
+class PlanAdvancedController extends GetxController {
   // ButtWorkoutModel selectedButtWorkoutModel = ButtWorkoutModel();
   // String selectedDay = '0';
   // List<Exercise> buttWorkoutModelDataPass = <Exercise>[];
-  CarouselController carouselController = CarouselController();
-  final CountDownController controller1 = CountDownController();
-  final CustomTimerController customTimerController = CustomTimerController();
-  PageController pageController = PageController(viewportFraction: 1, keepPage: true);
-  List<String> timeList = [
-    '07:15',
-    '05:55',
-    '06:40',
-    '07:00',
-    '06:15',
-    '06:20',
+  CarouselController carouselControllerForPlanAdvanced = CarouselController();
+  final CountDownController controllerForPlanAdvanced = CountDownController();
+  final CustomTimerController customTimerControllerForPlanAdvanced = CustomTimerController();
+  PageController pageControllerForPlanAdvanced = PageController(viewportFraction: 1, keepPage: true);
+  List<String> timeListForPlanAdvanced = [
+    '05:40',
+    '06:01',
+    '06:05',
     '06:50',
-    '07:15',
-    '07:25',
-    '07:55',
-    '07:40',
-    '07:50',
-    '07:15',
-    '07:40',
-    '09:20',
-    '08:45',
-    '08:55',
-    '09:15',
-    '08:00',
-    '09:28',
-    '09:20',
-    '11:08',
-    '11:18',
-    '11:50',
-    '12:08',
-    '12:55',
-    '12:03',
-    '12:08',
+    '05:25',
+    '06:05',
+    '05:46',
+    '06:35',
+    '06:30',
+    '06:11',
+    '05:05',
+    '05:40',
+    '07:30',
+    '05:36',
+    '06:24',
+    '06:10',
+    '05:50',
+    '06:00',
+    '06:15',
+    '05:30',
+    '07:05',
+    '05:20',
+    '06:10',
+    '06:10',
+    '05:15',
+    '05:25',
+    '06:30',
+    '06:35',
   ];
 
-  List<String> kcalList = [
+  List<String> kcalListForPlanAdvanced = [
     '41',
     '38',
     '34',
@@ -80,18 +80,18 @@ class ButtWorkoutController extends GetxController {
   ];
 
   // RxList<ButtWorkoutModel> buttWorkoutModel = <ButtWorkoutModel>[].obs;
-  RxList<ButtWorkoutModel> buttWorkoutModel1 = <ButtWorkoutModel>[].obs;
+  RxList<PlanAdvancedModel> planAdvancedModel = <PlanAdvancedModel>[].obs;
   // WorkoutAllDataModel buttWorkoutModelDataPass = WorkoutAllDataModel();
-  List<Exercise> selectedButtWorkoutModel = <Exercise>[];
-  RxBool isPlayTimer = false.obs;
-  RxBool isCountDownAnimationHide = true.obs;
-  RxInt isExerciseChangeIndex = 0.obs;
-  List<double> totalListOfKcal = [];
+  List<Exercise> selectedForPlanAdvanced = <Exercise>[];
+  RxBool isPlayTimerForPlanAdvanced = false.obs;
+  RxBool isCountDownAnimationHideForPlanAdvanced = true.obs;
+  RxInt isExerciseChangeIndexForPlanAdvanced = 0.obs;
+  List<double> totalListOfKcaForPlanAdvanced = [];
 
   @override
   onInit() {
     // buttWorkoutJson();
-    getDataFromAssetForButtWorkout();
+    getDataFromAssetForPlanAdvanced();
     super.onInit();
   }
 
@@ -104,35 +104,35 @@ class ButtWorkoutController extends GetxController {
   //   // });
   // }
 
-  Future<void> getDataFromAssetForButtWorkout() async {
+  Future<void> getDataFromAssetForPlanAdvanced() async {
     /// day time
-    final response = await rootBundle.loadString('assets/train/butt_workout.json');
-    buttWorkoutModel1.value = buttWorkoutModelFromJson(response);
+    final response = await rootBundle.loadString('assets/train/plan_advanced.json');
+    planAdvancedModel.value = planAdvancedModelFromJson(response);
 
     /// exercise list
     final response1 = await rootBundle.loadString('assets/train/action.json');
     List<WorkoutAllDataModel> workoutAllDataModel = workoutAllDataModelFromJson(response1);
 
-    for (int index = 0; index < buttWorkoutModel1.length; index++) {
-      var exerciseData = buttWorkoutModel1[index].exercise;
+    for (int index = 0; index < planAdvancedModel.length; index++) {
+      var exerciseData = planAdvancedModel[index].exercise;
       for (int j = 0; j < (exerciseData?.length ?? 0); j++) {
         var xyz = workoutAllDataModel.firstWhere((element2) => element2.id == exerciseData?[j].actionId);
         exerciseData?[j].workoutAllDataModel = xyz;
       }
     }
-    log('buttWorkoutModel1 First Data : actionId: ${buttWorkoutModel1.first.exercise?.first.time} \n workout: ${buttWorkoutModel1.first.exercise?.first.workoutAllDataModel?.toJson()}');
+    log('buttWorkoutModel1 First Data : actionId: ${planAdvancedModel.first.exercise?.first.time} \n workout: ${planAdvancedModel.first.exercise?.first.workoutAllDataModel?.toJson()}');
     // getKcalTotal();
   }
 
-  getKcalTotalForButtWorkout(){
+  getKcalTotalForPlanAdvanced(){
     double totalKcal = 0.0;
-    for (var element in buttWorkoutModel1) {
+    for (var element in planAdvancedModel) {
       totalKcal = 0;
       for (Exercise secondElement in element.exercise ?? []) {
         totalKcal = totalKcal + (secondElement.kcal ?? 0);
       }
       // totalListOfKcal.add(totalKcal);
-      totalListOfKcal.add(double.parse(totalKcal.round().toString()));
+      totalListOfKcaForPlanAdvanced.add(double.parse(totalKcal.round().toString()));
     }
   }
 }

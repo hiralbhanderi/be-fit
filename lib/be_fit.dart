@@ -15,6 +15,22 @@ import 'package:befit/screens/workout/part/butt_workout/rest_time_for_butt_worko
 import 'package:befit/screens/workout/part/butt_workout/take_break_for_butt_workout_screen.dart';
 import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/full_body_workout_type_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/plan_advanced_complete_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/plan_advanced_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/plan_advanced_workout_list_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/plan_advanced_workout_start_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/take_break_for_plan_advanced_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_complete_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_workout_list_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_workout_start_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/take_break_for_plan_beginner_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_intermediate/plan_intermediate_complete_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_intermediate/plan_intermediate_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_intermediate/plan_intermediate_workout_list_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_intermediate/plan_intermediate_workout_start_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_intermediate/take_break_for_plan_intermediate_screen.dart';
 import 'package:befit/splash_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/shared_preferences_const.dart';
@@ -111,6 +127,86 @@ class BeFit extends StatelessWidget {
                 page: () => SignInFlowScreen(),
                 transition: Transition.fadeIn,
               ),
+              GetPage(
+                name: FullBodyWorkoutTypeScreen.routeName,
+                page: () => FullBodyWorkoutTypeScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanIntermediateScreen.routeName,
+                page: () => PlanIntermediateScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanIntermediateWorkoutListScreen.routeName,
+                page: () => PlanIntermediateWorkoutListScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanIntermediateWorkoutStartScreen.routeName,
+                page: () => PlanIntermediateWorkoutStartScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: TakeBreakForPlanIntermediateScreen.routeName,
+                page: () => TakeBreakForPlanIntermediateScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanIntermediateCompleteScreen.routeName,
+                page: () => PlanIntermediateCompleteScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanBeginnerCompleteScreen.routeName,
+                page: () => PlanBeginnerCompleteScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanBeginnerWorkoutListScreen.routeName,
+                page: () => PlanBeginnerWorkoutListScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanBeginnerScreen.routeName,
+                page: () => PlanBeginnerScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanBeginnerWorkoutStartScreen.routeName,
+                page: () => PlanBeginnerWorkoutStartScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: TakeBreakForPlanBeginnerScreen.routeName,
+                page: () => TakeBreakForPlanBeginnerScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanAdvancedScreen.routeName,
+                page: () => PlanAdvancedScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanAdvancedWorkoutStartScreen.routeName,
+                page: () => PlanAdvancedWorkoutStartScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanAdvancedWorkoutListScreen.routeName,
+                page: () => PlanAdvancedWorkoutListScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: TakeBreakForPlanAdvancedScreen.routeName,
+                page: () => TakeBreakForPlanAdvancedScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: PlanAdvancedCompleteScreen.routeName,
+                page: () => PlanAdvancedCompleteScreen(),
+                transition: Transition.fadeIn,
+              ),
             ]);
       },
     );
@@ -121,7 +217,11 @@ class AppBidding extends Bindings {
   @override
   Future<void> dependencies() async {
     await SharedPreferencesConst.initMySharedPreferences();
-    isDayChange.value = SharedPreferencesConst.getsChangeDay();
+    isDayChangeForButtWorkout.value = SharedPreferencesConst.getsChangeDayForButtWorkout();
+    isDayChangeForAbsWorkout.value = SharedPreferencesConst.getsChangeDayForAbsWorkout();
+    isDayChangeForPlanIntermediateWorkout.value = SharedPreferencesConst.getsChangeDayForPlanIntermediateWorkout();
+    isDayChangeForPlanBeginnerWorkout.value = SharedPreferencesConst.getsChangeDayForPlanBeginnerWorkout();
+    isDayChangeForPlanAdvancedWorkout.value = SharedPreferencesConst.getsChangeDayForPlanAdvancedWorkout();
     // Get.put(PrepareExamController());
   }
 }

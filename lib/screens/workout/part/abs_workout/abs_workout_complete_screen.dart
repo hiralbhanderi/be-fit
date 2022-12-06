@@ -521,9 +521,9 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        nextIndex.value = int.parse(dayNumberForAbsWorkout ?? '0');
-                        await SharedPreferencesConst.setChangeDay(nextIndex.value);
-                        isDayChange.value = nextIndex.value;
+                        nextIndexForAbsWorkout.value = int.parse(dayNumberForAbsWorkout ?? '0');
+                        await SharedPreferencesConst.setChangeDayForAbsWorkout(nextIndexForAbsWorkout.value);
+                        isDayChangeForAbsWorkout.value = nextIndexForAbsWorkout.value;
                         // buttWorkoutController.carouselController.jumpToPage(nextIndex.value + 1);
                         // Get.offAndToNamed(ButtWorkoutScreen.routeName);
                         // homeController.isSelectedBottom.value == 0;

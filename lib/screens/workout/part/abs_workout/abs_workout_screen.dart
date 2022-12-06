@@ -127,7 +127,7 @@ class AbsWorkoutScreen extends StatelessWidget {
                                         width: 8.w,
                                       ),
                                       Text(
-                                        '${absWorkoutController.kcalListForAbsWorkout[indexFirst]} kcal',
+                                        '${absWorkoutController.totalListOfKcalForAbsWorkout[indexFirst]} kcal',
                                         style: TextStyle(fontSize: 18, color: ColorRes.blackColor.withOpacity(0.75), fontWeight: FontWeight.w500),
                                       ),
                                     ],
@@ -151,13 +151,13 @@ class AbsWorkoutScreen extends StatelessWidget {
                                         begin: Alignment.topLeft,
                                         end: Alignment.topRight,
                                         colors: [
-                                          isDayChange >= indexFirst ? ColorRes.purpleColor:ColorRes.lightGreyColor,
-                                          isDayChange >= indexFirst ? ColorRes.pinkColor:ColorRes.lightGreyColor,
+                                          isDayChangeForAbsWorkout >= indexFirst ? ColorRes.purpleColor:ColorRes.lightGreyColor,
+                                          isDayChangeForAbsWorkout >= indexFirst ? ColorRes.pinkColor:ColorRes.lightGreyColor,
                                         ],
                                       ),
                                       width: double.infinity,
                                       onTap: () {
-                                        if(isDayChange >= indexFirst){
+                                        if(isDayChangeForAbsWorkout >= indexFirst){
                                           Get.toNamed(WarmUpScreen.routeName);
                                           Future.delayed(Duration(seconds: 3)).then((value) {
                                             return Get.to(
@@ -176,7 +176,7 @@ class AbsWorkoutScreen extends StatelessWidget {
                                         absWorkoutController.isExerciseChangeIndexForAbsWorkout.value = 0;
                                       },
                                       buttonNameColor: ColorRes.whiteColor,
-                                      buttonName: isDayChange >= indexFirst ? 'Start now':'Watch video to start',
+                                      buttonName: isDayChangeForAbsWorkout >= indexFirst ? 'Start now':'Watch video to start',
                                       buttonNameSize: 17,
                                       buttonNameWeight: FontWeight.w600,
                                     ),
@@ -186,11 +186,11 @@ class AbsWorkoutScreen extends StatelessWidget {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      if(isDayChange >= indexFirst){
+                                      if(isDayChangeForAbsWorkout >= indexFirst){
                                         Get.to(AbsWorkoutListScreen(
                                           dayCountForAbsWorkout: absWorkoutController.absWorkoutModel[indexFirst].day.toString(),
                                           timeDataForAbsWorkout: absWorkoutController.timeListForAbsWorkout[indexFirst],
-                                          kcalDataForAbsWorkout: absWorkoutController.kcalListForAbsWorkout[indexFirst],
+                                          kcalDataForAbsWorkout: absWorkoutController.totalListOfKcalForAbsWorkout[indexFirst].toString(),
                                         ));
                                       }
 

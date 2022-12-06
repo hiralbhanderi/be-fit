@@ -13,55 +13,61 @@ class ButtWorkoutView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: ColorRes.blackColor.withOpacity(0.7)),
-      child: Padding(
-        padding:  EdgeInsets.only(left: 4.w,right: 4.w,top: 6.w,bottom: 10.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Butt\nWorkout',
-              style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(height: 2.h,),
-            Column(
+      child: Stack(
+        children: [
+          ClipRRect(
+              borderRadius: BorderRadius.circular(12),child: Image.asset(ImagesAsset.buttImage,fit: BoxFit.fitHeight,height: double.infinity,)),
+          Padding(
+            padding:  EdgeInsets.only(left: 4.w,right: 4.w,top: 6.w,bottom: 10.w),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Obx(()=>Text(
-                  '${isDayChange.value}/28 DAYS',
-                  style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
-                ),),
-                SizedBox(height: 2.h,),
                 Text(
-                  'Step-by-Step Exercise Guide to Strengthen your Muscles of Fill Body.',
-                  style: TextStyle(fontSize: 15, color: ColorRes.whiteColor, fontWeight: FontWeight.w400),
+                  'Butt\nWorkout',
+                  style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                 ),
-              ],
-            ),
-            Padding(
-              padding:  EdgeInsets.only(left: 6.w,right:6.w),
-              child: CommonButton(
-                height: 40,
-                buttonColor: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                  colors: [
-                    ColorRes.purpleColor,
-                    ColorRes.pinkColor,
+                SizedBox(height: 2.h,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Obx(()=>Text(
+                      '${isDayChangeForButtWorkout.value}/28 DAYS',
+                      style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                    ),),
+                    SizedBox(height: 2.h,),
+                    Text(
+                      'Step-by-Step Exercise Guide to Strengthen your Muscles of Fill Body.',
+                      style: TextStyle(fontSize: 15, color: ColorRes.whiteColor, fontWeight: FontWeight.w400),
+                    ),
                   ],
                 ),
-                width: double.infinity,
-                onTap: () {
-                  Get.toNamed(ButtWorkoutScreen.routeName);
-                },
-                buttonNameColor: ColorRes.whiteColor,
-                buttonName: 'OPEN WORKOUT',
-                buttonNameSize: 16,
-                buttonNameWeight: FontWeight.w600,
-              ),
-            )
-          ],
-        ),
+                Padding(
+                  padding:  EdgeInsets.only(left: 6.w,right:6.w),
+                  child: CommonButton(
+                    height: 40,
+                    buttonColor: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.topRight,
+                      colors: [
+                        ColorRes.purpleColor,
+                        ColorRes.pinkColor,
+                      ],
+                    ),
+                    width: double.infinity,
+                    onTap: () {
+                      Get.toNamed(ButtWorkoutScreen.routeName);
+                    },
+                    buttonNameColor: ColorRes.whiteColor,
+                    buttonName: 'OPEN WORKOUT',
+                    buttonNameSize: 16,
+                    buttonNameWeight: FontWeight.w600,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

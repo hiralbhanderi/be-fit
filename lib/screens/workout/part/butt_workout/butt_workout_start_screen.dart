@@ -271,6 +271,9 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                 onTap: () {
                                   buttWorkoutController.isExerciseChangeIndex.value--;
                                   buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
+                                  buttWorkoutController.customTimerController.pause();
+                                  buttWorkoutController.controller1.pause();
+                                  buttWorkoutController.isCountDownAnimationHide.value = true;
                                 },
                                 child: buttWorkoutController.isExerciseChangeIndex.value == 0
                                     ? SizedBox(
@@ -330,7 +333,8 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                             exerciseTotalCount:
                                                 buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ??
                                                     0,
-                                            kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
+                                            // kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
+                                            kcalCount: buttWorkoutController.totalListOfKcal[int.parse(dayCountForWorkoutStart!) - 1].toString(),
                                             duration: buttWorkoutController.timeList[int.parse(dayCountForWorkoutStart!) - 1],
                                           ));
                                         });
@@ -411,10 +415,13 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                 Obx(
                   () => Visibility(
                     visible: buttWorkoutController.isCountDownAnimationHide.value,
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/extra/countdown.json', width: 60.w, height: 60.w, repeat: false,
-                        // fit: BoxFit.fill,
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Center(
+                        child: Lottie.asset(
+                          'assets/extra/countdown.json', width: 60.w, height: 60.w, repeat: false,
+                          // fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),

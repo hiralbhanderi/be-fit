@@ -1,4 +1,4 @@
-import 'package:befit/screens/workout/part/abs_workout/abs_workout_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/plan_advanced_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class AbsWorkoutView extends StatelessWidget {
-  const AbsWorkoutView({Key? key}) : super(key: key);
+class PlanAdvancedView extends StatelessWidget {
+  const PlanAdvancedView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,7 @@ class AbsWorkoutView extends StatelessWidget {
       child: Stack(
         children: [
           ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(ImagesAsset.absImage,fit: BoxFit.fitHeight,height: double.infinity,)),
+              borderRadius: BorderRadius.circular(12),child: Image.asset(ImagesAsset.fullBodyImage,fit: BoxFit.fitHeight,height: double.infinity,)),
           Padding(
             padding:  EdgeInsets.only(left: 4.w,right: 4.w,top: 6.w,bottom: 10.w),
             child: Column(
@@ -25,7 +24,7 @@ class AbsWorkoutView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Abs\nWorkout',
+                  'Plan For\nAdvance',
                   style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(height: 2.h,),
@@ -33,12 +32,12 @@ class AbsWorkoutView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${isDayChangeForAbsWorkout.value}/28 DAYS',
+                      '${isDayChangeForPlanAdvancedWorkout.value}/28 DAYS',
                       style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 2.h,),
                     Text(
-                      'Step-by-Step Exercise Guide to Strengthen your Muscles of Fill Body.',
+                      'Step-by-Step Exercise Guide to Strengthen your Muscles of Full Body.',
                       style: TextStyle(fontSize: 15, color: ColorRes.whiteColor, fontWeight: FontWeight.w400),
                     ),
                   ],
@@ -57,7 +56,7 @@ class AbsWorkoutView extends StatelessWidget {
                     ),
                     width: double.infinity,
                     onTap: () {
-                      Get.toNamed(AbsWorkoutScreen.routeName);
+                      Get.toNamed(PlanAdvancedScreen.routeName);
                     },
                     buttonNameColor: ColorRes.whiteColor,
                     buttonName: 'OPEN WORKOUT',

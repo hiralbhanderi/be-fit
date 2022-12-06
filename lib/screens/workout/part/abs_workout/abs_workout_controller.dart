@@ -85,11 +85,11 @@ class AbsWorkoutController extends GetxController {
 
   @override
   onInit() {
-    getDataFromAsset();
+    getDataFromAssetForAbsWorkout();
     super.onInit();
   }
 
-  Future<void> getDataFromAsset() async {
+  Future<void> getDataFromAssetForAbsWorkout() async {
     /// day time
     final response = await rootBundle.loadString('assets/train/abs_workout.json');
     absWorkoutModel.value = absWorkoutModelFromJson(response);
@@ -115,7 +115,8 @@ class AbsWorkoutController extends GetxController {
       for (Exercise secondElement in element.exercise ?? []) {
         totalKcal = totalKcal + (secondElement.kcal ?? 0);
       }
-      totalListOfKcalForAbsWorkout.add(totalKcal);
+      // totalListOfKcalForAbsWorkout.add(totalKcal);
+      totalListOfKcalForAbsWorkout.add(double.parse(totalKcal.round().toString()));
     }
   }
 }

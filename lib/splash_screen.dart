@@ -51,6 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   data() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.toNamed(SignInFlowScreen.routeName);
+    // Get.toNamed(SignInFlowScreen.routeName);
+    Get.toNamed(HomeScreen.routeName);
   }
 }

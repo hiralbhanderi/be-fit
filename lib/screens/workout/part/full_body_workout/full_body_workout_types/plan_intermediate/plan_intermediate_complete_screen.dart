@@ -1,6 +1,9 @@
 import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/full_body_workout_type_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_intermediate/plan_intermediate_controller.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_intermediate/plan_intermediate_screen.dart';
 import 'package:befit/screens/workout/workout_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
@@ -9,17 +12,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class WorkoutCompleteScreen extends StatelessWidget {
-  static const routeName = '/WorkoutCompleteScreen';
+class PlanIntermediateCompleteScreen extends StatelessWidget {
+  static const routeName = '/PlanIntermediateCompleteScreen';
 
-  WorkoutCompleteScreen({this.dayNumber, this.exerciseTotalCount, this.kcalCount, this.duration});
+  PlanIntermediateCompleteScreen({this.dayNumberForPlanIntermediate, this.exerciseTotalCountForPlanIntermediate, this.kcalCountForPlanIntermediate, this.durationForPlanIntermediate});
 
-  final String? dayNumber;
-  final int? exerciseTotalCount;
-  final String? kcalCount;
-  final String? duration;
+  final String? dayNumberForPlanIntermediate;
+  final int? exerciseTotalCountForPlanIntermediate;
+  final String? kcalCountForPlanIntermediate;
+  final String? durationForPlanIntermediate;
 
-  ButtWorkoutController buttWorkoutController = Get.find();
+  PlanIntermediateController planIntermediateController = Get.find();
   RxBool isSwitchOn = true.obs;
   RxDouble currentSliderValue = 20.0.obs;
   RxDouble selectedWeight = 20.0.obs;
@@ -58,7 +61,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Day $dayNumber',
+                                'Day $dayNumberForPlanIntermediate',
                                 style: TextStyle(fontSize: 24, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                               ),
                               SizedBox(
@@ -79,7 +82,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '$exerciseTotalCount',
+                                    '$exerciseTotalCountForPlanIntermediate',
                                     style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
@@ -94,7 +97,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '$kcalCount',
+                                    '$kcalCountForPlanIntermediate',
                                     style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
@@ -109,7 +112,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                    '$duration',
+                                    '$durationForPlanIntermediate',
                                     style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
@@ -160,7 +163,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                             ),
                           ),
                           Obx(
-                            () => Switch(
+                                () => Switch(
                               // thumb color (round icon)
                               activeColor: ColorRes.greenColor,
                               activeTrackColor: ColorRes.greenColor.withOpacity(0.3),
@@ -222,7 +225,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Obx(
-                                  () => Text(
+                                      () => Text(
                                     '${selectedWeight.value.round()} lbs',
                                     style: const TextStyle(fontSize: 17, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
                                   ),
@@ -283,7 +286,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                             ),
                                                           ),
                                                           Obx(
-                                                            () => Row(
+                                                                () => Row(
                                                               children: [
                                                                 Text(
                                                                   '${currentSliderValue.value.round()}',
@@ -324,22 +327,22 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                       ),
                                                       SizedBox(height: 2.w),
                                                       Obx(() => SliderTheme(
-                                                            data: SliderThemeData(
-                                                                trackHeight: 0.7.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
-                                                            child: Slider(
-                                                              value: currentSliderValue.value,
-                                                              max: 400,
-                                                              activeColor: ColorRes.greenColor,
-                                                              inactiveColor: ColorRes.greyColor.withOpacity(0.5),
-                                                              // divisions: 5,
-                                                              label: currentSliderValue.value.round().toString(),
-                                                              onChanged: (double value) {
-                                                                // setState(() {
-                                                                currentSliderValue.value = value;
-                                                                // });
-                                                              },
-                                                            ),
-                                                          )),
+                                                        data: SliderThemeData(
+                                                            trackHeight: 0.7.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
+                                                        child: Slider(
+                                                          value: currentSliderValue.value,
+                                                          max: 400,
+                                                          activeColor: ColorRes.greenColor,
+                                                          inactiveColor: ColorRes.greyColor.withOpacity(0.5),
+                                                          // divisions: 5,
+                                                          label: currentSliderValue.value.round().toString(),
+                                                          onChanged: (double value) {
+                                                            // setState(() {
+                                                            currentSliderValue.value = value;
+                                                            // });
+                                                          },
+                                                        ),
+                                                      )),
                                                       SizedBox(
                                                         height: 4.w,
                                                       ),
@@ -359,14 +362,14 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                           const SizedBox(width: 15),
                                                           Expanded(
                                                               child: ElevatedButton(
-                                                            onPressed: () {
-                                                              // print('no selected');
-                                                              selectedWeight.value = currentSliderValue.value;
-                                                              Navigator.of(context).pop();
-                                                            },
-                                                            style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
-                                                            child: const Text("SAVE", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
-                                                          ))
+                                                                onPressed: () {
+                                                                  // print('no selected');
+                                                                  selectedWeight.value = currentSliderValue.value;
+                                                                  Navigator.of(context).pop();
+                                                                },
+                                                                style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
+                                                                child: const Text("SAVE", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                                                              ))
                                                         ],
                                                       ),
                                                       SizedBox(
@@ -418,49 +421,49 @@ class WorkoutCompleteScreen extends StatelessWidget {
                               height: 4.w,
                             ),
                             Obx(() => Wrap(
-                                  children: List.generate(5, (index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        selectedGoal.value = index;
-                                      },
-                                      child: Wrap(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(bottom: 4.w),
-                                            child: Wrap(
-                                              children: [
-                                                selectedGoal.value == index
-                                                    ? Image.asset(
-                                                        ImagesAsset.trueImage,
-                                                        height: 5.w,
-                                                        width: 5.w,
-                                                      )
-                                                    : Container(
-                                                        height: 5.w,
-                                                        width: 5.w,
-                                                        decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            border: Border.all(width: 2, color: ColorRes.blackColor.withOpacity(0.6))),
-                                                      ),
-                                                SizedBox(
-                                                  width: 3.w,
-                                                ),
-                                                Text(
-                                                  goalLIst[index],
-                                                  style: TextStyle(
-                                                      color: ColorRes.blackColor.withOpacity(0.6), fontWeight: FontWeight.w400, fontSize: 14),
-                                                )
-                                              ],
+                              children: List.generate(5, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    selectedGoal.value = index;
+                                  },
+                                  child: Wrap(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 4.w),
+                                        child: Wrap(
+                                          children: [
+                                            selectedGoal.value == index
+                                                ? Image.asset(
+                                              ImagesAsset.trueImage,
+                                              height: 5.w,
+                                              width: 5.w,
+                                            )
+                                                : Container(
+                                              height: 5.w,
+                                              width: 5.w,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(width: 2, color: ColorRes.blackColor.withOpacity(0.6))),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: 2.h,
-                                          )
-                                        ],
+                                            SizedBox(
+                                              width: 3.w,
+                                            ),
+                                            Text(
+                                              goalLIst[index],
+                                              style: TextStyle(
+                                                  color: ColorRes.blackColor.withOpacity(0.6), fontWeight: FontWeight.w400, fontSize: 14),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    );
-                                  }),
-                                ))
+                                      SizedBox(
+                                        width: 2.h,
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }),
+                            ))
                           ],
                         ),
                       ),
@@ -519,14 +522,14 @@ class WorkoutCompleteScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        nextIndexForButtWorkout.value = int.parse(dayNumber ?? '0');
-                        await SharedPreferencesConst.setChangeDayForButtWorkout(nextIndexForButtWorkout.value);
-                        isDayChangeForButtWorkout.value = nextIndexForButtWorkout.value;
+                        nextIndexForPlanIntermediateWorkout.value = int.parse(dayNumberForPlanIntermediate ?? '0');
+                        await SharedPreferencesConst.setChangeDayForPlanIntermediateWorkout(nextIndexForPlanIntermediateWorkout.value);
+                        isDayChangeForPlanIntermediateWorkout.value = nextIndexForPlanIntermediateWorkout.value;
                         // buttWorkoutController.carouselController.jumpToPage(nextIndex.value + 1);
                         // Get.offAndToNamed(ButtWorkoutScreen.routeName);
                         // homeController.isSelectedBottom.value == 0;
-                        Get.offNamedUntil(ButtWorkoutScreen.routeName,
-                            ModalRoute.withName(HomeScreen.routeName));
+                        Get.offNamedUntil(PlanIntermediateScreen.routeName,
+                            ModalRoute.withName(FullBodyWorkoutTypeScreen.routeName));
 
                       },
                       child: Container(
