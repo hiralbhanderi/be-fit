@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/signin_flow/signin_flow_controller.dart';
 import 'package:befit/screens/signin_flow/signin_flow_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
@@ -15,10 +16,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-class YourWeightView extends StatelessWidget {
+class YourTargetWeightView extends StatelessWidget {
   // List workoutTypeList = ['Full Body Workout', 'Butt Workout', 'Abs Workout'];
   // RxInt selectedWorkoutType = 0.obs;
-  // TextEditingController yourWeightController = TextEditingController();
+  // TextEditingController yourTargetWeightController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class YourWeightView extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Your Weight data',
+                  'Your Target Weight data',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 24, color: ColorRes.blackColor.withOpacity(0.75), fontWeight: FontWeight.w500, height: 0.4.w),
                 ),
@@ -54,7 +55,7 @@ class YourWeightView extends StatelessWidget {
                           width: 28.w,
                           child: TextFormField(
                             enabled: true,
-                            controller: yourWeightController,
+                            controller: yourTargetWeightController,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             cursorColor: ColorRes.greenColor,
@@ -90,17 +91,17 @@ class YourWeightView extends StatelessWidget {
                           secondButtonTitle: 'KG',
                           firstButtonClick: () async {
                             isSelectedWeightLBSType.value = true;
-                            // changeYourWeightType = 'lbs';
+                            // changeYourTargetWeightType = 'lbs';
                             if (isSelectedWeightLBSType.value) {
                               isSelectedWeightKGType.value = false;
                             }
-                            if (yourWeightDataStore != null) {
-                              yourWeightController.text = yourWeightDataStore!;
+                            if (yourTargetWeightDataStore != null) {
+                              yourTargetWeightController.text = yourTargetWeightDataStore!;
                             }
                           },
                           secondButtonClick: () async {
-                            if (yourWeightController.text.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter weight first')));
+                            if (yourTargetWeightController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter target weight first')));
                             } else {
                               isSelectedWeightKGType.value = true;
                               ///
@@ -108,19 +109,21 @@ class YourWeightView extends StatelessWidget {
                               // await SharedPreferencesConst.setChangeWeightTypesOfUser(storeChangeWeightTypesOfUser.value);
                               // changeWeightTypesOfUser.value = storeChangeWeightTypesOfUser.value;
                               ///
-                              // changeYourWeightType = 'kg';
+                              // changeYourTargetWeightType = 'kg';
                               if (isSelectedWeightKGType.value) {
                                 isSelectedWeightLBSType.value = false;
                               }
-                              yourWeightDataStore ??= yourWeightController.text;
-                              yourWeightController.text = yourWeightDataStore!;
-                              String a = yourWeightController.text;
-                              yourWeightController.text = (int.parse(a) / 2.205).toStringAsFixed(0);
+                              if (yourTargetWeightDataStore == null) {
+                                yourTargetWeightDataStore = yourTargetWeightController.text;
+                              }
+                              yourTargetWeightController.text = yourTargetWeightDataStore!;
+                              String a = yourTargetWeightController.text;
+                              yourTargetWeightController.text = (int.parse(a) / 2.205).toStringAsFixed(0);
                             }
                           },
-                        )
+                        ),
                         // Obx(
-                        //   () => Row(
+                        //       () => Row(
                         //     mainAxisAlignment: MainAxisAlignment.center,
                         //     children: [
                         //       Padding(
@@ -128,11 +131,11 @@ class YourWeightView extends StatelessWidget {
                         //         child: GestureDetector(
                         //           onTap: () {
                         //             isSelectedWeightLBSType.value = true;
-                        //             // changeYourWeightType = 'lbs';
+                        //             // changeYourTargetWeightType = 'lbs';
                         //             if (isSelectedWeightLBSType.value) {
                         //               isSelectedWeightKGType.value = false;
                         //             }
-                        //             yourWeightController.text = yourWeightDataStore!;
+                        //             yourTargetWeightController.text = yourTargetWeightDataStore!;
                         //           },
                         //           child: Container(
                         //             decoration: BoxDecoration(
@@ -151,16 +154,16 @@ class YourWeightView extends StatelessWidget {
                         //         child: GestureDetector(
                         //           onTap: () {
                         //             isSelectedWeightKGType.value = true;
-                        //             // changeYourWeightType = 'kg';
+                        //             // changeYourTargetWeightType = 'kg';
                         //             if (isSelectedWeightKGType.value) {
                         //               isSelectedWeightLBSType.value = false;
                         //             }
-                        //             if (yourWeightDataStore == null) {
-                        //               yourWeightDataStore = yourWeightController.text;
+                        //             if (yourTargetWeightDataStore == null) {
+                        //               yourTargetWeightDataStore = yourTargetWeightController.text;
                         //             }
-                        //             yourWeightController.text = yourWeightDataStore!;
-                        //             String a = yourWeightController.text;
-                        //             yourWeightController.text = (int.parse(a) / 2.205).toStringAsFixed(0);
+                        //             yourTargetWeightController.text = yourTargetWeightDataStore!;
+                        //             String a = yourTargetWeightController.text;
+                        //             yourTargetWeightController.text = (int.parse(a) / 2.205).toStringAsFixed(0);
                         //           },
                         //           child: Container(
                         //             decoration: BoxDecoration(
@@ -196,23 +199,23 @@ class YourWeightView extends StatelessWidget {
               ),
               width: double.infinity,
               onTap: () async {
-                print('yourWeightController value ---->>>${yourWeightController.text}');
-                if (yourWeightController.text.isEmpty) {
+                print('height value ---->>>${yourTargetWeightController.text}');
+                if (yourTargetWeightController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter height')));
                 } else {
                   // if ((int.parse(heightController.text) < 12 && int.parse(heightController.text) < 11) || ((double.parse(heightController.text).round()) < 395)) {
-                  selectedIndex.value++;
-                  pageController.jumpToPage(selectedIndex.value);
+                  //   selectedIndex.value++;
+                  //   pageController.jumpToPage(selectedIndex.value);
+                  Get.toNamed(HomeScreen.routeName);
                   // } else {
                   //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
                   // }
                 }
-                storeWeightOfUser.value = isSelectedWeightKGType.value ? '${yourWeightController.text} kg' : '${yourWeightController.text} lbs';
-                await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
-                weightOfUser.value = storeWeightOfUser.value;
-                ///
-                // isSelectedWeightLBSType = true.obs;
-                // isSelectedWeightKGType = false.obs;
+
+                storeTargetWeightOfUser.value =
+                    isSelectedWeightKGType.value ? '${yourTargetWeightController.text} kg' : '${yourTargetWeightController.text} lbs';
+                await SharedPreferencesConst.setTargetWeightOfUser(storeTargetWeightOfUser.value);
+                targetWeightOfUser.value = storeTargetWeightOfUser.value;
               },
               buttonNameColor: ColorRes.whiteColor,
               buttonName: 'NEXT',

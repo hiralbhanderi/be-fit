@@ -27,33 +27,36 @@ class SignInFlowScreen extends StatelessWidget {
           return Column(
             children: [
               SizedBox(height: 12.w,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.arrow_back,
-                    color: ColorRes.blackColor,
-                    size: 7.w,
-                  ),
-                  Obx(
-                        () => Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: signUpViewsList.map((url) {
-                        int indexOfIndicator = signUpViewsList.indexOf(url);
-                        return Container(
-                          width: 6.w,
-                          height: 0.7.w,
-                          margin: EdgeInsets.symmetric(horizontal: 1.w),
-                          decoration: BoxDecoration(
-                            // shape: BoxShape.circle,
-                            color: selectedIndex.value >= indexOfIndicator ? ColorRes.greenColor : ColorRes.greyColor,
-                          ),
-                        );
-                      }).toList(),
+              Padding(
+                padding: EdgeInsets.only(left: 4.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Icon(
+                    //   Icons.arrow_back,
+                    //   color: ColorRes.blackColor,
+                    //   size: 7.w,
+                    // ),
+                    Obx(
+                          () => Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: signUpViewsList.map((url) {
+                          int indexOfIndicator = signUpViewsList.indexOf(url);
+                          return Container(
+                            width: 6.w,
+                            height: 0.7.w,
+                            margin: EdgeInsets.symmetric(horizontal: 1.w),
+                            decoration: BoxDecoration(
+                              // shape: BoxShape.circle,
+                              color: selectedIndex.value >= indexOfIndicator ? ColorRes.greenColor : ColorRes.greyColor,
+                            ),
+                          );
+                        }).toList(),
+                      ),
                     ),
-                  ),
-                  Text('')
-                ],
+                    // Text('')
+                  ],
+                ),
               ),
               SizedBox(height: 4.w,),
               Expanded(child: signUpViewsList[index]),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
-enum HeightUnit { ft, cm }
+// enum HeightUnit { ft, cm }
 
 // class Height extends StatefulWidget {
 //   @override
@@ -22,7 +22,7 @@ class Height extends StatefulWidget {
 }
 
 class _HeightState extends State<Height> {
-  HeightUnit selectedUnit = HeightUnit.ft;
+  // HeightUnit selectedUnit = HeightUnit.ft;
 
   // TextEditingController heightController = TextEditingController();
   // int ft = 0;

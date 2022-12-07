@@ -5,12 +5,12 @@ class HomeController extends GetxController{
   RxInt isSelectedBottom = 0.obs;
   List<String> iconBottom = [
     ImagesAsset.workoutImage,
-    ImagesAsset.foodImage,
+    // ImagesAsset.foodImage,
     ImagesAsset.reportImage,
   ];
   List<String> iconBottomName = [
     'WORKOUT',
-    'FOOD',
+    // 'FOOD',
     'REPORT',
   ];
 }

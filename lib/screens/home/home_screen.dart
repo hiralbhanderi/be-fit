@@ -63,8 +63,8 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Obx(() => homeController.isSelectedBottom.value == 0
           ? WorkoutScreen()
-          : homeController.isSelectedBottom.value == 1
-              ? FoodScreen()
+          // : homeController.isSelectedBottom.value == 1
+          //     ? FoodScreen()
               : ReportScreen()),
     );
   }

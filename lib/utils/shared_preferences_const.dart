@@ -52,4 +52,43 @@ class SharedPreferencesConst{
   static int getsChangeDayForPlanAdvancedWorkout() {
     return _prefs.getInt("isDayChangeForPlanAdvancedWorkout") ?? 0;
   }
+
+  /// for height and weight and target weight data store
+
+
+  /// for height
+  static Future<void> setHeightOfUser(String isHeightOfUser) async {
+    await _prefs.setString("isHeightOfUser", isHeightOfUser);
+  }
+
+  static String getsHeightOfUser() {
+    return _prefs.getString("isHeightOfUser") ?? '';
+  }
+
+  /// for weight
+  static Future<void> setWeightOfUser(String isWeightOfUser) async {
+    await _prefs.setString("isWeightOfUser", isWeightOfUser);
+  }
+
+  static String getsWeightOfUser() {
+    return _prefs.getString("isWeightOfUser") ?? '';
+  }
+
+  /// for target weight
+  static Future<void> setTargetWeightOfUser(String isTargetWeightOfUser) async {
+    await _prefs.setString("isTargetWeightOfUser", isTargetWeightOfUser);
+  }
+
+  static String getsTargetWeightOfUser() {
+    return _prefs.getString("isTargetWeightOfUser") ?? '';
+  }
+
+  // /// for weight types change
+  // static Future<void> setChangeWeightTypesOfUser(bool isChangeWeightTypesOfUser) async {
+  //   await _prefs.setBool("isChangeWeightTypesOfUser", isChangeWeightTypesOfUser);
+  // }
+  //
+  // static bool getsChangeWeightTypesOfUser() {
+  //   return _prefs.getBool("isChangeWeightTypesOfUser") ?? false;
+  // }
 }

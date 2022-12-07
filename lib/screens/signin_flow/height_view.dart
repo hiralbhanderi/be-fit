@@ -5,6 +5,7 @@ import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
 import 'package:befit/utils/const.dart';
 import 'package:befit/utils/height_cosnt.dart';
+import 'package:befit/utils/shared_preferences_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -12,7 +13,7 @@ import 'package:sizer/sizer.dart';
 class HeightView extends StatelessWidget {
   // List workoutTypeList = ['Full Body Workout', 'Butt Workout', 'Abs Workout'];
   // RxInt selectedWorkoutType = 0.obs;
-  TextEditingController heightController = TextEditingController();
+  // TextEditingController heightController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,18 +62,22 @@ class HeightView extends StatelessWidget {
                 ],
               ),
               width: double.infinity,
-              onTap: () {
+              onTap: () async {
                 print('height value ---->>>${heightController.text}');
                 if (heightController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter height')));
                 } else {
-                  if ((int.parse(heightController.text) < 12 && int.parse(heightController.text) < 11) || ((double.parse(heightController.text).round()) < 395)) {
+                  // if ((int.parse(heightController.text) < 12 && int.parse(heightController.text) < 11) || ((double.parse(heightController.text).round()) < 395)) {
                     selectedIndex.value++;
                     pageController.jumpToPage(selectedIndex.value);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
-                  }
+                  // }
+                  // else {
+                  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
+                  // }
                 }
+                storeHeightOfUser.value = selectedUnit == HeightUnit.ft?heightController.text:'${heightController.text} cm';
+                await SharedPreferencesConst.setHeightOfUser(storeHeightOfUser.value);
+                heightOfUser.value = storeHeightOfUser.value;
               },
               buttonNameColor: ColorRes.whiteColor,
               buttonName: 'NEXT',

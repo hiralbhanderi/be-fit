@@ -217,11 +217,14 @@ class AppBidding extends Bindings {
   @override
   Future<void> dependencies() async {
     await SharedPreferencesConst.initMySharedPreferences();
+
+    ///
     isDayChangeForButtWorkout.value = SharedPreferencesConst.getsChangeDayForButtWorkout();
     isDayChangeForAbsWorkout.value = SharedPreferencesConst.getsChangeDayForAbsWorkout();
     isDayChangeForPlanIntermediateWorkout.value = SharedPreferencesConst.getsChangeDayForPlanIntermediateWorkout();
     isDayChangeForPlanBeginnerWorkout.value = SharedPreferencesConst.getsChangeDayForPlanBeginnerWorkout();
     isDayChangeForPlanAdvancedWorkout.value = SharedPreferencesConst.getsChangeDayForPlanAdvancedWorkout();
+    // changeWeightTypesOfUser.value = SharedPreferencesConst.getsChangeWeightTypesOfUser();
     // Get.put(PrepareExamController());
   }
 }
