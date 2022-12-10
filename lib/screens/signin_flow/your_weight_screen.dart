@@ -104,9 +104,9 @@ class YourWeightView extends StatelessWidget {
                             } else {
                               isSelectedWeightKGType.value = true;
                               ///
-                              // storeChangeWeightTypesOfUser.value = isSelectedWeightKGType.value;
-                              // await SharedPreferencesConst.setChangeWeightTypesOfUser(storeChangeWeightTypesOfUser.value);
-                              // changeWeightTypesOfUser.value = storeChangeWeightTypesOfUser.value;
+                              storeChangeWeightTypesOfUser.value = isSelectedWeightKGType.value;
+                              await SharedPreferencesConst.setChangeWeightTypesOfUser(storeChangeWeightTypesOfUser.value);
+                              changeWeightTypesOfUser.value = storeChangeWeightTypesOfUser.value;
                               ///
                               // changeYourWeightType = 'kg';
                               if (isSelectedWeightKGType.value) {
@@ -211,8 +211,8 @@ class YourWeightView extends StatelessWidget {
                 await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
                 weightOfUser.value = storeWeightOfUser.value;
                 ///
-                // isSelectedWeightLBSType = true.obs;
-                // isSelectedWeightKGType = false.obs;
+                isSelectedWeightLBSType.value = true;
+                isSelectedWeightKGType.value = false;
               },
               buttonNameColor: ColorRes.whiteColor,
               buttonName: 'NEXT',

@@ -16,9 +16,7 @@ PageController pageController = PageController(viewportFraction: 1, keepPage: tr
 enum HeightUnit { ft, cm }
 HeightUnit selectedUnit = HeightUnit.ft;
 int ft = 0;
-
 int inches = 0;
-
 String? cm;
 RxBool isSelectedWeightLBSType = true.obs;
 RxBool isSelectedWeightKGType = false.obs;
@@ -28,5 +26,5 @@ TextEditingController heightController = TextEditingController();
 // String changeHeight = '';
 TextEditingController yourWeightController = TextEditingController();
 TextEditingController yourTargetWeightController = TextEditingController();
-// String changeYourWeightType = '';
-// String changeYourTargetWeightType= '';
+String changeYourWeightType = '';
+String changeYourTargetWeightType= '';

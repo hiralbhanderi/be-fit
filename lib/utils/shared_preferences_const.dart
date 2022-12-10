@@ -83,12 +83,48 @@ class SharedPreferencesConst{
     return _prefs.getString("isTargetWeightOfUser") ?? '';
   }
 
-  // /// for weight types change
-  // static Future<void> setChangeWeightTypesOfUser(bool isChangeWeightTypesOfUser) async {
-  //   await _prefs.setBool("isChangeWeightTypesOfUser", isChangeWeightTypesOfUser);
-  // }
-  //
-  // static bool getsChangeWeightTypesOfUser() {
-  //   return _prefs.getBool("isChangeWeightTypesOfUser") ?? false;
-  // }
+  /// for weight types change
+  static Future<void> setChangeWeightTypesOfUser(bool isChangeWeightTypesOfUser) async {
+    await _prefs.setBool("isChangeWeightTypesOfUser", isChangeWeightTypesOfUser);
+  }
+
+  static bool getsChangeWeightTypesOfUser() {
+    return _prefs.getBool("isChangeWeightTypesOfUser") ?? false;
+  }
+
+  /// for water total
+  static Future<void> setChangeWaterTotalOfUser(double isChangeWaterTotalOfUser) async {
+    await _prefs.setDouble("isChangeWaterTotalOfUser", isChangeWaterTotalOfUser);
+  }
+
+  static double getsChangeWaterTotalOfUser() {
+    return _prefs.getDouble("isChangeWaterTotalOfUser") ?? 2300.0;
+  }
+
+  /// for water drunk
+  static Future<void> setChangeWaterDrunkOfUser(double isChangeWaterDrunkOfUser) async {
+    await _prefs.setDouble("isChangeWaterDrunkOfUser", isChangeWaterDrunkOfUser);
+  }
+
+  static double getsChangeWaterDrunkOfUser() {
+    return _prefs.getDouble("isChangeWaterDrunkOfUser") ?? 0.0;
+  }
+
+  /// for water goal screen for day change
+  static Future<void> setChangeDate(String isChangeDate) async {
+    await _prefs.setString("isChangeDate", isChangeDate);
+  }
+
+  static String getsChangeDate() {
+    return _prefs.getString("isChangeDate") ?? '';
+  }
+
+  /// for achieve goal days
+  static Future<void> setAchieveGoalDays(int isAchieveGoalDay) async {
+    await _prefs.setInt("isAchieveGoalDay", isAchieveGoalDay);
+  }
+
+  static int getsAchieveGoalDay() {
+    return _prefs.getInt("isAchieveGoalDay") ?? 0;
+  }
 }

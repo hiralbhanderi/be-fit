@@ -1,4 +1,6 @@
+import 'package:befit/screens/water_goal/water_count_screen.dart';
 import 'package:befit/screens/workout/workout_controller.dart';
+import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +24,20 @@ class WorkoutScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Be Fit',
-                style: TextStyle(fontSize: 7.w, color: ColorRes.blackColor, fontWeight: FontWeight.w600),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Be Fit',
+                    style: TextStyle(fontSize: 7.w, color: ColorRes.blackColor, fontWeight: FontWeight.w600),
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Get.toNamed(WaterCountScreen.routeName);
+
+                      },
+                      child: Image.asset(ImagesAsset.waterGlassImage,scale: 2.5,))
+                ],
               ),
               SizedBox(
                 height: 3.w,

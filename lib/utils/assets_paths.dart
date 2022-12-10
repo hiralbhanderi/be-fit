@@ -15,6 +15,8 @@ class ImagesAsset {
   static const String heightImage = '$images/height_image.png';
   static const String weightImage = '$images/weight_machine_image.png';
   static const String targetWeightImage = '$images/target_target_weight_image.png';
+  static const String waterGlassImage = '$images/icon_water.png';
+  static const String waterGoalImage = '$images/water_goal.png';
 }
 
 ///for butt workout
@@ -49,5 +51,21 @@ RxString weightOfUser = ''.obs;
 RxString storeTargetWeightOfUser = ''.obs;
 RxString targetWeightOfUser = ''.obs;
 
-// RxBool storeChangeWeightTypesOfUser = false.obs;
-// RxBool changeWeightTypesOfUser = false.obs;
+RxBool storeChangeWeightTypesOfUser = false.obs;
+RxBool changeWeightTypesOfUser = false.obs;
+
+/// for total water
+RxDouble storeWaterTotalOfUser = 0.0.obs;
+RxDouble waterTotalOfUser = 0.0.obs;
+
+/// for total water
+RxDouble storeWaterDrunkOfUser = 0.0.obs;
+RxDouble waterDrunkOfUser = 0.0.obs;
+
+/// for Date change
+RxString storeTodayDate = ''.obs;
+RxString todayDate = ''.obs;
+
+/// for Achieve Goal Day
+RxInt storeAchieveGoalDay = 0.obs;
+RxInt isAchieveGoalDay = 0.obs;

@@ -4,6 +4,7 @@ import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart
 import 'package:befit/screens/workout/workout_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
+import 'package:befit/utils/const.dart';
 import 'package:befit/utils/shared_preferences_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,13 +22,16 @@ class WorkoutCompleteScreen extends StatelessWidget {
 
   ButtWorkoutController buttWorkoutController = Get.find();
   RxBool isSwitchOn = true.obs;
-  RxDouble currentSliderValue = 20.0.obs;
-  RxDouble selectedWeight = 20.0.obs;
+  // RxString weightChangeValue = weightOfUser.value.obs;
+  RxDouble weightChangeValue = double.parse(weightOfUser.value.split(' ').first).obs;
+  // RxDouble currentSliderValue = 20.0.obs;
+  // RxDouble selectedWeight = 20.0.obs;
   List goalLIst = ['Too easy', 'Easy', 'Comfortable', 'Hard', 'Very hard'];
   RxInt selectedGoal = 2.obs;
 
   @override
   Widget build(BuildContext context) {
+    print('weightOfUser weight ===>>>${weightOfUser.value.split(' ').first}');
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -223,7 +227,9 @@ class WorkoutCompleteScreen extends StatelessWidget {
                               children: [
                                 Obx(
                                   () => Text(
-                                    '${selectedWeight.value.round()} lbs',
+                                    '${weightChangeValue.value.round().toString()} ${changeWeightTypesOfUser.value?'kg':'lbs'}',
+                                    // '${selectedWeight.value.round()} lbs',
+                                    // weightOfUser.value,
                                     style: const TextStyle(fontSize: 17, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -262,8 +268,8 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                         children: [
                                                           GestureDetector(
                                                             onTap: () {
-                                                              if (currentSliderValue.value > 1) {
-                                                                currentSliderValue.value--;
+                                                              if (weightChangeValue.value > 1) {
+                                                                weightChangeValue.value--;
                                                               }
                                                             },
                                                             child: Container(
@@ -286,23 +292,33 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                             () => Row(
                                                               children: [
                                                                 Text(
-                                                                  '${currentSliderValue.value.round()}',
+                                                                  '${weightChangeValue.value.round()} ${changeWeightTypesOfUser.value?'kg':'lbs'}',
+                                                                  // weightOfUser.value,
                                                                   style: const TextStyle(
                                                                       fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                                                                 ),
-                                                                Text(
-                                                                  ' lbs',
-                                                                  style: TextStyle(
-                                                                      fontSize: 18,
-                                                                      color: ColorRes.blackColor.withOpacity(0.5),
-                                                                      fontWeight: FontWeight.w500),
-                                                                ),
+                                                                // Text(
+                                                                //   ' lbs',
+                                                                //   style: TextStyle(
+                                                                //       fontSize: 18,
+                                                                //       color: ColorRes.blackColor.withOpacity(0.5),
+                                                                //       fontWeight: FontWeight.w500),
+                                                                // ),
+                                                                // Obx(() => targetWeightOfUser.value.contains('kg')
+                                                                //     ? Text(
+                                                                //   'KG',
+                                                                //   style: TextStyle(color: ColorRes.blackColor, fontWeight: FontWeight.w600, fontSize: 24),
+                                                                // )
+                                                                //     : Text(
+                                                                //   'LBS',
+                                                                //   style: TextStyle(color: ColorRes.blackColor, fontWeight: FontWeight.w600, fontSize: 24),
+                                                                // ))
                                                               ],
                                                             ),
                                                           ),
                                                           GestureDetector(
                                                             onTap: () {
-                                                              currentSliderValue.value++;
+                                                              weightChangeValue.value++;
                                                             },
                                                             child: Container(
                                                               height: 8.w,
@@ -327,15 +343,15 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                             data: SliderThemeData(
                                                                 trackHeight: 0.7.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
                                                             child: Slider(
-                                                              value: currentSliderValue.value,
+                                                              value: weightChangeValue.value,
                                                               max: 400,
                                                               activeColor: ColorRes.greenColor,
                                                               inactiveColor: ColorRes.greyColor.withOpacity(0.5),
                                                               // divisions: 5,
-                                                              label: currentSliderValue.value.round().toString(),
+                                                              label: weightChangeValue.value.round().toString(),
                                                               onChanged: (double value) {
                                                                 // setState(() {
-                                                                currentSliderValue.value = value;
+                                                                weightChangeValue.value = value;
                                                                 // });
                                                               },
                                                             ),
@@ -359,9 +375,13 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                           const SizedBox(width: 15),
                                                           Expanded(
                                                               child: ElevatedButton(
-                                                            onPressed: () {
+                                                            onPressed: () async {
                                                               // print('no selected');
-                                                              selectedWeight.value = currentSliderValue.value;
+                                                              // selectedWeight.value = weightChangeValue.value;
+                                                              ///
+                                                              storeWeightOfUser.value = isSelectedWeightKGType.value ? '${weightChangeValue.value} kg' : '${weightChangeValue.value} lbs';
+                                                              await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
+                                                              weightOfUser.value = storeWeightOfUser.value;
                                                               Navigator.of(context).pop();
                                                             },
                                                             style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),

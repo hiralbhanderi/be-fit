@@ -18,6 +18,7 @@ class AbsWorkoutListScreen extends StatelessWidget {
   final String? dayCountForAbsWorkout;
   final String? timeDataForAbsWorkout;
   final String? kcalDataForAbsWorkout;
+
   // WorkoutController workoutController = Get.find();
   AbsWorkoutController absWorkoutController = Get.find();
 
@@ -47,10 +48,15 @@ class AbsWorkoutListScreen extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: ColorRes.whiteColor,
-                          size: 8.w,
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: ColorRes.whiteColor,
+                            size: 8.w,
+                          ),
                         ),
                         SizedBox(
                           width: 6.w,
@@ -117,7 +123,7 @@ class AbsWorkoutListScreen extends StatelessWidget {
               child: Column(
                 children: List.generate(
                   absWorkoutController.absWorkoutModel[int.parse(dayCountForAbsWorkout!) - 1].exercise?.length ?? 0,
-                      (index) {
+                  (index) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 3.w, top: 3.w, left: 4.w, right: 4.w),
                       child: Container(
@@ -141,7 +147,8 @@ class AbsWorkoutListScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      absWorkoutController.absWorkoutModel[int.parse(dayCountForAbsWorkout!) - 1].exercise?[index].workoutAllDataModel?.name ??
+                                      absWorkoutController
+                                              .absWorkoutModel[int.parse(dayCountForAbsWorkout!) - 1].exercise?[index].workoutAllDataModel?.name ??
                                           "",
                                       style: const TextStyle(fontSize: 17, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
                                     ),
@@ -156,7 +163,7 @@ class AbsWorkoutListScreen extends StatelessWidget {
                                 ),
                               ),
                               Image.asset(absWorkoutController
-                                  .absWorkoutModel[int.parse(dayCountForAbsWorkout!) - 1].exercise?[index].workoutAllDataModel?.thumbnails ??
+                                      .absWorkoutModel[int.parse(dayCountForAbsWorkout!) - 1].exercise?[index].workoutAllDataModel?.thumbnails ??
                                   "")
                             ],
                           ),
@@ -187,7 +194,9 @@ class AbsWorkoutListScreen extends StatelessWidget {
               onTap: () {
                 Get.toNamed(WarmUpScreen.routeName);
                 Future.delayed(Duration(seconds: 3)).then((value) {
-                  return Get.to(AbsWorkoutStartScreen(dayCountForWorkoutStartForAbsWorkout: dayCountForAbsWorkout,));
+                  return Get.to(AbsWorkoutStartScreen(
+                    dayCountForWorkoutStartForAbsWorkout: dayCountForAbsWorkout,
+                  ));
                 });
 
                 absWorkoutController.isExerciseChangeIndexForAbsWorkout.value = 0;

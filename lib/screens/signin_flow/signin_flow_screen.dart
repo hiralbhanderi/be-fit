@@ -26,7 +26,7 @@ class SignInFlowScreen extends StatelessWidget {
           ///
           return Column(
             children: [
-              SizedBox(height: 12.w,),
+              SizedBox(height: 14.w,),
               Padding(
                 padding: EdgeInsets.only(left: 4.w),
                 child: Row(

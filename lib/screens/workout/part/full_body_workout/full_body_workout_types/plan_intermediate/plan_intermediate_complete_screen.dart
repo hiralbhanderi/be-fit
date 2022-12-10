@@ -7,6 +7,7 @@ import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_t
 import 'package:befit/screens/workout/workout_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
+import 'package:befit/utils/const.dart';
 import 'package:befit/utils/shared_preferences_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,8 +25,8 @@ class PlanIntermediateCompleteScreen extends StatelessWidget {
 
   PlanIntermediateController planIntermediateController = Get.find();
   RxBool isSwitchOn = true.obs;
-  RxDouble currentSliderValue = 20.0.obs;
-  RxDouble selectedWeight = 20.0.obs;
+  RxDouble weightChangeValue = double.parse(weightOfUser.value.split(' ').first).obs;
+  // RxDouble selectedWeight = 20.0.obs;
   List goalLIst = ['Too easy', 'Easy', 'Comfortable', 'Hard', 'Very hard'];
   RxInt selectedGoal = 2.obs;
 
@@ -226,7 +227,7 @@ class PlanIntermediateCompleteScreen extends StatelessWidget {
                               children: [
                                 Obx(
                                       () => Text(
-                                    '${selectedWeight.value.round()} lbs',
+                                        '${weightChangeValue.value.round().toString()} ${changeWeightTypesOfUser.value?'kg':'lbs'}',
                                     style: const TextStyle(fontSize: 17, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -265,8 +266,8 @@ class PlanIntermediateCompleteScreen extends StatelessWidget {
                                                         children: [
                                                           GestureDetector(
                                                             onTap: () {
-                                                              if (currentSliderValue.value > 1) {
-                                                                currentSliderValue.value--;
+                                                              if (weightChangeValue.value > 1) {
+                                                                weightChangeValue.value--;
                                                               }
                                                             },
                                                             child: Container(
@@ -289,7 +290,7 @@ class PlanIntermediateCompleteScreen extends StatelessWidget {
                                                                 () => Row(
                                                               children: [
                                                                 Text(
-                                                                  '${currentSliderValue.value.round()}',
+                                                                  '${weightChangeValue.value.round()} ${changeWeightTypesOfUser.value?'kg':'lbs'}',
                                                                   style: const TextStyle(
                                                                       fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                                                                 ),
@@ -305,7 +306,7 @@ class PlanIntermediateCompleteScreen extends StatelessWidget {
                                                           ),
                                                           GestureDetector(
                                                             onTap: () {
-                                                              currentSliderValue.value++;
+                                                              weightChangeValue.value++;
                                                             },
                                                             child: Container(
                                                               height: 8.w,
@@ -330,15 +331,15 @@ class PlanIntermediateCompleteScreen extends StatelessWidget {
                                                         data: SliderThemeData(
                                                             trackHeight: 0.7.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
                                                         child: Slider(
-                                                          value: currentSliderValue.value,
+                                                          value: weightChangeValue.value,
                                                           max: 400,
                                                           activeColor: ColorRes.greenColor,
                                                           inactiveColor: ColorRes.greyColor.withOpacity(0.5),
                                                           // divisions: 5,
-                                                          label: currentSliderValue.value.round().toString(),
+                                                          label: weightChangeValue.value.round().toString(),
                                                           onChanged: (double value) {
                                                             // setState(() {
-                                                            currentSliderValue.value = value;
+                                                            weightChangeValue.value = value;
                                                             // });
                                                           },
                                                         ),
@@ -362,9 +363,13 @@ class PlanIntermediateCompleteScreen extends StatelessWidget {
                                                           const SizedBox(width: 15),
                                                           Expanded(
                                                               child: ElevatedButton(
-                                                                onPressed: () {
+                                                                onPressed: () async {
                                                                   // print('no selected');
-                                                                  selectedWeight.value = currentSliderValue.value;
+                                                                  // selectedWeight.value = currentSliderValue.value;
+                                                                  ///
+                                                                  storeWeightOfUser.value = isSelectedWeightKGType.value ? '${weightChangeValue.value} kg' : '${weightChangeValue.value} lbs';
+                                                                  await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
+                                                                  weightOfUser.value = storeWeightOfUser.value;
                                                                   Navigator.of(context).pop();
                                                                 },
                                                                 style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),

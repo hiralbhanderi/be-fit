@@ -1,6 +1,8 @@
 import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/signin_flow/signin_flow_controller.dart';
 import 'package:befit/screens/signin_flow/signin_flow_screen.dart';
+import 'package:befit/screens/water_goal/water_count_screen.dart';
+import 'package:befit/screens/water_goal/water_goal_list_screen.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_complete_screen.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_list_screen.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_screen.dart';
@@ -207,6 +209,16 @@ class BeFit extends StatelessWidget {
                 page: () => PlanAdvancedCompleteScreen(),
                 transition: Transition.fadeIn,
               ),
+              GetPage(
+                name: WaterCountScreen.routeName,
+                page: () => WaterCountScreen(),
+                transition: Transition.fadeIn,
+              ),
+              GetPage(
+                name: WaterGoalListScreen.routeName,
+                page: () => WaterGoalListScreen(),
+                transition: Transition.fadeIn,
+              ),
             ]);
       },
     );
@@ -224,7 +236,9 @@ class AppBidding extends Bindings {
     isDayChangeForPlanIntermediateWorkout.value = SharedPreferencesConst.getsChangeDayForPlanIntermediateWorkout();
     isDayChangeForPlanBeginnerWorkout.value = SharedPreferencesConst.getsChangeDayForPlanBeginnerWorkout();
     isDayChangeForPlanAdvancedWorkout.value = SharedPreferencesConst.getsChangeDayForPlanAdvancedWorkout();
-    // changeWeightTypesOfUser.value = SharedPreferencesConst.getsChangeWeightTypesOfUser();
+    changeWeightTypesOfUser.value = SharedPreferencesConst.getsChangeWeightTypesOfUser();
+    // waterTotalOfUser.value = SharedPreferencesConst.getsChangeWaterTotalOfUser();
+    // waterDrunkOfUser.value = SharedPreferencesConst.getsChangeWaterDrunkOfUser();
     // Get.put(PrepareExamController());
   }
 }

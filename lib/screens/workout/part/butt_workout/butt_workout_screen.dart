@@ -51,10 +51,15 @@ class ButtWorkoutScreen extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(
-                                Icons.arrow_back,
-                                color: ColorRes.greyColor,
-                                size: 8.w,
+                              GestureDetector(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: ColorRes.greyColor,
+                                  size: 8.w,
+                                ),
                               ),
                               SizedBox(
                                 width: 6.w,
