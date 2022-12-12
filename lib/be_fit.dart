@@ -1,5 +1,5 @@
 import 'package:befit/screens/home/home_screen.dart';
-import 'package:befit/screens/signin_flow/signin_flow_controller.dart';
+import 'package:befit/screens/report/setting_screeen.dart';
 import 'package:befit/screens/signin_flow/signin_flow_screen.dart';
 import 'package:befit/screens/water_goal/water_count_screen.dart';
 import 'package:befit/screens/water_goal/water_goal_list_screen.dart';
@@ -219,6 +219,11 @@ class BeFit extends StatelessWidget {
                 page: () => WaterGoalListScreen(),
                 transition: Transition.fadeIn,
               ),
+              GetPage(
+                name: SettingScreen.routeName,
+                page: () => SettingScreen(),
+                transition: Transition.fadeIn,
+              ),
             ]);
       },
     );
@@ -231,13 +236,13 @@ class AppBidding extends Bindings {
     await SharedPreferencesConst.initMySharedPreferences();
 
     ///
-    isDayChangeForButtWorkout.value = SharedPreferencesConst.getsChangeDayForButtWorkout();
-    isDayChangeForAbsWorkout.value = SharedPreferencesConst.getsChangeDayForAbsWorkout();
-    isDayChangeForPlanIntermediateWorkout.value = SharedPreferencesConst.getsChangeDayForPlanIntermediateWorkout();
-    isDayChangeForPlanBeginnerWorkout.value = SharedPreferencesConst.getsChangeDayForPlanBeginnerWorkout();
-    isDayChangeForPlanAdvancedWorkout.value = SharedPreferencesConst.getsChangeDayForPlanAdvancedWorkout();
+    // isDayChangeForButtWorkout.value = SharedPreferencesConst.getsChangeDayForButtWorkout();
+    // isDayChangeForAbsWorkout.value = SharedPreferencesConst.getsChangeDayForAbsWorkout();
+    // isDayChangeForPlanIntermediateWorkout.value = SharedPreferencesConst.getsChangeDayForPlanIntermediateWorkout();
+    // isDayChangeForPlanBeginnerWorkout.value = SharedPreferencesConst.getsChangeDayForPlanBeginnerWorkout();
+    // isDayChangeForPlanAdvancedWorkout.value = SharedPreferencesConst.getsChangeDayForPlanAdvancedWorkout();
     changeWeightTypesOfUser.value = SharedPreferencesConst.getsChangeWeightTypesOfUser();
-    // waterTotalOfUser.value = SharedPreferencesConst.getsChangeWaterTotalOfUser();
+    waterTotalOfUser.value = SharedPreferencesConst.getsChangeWaterTotalOfUser();
     // waterDrunkOfUser.value = SharedPreferencesConst.getsChangeWaterDrunkOfUser();
     // Get.put(PrepareExamController());
   }

@@ -1,4 +1,3 @@
-import 'package:befit/screens/food/food_screen.dart';
 import 'package:befit/screens/home/home_controller.dart';
 import 'package:befit/screens/report/report_screen.dart';
 import 'package:befit/screens/workout/workout_screen.dart';
@@ -22,7 +21,6 @@ class HomeScreen extends StatelessWidget {
           builder: (BuildContext context) {
             return AlertDialog(
               content: Container(
-                // height: 90,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -48,51 +46,12 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(width: 15),
                         Expanded(
                             child: ElevatedButton(
-                              onPressed: () {
-                                // print('no selected');
-                                Navigator.of(context).pop();
-                              },
-                              style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
-                              child: const Text("Continue", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
-                            ))
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            );
-            return AlertDialog(
-              content: Container(
-                // height: 90,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text("Do you want to exit?"),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              SystemNavigator.pop();
-                            },
-                            child: const Text("Yes",style: TextStyle(color: Colors.black),),
-                            style: ElevatedButton.styleFrom(primary: Color(0xffBBDEFB)),
-                          ),
-                        ),
-                        const SizedBox(width: 15),
-                        Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                // print('no selected');
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text("No", style: TextStyle(color: Colors.black)),
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
-                              ),
-                            ))
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
+                          child: const Text("Continue", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                        ))
                       ],
                     )
                   ],
@@ -155,7 +114,7 @@ class HomeScreen extends StatelessWidget {
             ? WorkoutScreen()
             // : homeController.isSelectedBottom.value == 1
             //     ? FoodScreen()
-                : ReportScreen()),
+            : ReportScreen()),
       ),
     );
   }

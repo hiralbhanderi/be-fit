@@ -17,6 +17,17 @@ class ImagesAsset {
   static const String targetWeightImage = '$images/target_target_weight_image.png';
   static const String waterGlassImage = '$images/icon_water.png';
   static const String waterGoalImage = '$images/water_goal.png';
+  static const String aboutUsSetting = '$images/about_us_setting.png';
+  static const String feedbackSetting = '$images/feedback_setting.png';
+  static const String moreSettingSetting = '$images/moresetting_setting.png';
+  static const String privatePolicySetting = '$images/private_policy_setting.png';
+  static const String rateUsSetting = '$images/rateus_setting.png';
+  static const String resetProgressSetting = '$images/restprogress_setting.png';
+  static const String shareSetting = '$images/share_setting.png';
+  static const String waterGoalSetting = '$images/water_goal_setting.png';
+  static const String dwSuccessImage = '$images/dw_success_image.png';
+  static const String editImage = '$images/edit_image.png';
+  static const String reportImageForWaterGoal = '$images/report_image_for_water_goal.png';
 }
 
 ///for butt workout
@@ -59,8 +70,8 @@ RxDouble storeWaterTotalOfUser = 0.0.obs;
 RxDouble waterTotalOfUser = 0.0.obs;
 
 /// for total water
-RxDouble storeWaterDrunkOfUser = 0.0.obs;
-RxDouble waterDrunkOfUser = 0.0.obs;
+// RxDouble storeWaterDrunkOfUser = 0.0.obs;
+// RxDouble waterDrunkOfUser = 0.0.obs;
 
 /// for Date change
 RxString storeTodayDate = ''.obs;

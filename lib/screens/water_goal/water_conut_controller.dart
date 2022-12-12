@@ -1,14 +1,26 @@
+import 'package:befit/utils/assets_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class WaterCountController extends GetxController{
 
+  ///
+  RxDouble storeWaterDrunkOfUser = 0.0.obs;
+  RxDouble waterDrunkOfUser = 0.0.obs;
+  RxDouble waterDrunkOfUserStore = 0.0.obs;
+  ///
   RxList<int> waterMlList = [100,200,300,400,500].obs;
   RxInt isSelectedWater  = 0.obs;
   RxDouble waterChangeValue = 2300.0.obs;
   RxDouble currentTotal = 0.0.obs;
   RxInt achieveGoalDays = 0.obs;
+
+  @override
+  void onInit() {
+    waterDrunkOfUserStore.value = waterTotalOfUser.value;
+    super.onInit();
+  }
 
   /// for hive data
 

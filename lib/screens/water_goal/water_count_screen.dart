@@ -57,9 +57,11 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
       ///
       waterCountController.shoppingBox.clear();
     }
-    waterTotalOfUser.value = SharedPreferencesConst.getsChangeWaterTotalOfUser();
-    waterDrunkOfUser.value = SharedPreferencesConst.getsChangeWaterDrunkOfUser();
+    // waterTotalOfUser.value = SharedPreferencesConst.getsChangeWaterTotalOfUser();
+    waterCountController.waterDrunkOfUser.value = SharedPreferencesConst.getsChangeWaterDrunkOfUser();
     isAchieveGoalDay.value = SharedPreferencesConst.getsAchieveGoalDay();
+
+    // waterCountController.waterDrunkOfUserStore.value = waterTotalOfUser.value;
 
     // if(waterDrunkOfUser.value.round()>waterTotalOfUser.value.round()){
     //   print('come in loop');
@@ -71,6 +73,8 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
   // RxDouble waterChangeValue = 2300.0.obs;
   @override
   Widget build(BuildContext context) {
+    print('waterDrunkOfUser value ====>>>${waterCountController.waterDrunkOfUser.value}');
+    print('waterChangeValue value ====>>>${waterCountController.waterDrunkOfUserStore.value}');
     return Scaffold(
       body: Column(
         children: [
@@ -156,11 +160,12 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
           ),
           Obx(
             () => Container(
-              height: 55.w,
-              width: 55.w,
+              height: 50.w,
+              width: 50.w,
               child: LiquidCircularProgressIndicator(
                 // value: currentTotal.value * 100 / waterChangeValue.value / 100,
-                value: waterDrunkOfUser.value * 100 / waterCountController.waterChangeValue.value / 100,
+                value: waterCountController.waterDrunkOfUser.value * 100 / waterCountController.waterDrunkOfUserStore.value / 100,
+                // value: waterDrunkOfUser.value * 100 / waterTotalOfUser.value / 100,
                 //currentTotal.value = ketlu pidhu // waterChangeValue.value ketlu pivanu che
                 // Defaults to 0.5.
                 valueColor: AlwaysStoppedAnimation(ColorRes.blueColor.withOpacity(0.7)),
@@ -170,7 +175,7 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                 direction: Axis.vertical,
                 center: Text(
                   // '${currentTotal.value.round()}  ml',
-                  '${waterDrunkOfUser.value.round()}  ml',
+                  '${waterCountController.waterDrunkOfUser.value.round()}  ml',
                   style: TextStyle(fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w600),
                 ),
               ),
@@ -186,13 +191,13 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                 onTap: () {
                   Get.to(WaterGoalListScreen(
                     totalWaterGoal: waterTotalOfUser.value.round(),
-                    waterDrunkGoal: waterDrunkOfUser.value.round(),
+                    waterDrunkGoal: waterCountController.waterDrunkOfUser.value.round(),
                   ));
                 },
-                child: Icon(
-                  Icons.article,
+                child: Image.asset(
+                  ImagesAsset.reportImageForWaterGoal,
                   color: ColorRes.blueColor.withOpacity(0.7),
-                  size: 9.w,
+                  scale: 2.6,
                 ),
               ),
               SizedBox(
@@ -203,23 +208,81 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                   waterCountController.currentTotal.value =
                       waterCountController.currentTotal.value + waterCountController.waterMlList[waterCountController.isSelectedWater.value];
 
+                  /// for hive data
                   waterCountController.createItem({
                     "time": DateTime.now(),
                     "mlCount": waterCountController.waterMlList[waterCountController.isSelectedWater.value],
                   });
+                  ///
 
-                  storeWaterDrunkOfUser.value = waterCountController.currentTotal.value;
-                  await SharedPreferencesConst.setChangeWaterDrunkOfUser(storeWaterDrunkOfUser.value);
-                  waterDrunkOfUser.value = storeWaterDrunkOfUser.value;
+                  waterCountController.storeWaterDrunkOfUser.value = waterCountController.currentTotal.value;
+                  await SharedPreferencesConst.setChangeWaterDrunkOfUser(waterCountController.storeWaterDrunkOfUser.value);
+                  waterCountController.waterDrunkOfUser.value = waterCountController.storeWaterDrunkOfUser.value;
 
-                  if (waterDrunkOfUser.value.round() > waterTotalOfUser.value.round()) {
-                    print('come in loop');
+                  /// after day change sharePreference clear
+                  if (waterCountController.waterDrunkOfUser.value.round() > waterTotalOfUser.value.round()) {
                     waterCountController.achieveGoalDays.value++;
-                    print('come in -->>>${waterCountController.achieveGoalDays.value}');
                     storeAchieveGoalDay.value = waterCountController.achieveGoalDays.value;
                     await SharedPreferencesConst.setAchieveGoalDays(storeAchieveGoalDay.value);
                     isAchieveGoalDay.value = storeAchieveGoalDay.value;
                   }
+                  ///
+
+
+                  /// For well done dialog
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SimpleDialog(
+                        insetPadding: EdgeInsets.zero,
+                        contentPadding: EdgeInsets.zero,
+                        children: [
+                          Container(
+                            // height: 90,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4.w),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    height: 6.w,
+                                  ),
+                                  Image.asset(
+                                    ImagesAsset.dwSuccessImage,
+                                    scale: 3,
+                                  ),
+                                  SizedBox(
+                                    height: 6.w,
+                                  ),
+                                  Text(
+                                    'Well done, Stay hydrated!',
+                                    style: TextStyle(fontSize: 18, color: ColorRes.blackColor.withOpacity(0.6), fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(
+                                    height: 4.w,
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      onPressed: () async {
+                                        Navigator.of(context).pop();
+                                      },
+                                      style: ElevatedButton.styleFrom(backgroundColor: ColorRes.blueColor.withOpacity(0.7)),
+                                      child: const Text("GOT IT", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 4.w,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
                 child: Stack(
                   alignment: Alignment.center,
@@ -273,8 +336,11 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            if (waterCountController.waterChangeValue.value > 1) {
-                                              waterCountController.waterChangeValue.value--;
+                                            //if (waterTotalOfUser.value > 1) {
+                                            //                                               waterTotalOfUser.value--;
+                                            //                                             }
+                                            if (waterCountController.waterDrunkOfUserStore.value > 1) {
+                                              waterCountController.waterDrunkOfUserStore.value--;
                                             }
                                           },
                                           child: Container(
@@ -297,7 +363,8 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                                           () => Row(
                                             children: [
                                               Text(
-                                                '${waterCountController.waterChangeValue.value.round()} ml',
+                                                '${waterCountController.waterDrunkOfUserStore.value.round()} ml',
+                                                // '${waterTotalOfUser.value.round()} ml',
                                                 // weightOfUser.value,
                                                 style: const TextStyle(fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                                               ),
@@ -306,7 +373,8 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            waterCountController.waterChangeValue.value++;
+                                            waterCountController.waterDrunkOfUserStore.value++;
+                                            //waterTotalOfUser.value++;
                                           },
                                           child: Container(
                                             height: 8.w,
@@ -330,15 +398,18 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                                     Obx(() => SliderTheme(
                                           data: SliderThemeData(trackHeight: 0.7.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
                                           child: Slider(
-                                            value: waterCountController.waterChangeValue.value,
+                                            value: waterCountController.waterDrunkOfUserStore.value,
+                                            //value: waterTotalOfUser.value,
                                             max: 5000,
                                             activeColor: ColorRes.blueColor.withOpacity(0.7),
                                             inactiveColor: ColorRes.greyColor.withOpacity(0.5),
                                             // divisions: 5,
-                                            label: waterCountController.waterChangeValue.value.round().toString(),
+                                            label: waterCountController.waterDrunkOfUserStore.value.round().toString(),
+                                            // label: waterTotalOfUser.value.round().toString(),
                                             onChanged: (double value) {
                                               // setState(() {
-                                              waterCountController.waterChangeValue.value = value;
+                                              waterCountController.waterDrunkOfUserStore.value = value;
+                                              //waterTotalOfUser.value = value;
                                               // });
                                             },
                                           ),
@@ -366,7 +437,7 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                                             // print('no selected');
                                             // selectedWaterGoal.value = waterChangeValue.value;
                                             ///
-                                            storeWaterTotalOfUser.value = waterCountController.waterChangeValue.value;
+                                            storeWaterTotalOfUser.value = waterCountController.waterDrunkOfUserStore.value;
                                             await SharedPreferencesConst.setChangeWaterTotalOfUser(storeWaterTotalOfUser.value);
                                             waterTotalOfUser.value = storeWaterTotalOfUser.value;
                                             Navigator.of(context).pop();
@@ -388,10 +459,10 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                       },
                     );
                   },
-                  child: Icon(
-                    Icons.edit_outlined,
+                  child: Image.asset(
+                    ImagesAsset.editImage,
                     color: ColorRes.blueColor.withOpacity(0.7),
-                    size: 9.w,
+                    scale: 2.6,
                   ))
             ],
           ),
