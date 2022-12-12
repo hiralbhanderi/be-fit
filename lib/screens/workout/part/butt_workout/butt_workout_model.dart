@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final buttWorkoutModel = buttWorkoutModelFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:befit/screens/workout/workout_all_data_model.dart';

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -10,9 +8,6 @@ import 'package:get/get.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 
 class ButtWorkoutController extends GetxController {
-  // ButtWorkoutModel selectedButtWorkoutModel = ButtWorkoutModel();
-  // String selectedDay = '0';
-  // List<Exercise> buttWorkoutModelDataPass = <Exercise>[];
   CarouselController carouselController = CarouselController();
   final CountDownController controller1 = CountDownController();
   final CustomTimerController customTimerController = CustomTimerController();
@@ -48,40 +43,7 @@ class ButtWorkoutController extends GetxController {
     '12:08',
   ];
 
-  List<String> kcalList = [
-    '41',
-    '38',
-    '34',
-    '39',
-    '35',
-    '37',
-    '42',
-    '42',
-    '44',
-    '43',
-    '45',
-    '43',
-    '42',
-    '47',
-    '56',
-    '53',
-    '51',
-    '57',
-    '46',
-    '55',
-    '53',
-    '69',
-    '72',
-    '85',
-    '76',
-    '81',
-    '87',
-    '78',
-  ];
-
-  // RxList<ButtWorkoutModel> buttWorkoutModel = <ButtWorkoutModel>[].obs;
   RxList<ButtWorkoutModel> buttWorkoutModel1 = <ButtWorkoutModel>[].obs;
-  // WorkoutAllDataModel buttWorkoutModelDataPass = WorkoutAllDataModel();
   List<Exercise> selectedButtWorkoutModel = <Exercise>[];
   RxBool isPlayTimer = false.obs;
   RxBool isCountDownAnimationHide = true.obs;
@@ -90,19 +52,9 @@ class ButtWorkoutController extends GetxController {
 
   @override
   onInit() {
-    // buttWorkoutJson();
     getDataFromAssetForButtWorkout();
     super.onInit();
   }
-
-  // Future<void> buttWorkoutJson() async {
-  //   final response = await rootBundle.loadString('assets/train/butt_workout.json');
-  //   // final data = await json.decode(response);
-  //   buttWorkoutModel.value = buttWorkoutModelFromJson(response);
-  //   // languageModelData.shuffle();
-  //   log('languageModelData --->>${buttWorkoutModel.length}');
-  //   // });
-  // }
 
   Future<void> getDataFromAssetForButtWorkout() async {
     /// day time
@@ -120,11 +72,9 @@ class ButtWorkoutController extends GetxController {
         exerciseData?[j].workoutAllDataModel = xyz;
       }
     }
-    log('buttWorkoutModel1 First Data : actionId: ${buttWorkoutModel1.first.exercise?.first.time} \n workout: ${buttWorkoutModel1.first.exercise?.first.workoutAllDataModel?.toJson()}');
-    // getKcalTotal();
   }
 
-  getKcalTotalForButtWorkout(){
+  getKcalTotalForButtWorkout() {
     double totalKcal = 0.0;
     for (var element in buttWorkoutModel1) {
       totalKcal = 0;

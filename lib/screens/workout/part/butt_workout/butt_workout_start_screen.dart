@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
 import 'package:befit/screens/workout/common_screens/congratulation_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_complete_screen.dart';
@@ -23,7 +20,6 @@ class ButtWorkoutStartScreen extends StatelessWidget {
   final WorkoutController workoutController = Get.find();
   ButtWorkoutController buttWorkoutController = Get.find();
 
-  // PageController pageController = PageController(viewportFraction: 1, keepPage: true);
   WorkoutAllDataModel modelData = WorkoutAllDataModel();
   final String? dayCountForWorkoutStart;
 
@@ -31,7 +27,6 @@ class ButtWorkoutStartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // buttWorkoutController.customTimerController.start();
     return WillPopScope(
       onWillPop: () async {
         showDialog(
@@ -54,10 +49,12 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              // Get.back();
-                              // Get.back();
                               buttWorkoutController.isCountDownAnimationHide.value = true;
-                              Get.offAndToNamed(ButtWorkoutScreen.routeName);
+                              // Get.offAndToNamed(ButtWorkoutScreen.routeName);
+                              ///
+                              Get.offNamedUntil(ButtWorkoutScreen.routeName, ModalRoute.withName(HomeScreen.routeName));
+
+                              ///
                               // Get.offAllNamed(ButtWorkoutScreen.routeName);
                               Navigator.of(context).pop();
                             },
@@ -71,7 +68,6 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                         Expanded(
                             child: ElevatedButton(
                           onPressed: () {
-                            // print('no selected');
                             Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
@@ -95,30 +91,16 @@ class ButtWorkoutStartScreen extends StatelessWidget {
           controller: buttWorkoutController.pageController,
           onPageChanged: (int index) {
             buttWorkoutController.isExerciseChangeIndex.value = index;
-            // Get.toNamed(CongratulationsScreen.routeName);
-            // Future.delayed(const Duration(seconds: 3)).then((value) {
-            //   return Get.to(WorkoutCompleteScreen(
-            //     dayNumber: dayCountForWorkoutStart,
-            //     exerciseTotalCount: buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ?? 0,
-            //     kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
-            //     duration: buttWorkoutController.timeList[int.parse(dayCountForWorkoutStart!) - 1],
-            //   ));
-            // });
-            // }
-            //   buttWorkoutController.customTimerController.start();
-            // examStartController.start == 0;
-            // buttWorkoutController.isExerciseChangeIndex.value++;
-            // pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
           },
           itemBuilder: (BuildContext context, int index) {
             ///
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Future.delayed(Duration(seconds: 4)).then((value) {
-                buttWorkoutController.customTimerController.start();
-                buttWorkoutController.controller1.start();
-                buttWorkoutController.isCountDownAnimationHide.value = false;
-              });
+            // WidgetsBinding.instance.addPostFrameCallback((_) {
+            Future.delayed(const Duration(seconds: 4)).then((value) {
+              buttWorkoutController.customTimerController.start();
+              buttWorkoutController.controller1.start();
+              buttWorkoutController.isCountDownAnimationHide.value = false;
             });
+            // });
 
             ///
             return Stack(
@@ -139,11 +121,11 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                               begin: Duration(
                                   seconds:
                                       buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index].time ?? 0),
-                              // seconds: 10),
-                              end: Duration(),
+                              // seconds: 5),
+                              end: const Duration(),
                               builder: (time) {
                                 return Text("${time.minutes}:${time.seconds}",
-                                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: ColorRes.greenColor));
+                                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: ColorRes.greenColor));
                               }),
                           Icon(
                             Icons.more_vert_sharp,
@@ -184,7 +166,6 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                                   child: Padding(
                                                     padding: EdgeInsets.symmetric(horizontal: 4.w),
                                                     child: Column(
-                                                      // crossAxisAlignment: CrossAxisAlignment.start,
                                                       mainAxisSize: MainAxisSize.min,
                                                       children: [
                                                         SizedBox(
@@ -213,7 +194,8 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                                           buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1]
                                                                   .exercise?[index].workoutAllDataModel?.name ??
                                                               '',
-                                                          style: TextStyle(fontSize: 20, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
+                                                          style:
+                                                              const TextStyle(fontSize: 20, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
                                                         ),
                                                         SizedBox(
                                                           height: 3.w,
@@ -222,7 +204,7 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                                           buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1]
                                                                   .exercise?[index].workoutAllDataModel?.introduce ??
                                                               '',
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               fontSize: 16, color: ColorRes.blackColor, fontWeight: FontWeight.w400, height: 1.5),
                                                         ),
                                                         const SizedBox(height: 20),
@@ -235,7 +217,7 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                           },
                                         );
                                       },
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.question_mark_outlined,
                                         color: ColorRes.greyColor,
                                       ),
@@ -249,11 +231,16 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                 SizedBox(
                                   height: 4.w,
                                 ),
-                                Text(
-                                  // 'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index+1].workoutAllDataModel?.name ?? ''}',
-                                  'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index].workoutAllDataModel?.name ?? ''}',
-                                  style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
-                                ),
+                                ((buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length) ?? 0) > index + 1
+                                    ? Text(
+                                        'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index + 1].workoutAllDataModel?.name ?? ''}',
+                                        // 'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index].workoutAllDataModel?.name ?? ''}',
+                                        style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
+                                      )
+                                    : Text(
+                                        'After this completed',
+                                        style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
+                                      ),
                               ],
                             ),
                           ],
@@ -290,10 +277,10 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                 children: [
                                   NeonCircularTimer(
                                     width: 30.w,
-                                    // strokeWidth: 10,
+                                    strokeWidth: 10,
                                     duration:
                                         buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index].time ?? 0,
-                                    // duration: 10,
+                                    // duration: 5,
                                     isReverse: true,
                                     autoStart: false,
                                     backgroudColor: ColorRes.whiteColor,
@@ -333,22 +320,11 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                             exerciseTotalCount:
                                                 buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ??
                                                     0,
-                                            // kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
                                             kcalCount: buttWorkoutController.totalListOfKcal[int.parse(dayCountForWorkoutStart!) - 1].toString(),
                                             duration: buttWorkoutController.timeList[int.parse(dayCountForWorkoutStart!) - 1],
                                           ));
                                         });
                                       }
-                                      // Get.toNamed(CongratulationsScreen.routeName);
-                                      // Future.delayed(const Duration(seconds: 3)).then((value) {
-                                      //   return Get.to(WorkoutCompleteScreen(
-                                      //     dayNumber: dayCountForWorkoutStart,
-                                      //     exerciseTotalCount: buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ?? 0,
-                                      //     kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
-                                      //     duration: buttWorkoutController.timeList[int.parse(dayCountForWorkoutStart!) - 1],
-                                      //   ));
-                                      // });
-                                      // buttWorkoutController.isExerciseChangeIndex.value = 0;
                                     },
                                   ),
 
@@ -385,11 +361,9 @@ class ButtWorkoutStartScreen extends StatelessWidget {
                                   buttWorkoutController.isExerciseChangeIndex.value++;
                                   buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
 
-                                  // Future.delayed(Duration(seconds: 4)).then((value) {
                                   buttWorkoutController.customTimerController.pause();
                                   buttWorkoutController.controller1.pause();
                                   buttWorkoutController.isCountDownAnimationHide.value = true;
-                                  // });
                                 },
                                 child: buttWorkoutController.isExerciseChangeIndex.value ==
                                         ((buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ?? 0) - 1)

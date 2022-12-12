@@ -1,13 +1,8 @@
 import 'dart:ui';
-
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_controller.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_list_screen.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_start_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_list_screen.dart';
 import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';
-import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
@@ -20,18 +15,20 @@ class AbsWorkoutScreen extends StatelessWidget {
   static const routeName = '/AbsWorkoutScreen';
 
   AbsWorkoutController absWorkoutController = Get.put(AbsWorkoutController());
-  // WorkoutController workoutController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    // print('buttWorkoutController.buttWorkoutModel.lengt ====>>>>${buttWorkoutController.buttWorkoutModel.length}');
     return Scaffold(
       backgroundColor: ColorRes.blackColor.withOpacity(0.1),
       body: Stack(
         children: [
-          Image.asset(ImagesAsset.backGroundImage,height: double.infinity,fit: BoxFit.cover,),
+          Image.asset(
+            ImagesAsset.backGroundImage,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
           BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 6, sigmaY:6),
+            filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -60,7 +57,7 @@ class AbsWorkoutScreen extends StatelessWidget {
                               SizedBox(
                                 width: 6.w,
                               ),
-                              Text(
+                              const Text(
                                 'Abs Workout',
                                 style: TextStyle(fontSize: 21, color: ColorRes.greyColor, fontWeight: FontWeight.w500),
                               ),
@@ -69,7 +66,7 @@ class AbsWorkoutScreen extends StatelessWidget {
                           SizedBox(
                             height: 4.w,
                           ),
-                          Text(
+                          const Text(
                             'Help to Shape Your Perfect Body',
                             style: TextStyle(fontSize: 17, color: ColorRes.greyColor, fontWeight: FontWeight.w400),
                           ),
@@ -82,7 +79,7 @@ class AbsWorkoutScreen extends StatelessWidget {
                   ],
                 ),
                 Obx(
-                      () => CarouselSlider.builder(
+                  () => CarouselSlider.builder(
                     carouselController: absWorkoutController.carouselControllerForAbsWorkout,
                     options: CarouselOptions(
                       // height: (boxConstraints.maxHeight / 100) * 82,
@@ -156,15 +153,15 @@ class AbsWorkoutScreen extends StatelessWidget {
                                         begin: Alignment.topLeft,
                                         end: Alignment.topRight,
                                         colors: [
-                                          isDayChangeForAbsWorkout >= indexFirst ? ColorRes.purpleColor:ColorRes.lightGreyColor,
-                                          isDayChangeForAbsWorkout >= indexFirst ? ColorRes.pinkColor:ColorRes.lightGreyColor,
+                                          isDayChangeForAbsWorkout >= indexFirst ? ColorRes.purpleColor : ColorRes.lightGreyColor,
+                                          isDayChangeForAbsWorkout >= indexFirst ? ColorRes.pinkColor : ColorRes.lightGreyColor,
                                         ],
                                       ),
                                       width: double.infinity,
                                       onTap: () {
-                                        if(isDayChangeForAbsWorkout >= indexFirst){
+                                        if (isDayChangeForAbsWorkout >= indexFirst) {
                                           Get.toNamed(WarmUpScreen.routeName);
-                                          Future.delayed(Duration(seconds: 3)).then((value) {
+                                          Future.delayed(const Duration(seconds: 3)).then((value) {
                                             return Get.to(
                                               AbsWorkoutStartScreen(
                                                 dayCountForWorkoutStartForAbsWorkout: absWorkoutController.absWorkoutModel[indexFirst].day.toString(),
@@ -172,16 +169,10 @@ class AbsWorkoutScreen extends StatelessWidget {
                                             );
                                           });
                                         }
-
-                                        // Get.to(
-                                        //   WorkoutStartScreen(
-                                        //     dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
-                                        //   ),
-                                        // );
                                         absWorkoutController.isExerciseChangeIndexForAbsWorkout.value = 0;
                                       },
                                       buttonNameColor: ColorRes.whiteColor,
-                                      buttonName: isDayChangeForAbsWorkout >= indexFirst ? 'Start now':'Watch video to start',
+                                      buttonName: isDayChangeForAbsWorkout >= indexFirst ? 'Start now' : 'Watch video to start',
                                       buttonNameSize: 17,
                                       buttonNameWeight: FontWeight.w600,
                                     ),
@@ -191,14 +182,13 @@ class AbsWorkoutScreen extends StatelessWidget {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      if(isDayChangeForAbsWorkout >= indexFirst){
+                                      if (isDayChangeForAbsWorkout >= indexFirst) {
                                         Get.to(AbsWorkoutListScreen(
                                           dayCountForAbsWorkout: absWorkoutController.absWorkoutModel[indexFirst].day.toString(),
                                           timeDataForAbsWorkout: absWorkoutController.timeListForAbsWorkout[indexFirst],
                                           kcalDataForAbsWorkout: absWorkoutController.totalListOfKcalForAbsWorkout[indexFirst].toString(),
                                         ));
                                       }
-
                                     },
                                     child: Text(
                                       'Exercise list',
@@ -215,7 +205,7 @@ class AbsWorkoutScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                Text('')
+                const Text('')
               ],
             ),
           ),

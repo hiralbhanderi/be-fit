@@ -26,15 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // body:  Center(
-      //   child: Image.asset(
-      //     'assets/images/stock_info_splash.png',
-      //     color: ColorRes.darkBlueColor,
-      //     //  fit: BoxFit.fitHeight,
-      //     //   height: double.infinity,
-      //     //   width: double.infinity,
-      //   ),
-      // ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -56,15 +47,13 @@ class _SplashScreenState extends State<SplashScreen> {
   data() async {
     await Future.delayed(const Duration(seconds: 3));
     getDataOfStore();
-    // Get.toNamed(SignInFlowScreen.routeName);
-    // Get.toNamed(HomeScreen.routeName);
   }
 
   getDataOfStore() {
     heightOfUser.value = SharedPreferencesConst.getsHeightOfUser();
     weightOfUser.value = SharedPreferencesConst.getsWeightOfUser();
     targetWeightOfUser.value = SharedPreferencesConst.getsTargetWeightOfUser();
-    if (heightOfUser.value.isEmpty && weightOfUser.value.isEmpty && targetWeightOfUser.value.isEmpty) {
+    if (heightOfUser.value.isEmpty || weightOfUser.value.isEmpty || targetWeightOfUser.value.isEmpty) {
       Get.toNamed(SignInFlowScreen.routeName);
     } else {
       Get.toNamed(HomeScreen.routeName);

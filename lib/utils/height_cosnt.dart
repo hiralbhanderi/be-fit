@@ -5,13 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
-// enum HeightUnit { ft, cm }
-
-// class Height extends StatefulWidget {
-//   @override
-//   _HeightState createState() => _HeightState();
-// }
-
 class Height extends StatefulWidget {
   final TextEditingController heightController;
 
@@ -22,15 +15,6 @@ class Height extends StatefulWidget {
 }
 
 class _HeightState extends State<Height> {
-  // HeightUnit selectedUnit = HeightUnit.ft;
-
-  // TextEditingController heightController = TextEditingController();
-  // int ft = 0;
-  //
-  // int inches = 0;
-  //
-  // String? cm;
-
   cmToInches(inchess) {
     ft = inchess ~/ 12;
     inches = inchess % 12;
@@ -65,7 +49,7 @@ class _HeightState extends State<Height> {
             child: Column(
       children: [
         Container(
-          width:34.w,
+          width: 34.w,
           child: TextFormField(
             onTap: selectedUnit == HeightUnit.ft
                 ? () {
@@ -78,12 +62,15 @@ class _HeightState extends State<Height> {
                             color: ColorRes.whiteColor,
                             child: Row(
                               children: [
-                                SizedBox(width: 4.w,),
+                                SizedBox(
+                                  width: 4.w,
+                                ),
                                 Expanded(
                                   child: CupertinoPicker(
                                     selectionOverlay: Container(
                                       width: 8.w,
-                                      decoration: BoxDecoration(color: ColorRes.greenColor.withOpacity(0.15),borderRadius: BorderRadius.circular(5)),),
+                                      decoration: BoxDecoration(color: ColorRes.greenColor.withOpacity(0.15), borderRadius: BorderRadius.circular(5)),
+                                    ),
                                     itemExtent: 32.0,
                                     onSelectedItemChanged: (int index) {
                                       print(index + 1);
@@ -94,23 +81,32 @@ class _HeightState extends State<Height> {
                                     },
                                     children: List.generate(12, (index) {
                                       return Center(
-                                        child: Text('${index + 1}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                                        child: Text(
+                                          '${index + 1}',
+                                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                                        ),
                                       );
                                     }),
                                   ),
                                 ),
-                                SizedBox(width: 8.w,),
-                                Text('FT',
+                                SizedBox(
+                                  width: 8.w,
+                                ),
+                                const Text('FT',
                                     style: TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black,
                                     )),
-                                SizedBox(width: 8.w,),
+                                SizedBox(
+                                  width: 8.w,
+                                ),
                                 Expanded(
                                   child: CupertinoPicker(
                                     itemExtent: 32.0,
-                                    selectionOverlay: Container(decoration: BoxDecoration(color: ColorRes.greenColor.withOpacity(0.15),borderRadius: BorderRadius.circular(8)),),
+                                    selectionOverlay: Container(
+                                      decoration: BoxDecoration(color: ColorRes.greenColor.withOpacity(0.15), borderRadius: BorderRadius.circular(8)),
+                                    ),
                                     onSelectedItemChanged: (int index) {
                                       print(index);
                                       setState(() {
@@ -120,19 +116,26 @@ class _HeightState extends State<Height> {
                                     },
                                     children: List.generate(12, (index) {
                                       return Center(
-                                        child: Text('$index',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                                        child: Text(
+                                          '$index',
+                                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                                        ),
                                       );
                                     }),
                                   ),
                                 ),
-                                SizedBox(width: 8.w,),
-                                Text('IN',
+                                SizedBox(
+                                  width: 8.w,
+                                ),
+                                const Text('IN',
                                     style: TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black,
                                     )),
-                                SizedBox(width: 4.w,),
+                                SizedBox(
+                                  width: 4.w,
+                                ),
                               ],
                             ),
                           );
@@ -143,12 +146,15 @@ class _HeightState extends State<Height> {
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
             cursorColor: ColorRes.greenColor,
-            style: TextStyle(fontWeight: FontWeight.w500,fontSize: 22),
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
             decoration: InputDecoration(
-              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: ColorRes.greyColor),),
+              focusedBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: ColorRes.greyColor),
+              ),
               contentPadding: EdgeInsets.only(top: 5.w),
-                hintText: selectedUnit == HeightUnit.ft ? "__ FT __ IN" : 'CM',
-                hintStyle: TextStyle(color: ColorRes.blackColor.withOpacity(0.5)),),
+              hintText: selectedUnit == HeightUnit.ft ? "__ FT __ IN" : 'CM',
+              hintStyle: TextStyle(color: ColorRes.blackColor.withOpacity(0.5)),
+            ),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9.]"))],
           ),
         ),
@@ -173,15 +179,12 @@ class _HeightState extends State<Height> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: selectedUnit == HeightUnit.ft ? ColorRes.greenColor : Colors.transparent,
-                      width: 1.5
-                    ),
+                    border: Border.all(color: selectedUnit == HeightUnit.ft ? ColorRes.greenColor : Colors.transparent, width: 1.5),
                     color: Colors.transparent,
                   ),
                   width: 35,
                   height: 35,
-                  child: Center(child: Text('FT', style: TextStyle(fontSize: 16))),
+                  child: const Center(child: Text('FT', style: TextStyle(fontSize: 16))),
                 ),
               ),
             ),
@@ -202,15 +205,12 @@ class _HeightState extends State<Height> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: selectedUnit == HeightUnit.cm ? ColorRes.greenColor : Colors.transparent,
-                        width: 1.5
-                    ),
+                    border: Border.all(color: selectedUnit == HeightUnit.cm ? ColorRes.greenColor : Colors.transparent, width: 1.5),
                     color: Colors.transparent,
                   ),
                   width: 35,
                   height: 35,
-                  child: Center(child: Text('CM', style: TextStyle(fontSize: 16))),
+                  child: const Center(child: Text('CM', style: TextStyle(fontSize: 16))),
                 ),
               ),
             ),

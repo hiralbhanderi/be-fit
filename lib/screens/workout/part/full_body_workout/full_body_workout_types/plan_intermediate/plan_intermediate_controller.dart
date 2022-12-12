@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_intermediate/plan_intermediate_model.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -45,37 +44,6 @@ class PlanIntermediateController extends GetxController {
     '06:35',
   ];
 
-  List<String> kcalListForPlanIntermediate = [
-    '41',
-    '38',
-    '34',
-    '39',
-    '35',
-    '37',
-    '42',
-    '42',
-    '44',
-    '43',
-    '45',
-    '43',
-    '42',
-    '47',
-    '56',
-    '53',
-    '51',
-    '57',
-    '46',
-    '55',
-    '53',
-    '69',
-    '72',
-    '85',
-    '76',
-    '81',
-    '87',
-    '78',
-  ];
-
   RxList<PlanIntermediateModel> planIntermediateModel = <PlanIntermediateModel>[].obs;
   List<Exercise> selectedPlanIntermediateModel = <Exercise>[];
   RxBool isPlayTimerForPlanIntermediate = false.obs;
@@ -88,15 +56,6 @@ class PlanIntermediateController extends GetxController {
     getDataFromAssetForPlanIntermediate();
     super.onInit();
   }
-
-  // Future<void> buttWorkoutJson() async {
-  //   final response = await rootBundle.loadString('assets/train/butt_workout.json');
-  //   // final data = await json.decode(response);
-  //   buttWorkoutModel.value = buttWorkoutModelFromJson(response);
-  //   // languageModelData.shuffle();
-  //   log('languageModelData --->>${buttWorkoutModel.length}');
-  //   // });
-  // }
 
   Future<void> getDataFromAssetForPlanIntermediate() async {
     /// day time
@@ -114,10 +73,9 @@ class PlanIntermediateController extends GetxController {
         exerciseData?[j].workoutAllDataModel = xyz;
       }
     }
-    log('buttWorkoutModel1 First Data : actionId: ${planIntermediateModel.first.exercise?.first.time} \n workout: ${planIntermediateModel.first.exercise?.first.workoutAllDataModel?.toJson()}');
   }
 
-  getKcalTotalForPlanIntermediate(){
+  getKcalTotalForPlanIntermediate() {
     double totalKcal = 0.0;
     for (var element in planIntermediateModel) {
       totalKcal = 0;

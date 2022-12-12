@@ -1,11 +1,6 @@
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_controller.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_start_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
 import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';
-import 'package:befit/screens/workout/workout_all_data_model.dart';
-import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
@@ -19,16 +14,13 @@ class AbsWorkoutListScreen extends StatelessWidget {
   final String? timeDataForAbsWorkout;
   final String? kcalDataForAbsWorkout;
 
-  // WorkoutController workoutController = Get.find();
   AbsWorkoutController absWorkoutController = Get.find();
 
   AbsWorkoutListScreen({this.dayCountForAbsWorkout, this.timeDataForAbsWorkout, this.kcalDataForAbsWorkout});
 
   @override
   Widget build(BuildContext context) {
-    print('element value ---->>>$dayCountForAbsWorkout');
     return Scaffold(
-      // backgroundColor:ColorRes.blackColor.withOpacity(0.1),
       body: Column(
         children: [
           Stack(
@@ -139,7 +131,6 @@ class AbsWorkoutListScreen extends StatelessWidget {
                           padding: EdgeInsets.only(left: 6.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Expanded(
                                 child: Column(
@@ -182,7 +173,7 @@ class AbsWorkoutListScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: CommonButton(
               height: 45,
-              buttonColor: LinearGradient(
+              buttonColor: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
                 colors: [
@@ -193,7 +184,7 @@ class AbsWorkoutListScreen extends StatelessWidget {
               width: double.infinity,
               onTap: () {
                 Get.toNamed(WarmUpScreen.routeName);
-                Future.delayed(Duration(seconds: 3)).then((value) {
+                Future.delayed(const Duration(seconds: 3)).then((value) {
                   return Get.to(AbsWorkoutStartScreen(
                     dayCountForWorkoutStartForAbsWorkout: dayCountForAbsWorkout,
                   ));

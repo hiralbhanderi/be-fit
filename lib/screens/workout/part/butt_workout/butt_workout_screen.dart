@@ -1,11 +1,8 @@
-import 'dart:developer';
 import 'dart:ui';
-
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_list_screen.dart';
 import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';
-import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
@@ -14,17 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import 'butt_workout_model.dart';
-
 class ButtWorkoutScreen extends StatelessWidget {
   static const routeName = '/ButtWorkoutScreen';
 
   ButtWorkoutController buttWorkoutController = Get.put(ButtWorkoutController());
-  // WorkoutController workoutController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: ColorRes.blackColor.withOpacity(0.1),
       body: Stack(
@@ -64,7 +57,7 @@ class ButtWorkoutScreen extends StatelessWidget {
                               SizedBox(
                                 width: 6.w,
                               ),
-                              Text(
+                              const Text(
                                 'Butt Workout',
                                 style: TextStyle(fontSize: 21, color: ColorRes.greyColor, fontWeight: FontWeight.w500),
                               ),
@@ -73,7 +66,7 @@ class ButtWorkoutScreen extends StatelessWidget {
                           SizedBox(
                             height: 4.w,
                           ),
-                          Text(
+                          const Text(
                             'Help to Shape Your Perfect Body',
                             style: TextStyle(fontSize: 17, color: ColorRes.greyColor, fontWeight: FontWeight.w400),
                           ),
@@ -169,7 +162,7 @@ class ButtWorkoutScreen extends StatelessWidget {
                                       onTap: () {
                                         if (isDayChangeForButtWorkout >= indexFirst) {
                                           Get.toNamed(WarmUpScreen.routeName);
-                                          Future.delayed(Duration(seconds: 3)).then((value) {
+                                          Future.delayed(const Duration(seconds: 3)).then((value) {
                                             return Get.to(
                                               ButtWorkoutStartScreen(
                                                 dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
@@ -177,12 +170,6 @@ class ButtWorkoutScreen extends StatelessWidget {
                                             );
                                           });
                                         }
-
-                                        // Get.to(
-                                        //   WorkoutStartScreen(
-                                        //     dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
-                                        //   ),
-                                        // );
                                         buttWorkoutController.isExerciseChangeIndex.value = 0;
                                       },
                                       buttonNameColor: ColorRes.whiteColor,
@@ -200,7 +187,6 @@ class ButtWorkoutScreen extends StatelessWidget {
                                         Get.to(ButtWorkoutListScreen(
                                           dayCount: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
                                           timeData: buttWorkoutController.timeList[indexFirst],
-                                          // kcalData: buttWorkoutController.kcalList[indexFirst],
                                           kcalData: buttWorkoutController.totalListOfKcal[indexFirst].toString(),
                                         ));
                                       }
@@ -216,11 +202,10 @@ class ButtWorkoutScreen extends StatelessWidget {
                           ),
                         ),
                       );
-                      // return workoutController.signUpViewsList[indexFirst];
                     },
                   ),
                 ),
-                Text('')
+                const Text('')
               ],
             ),
           ),

@@ -1,20 +1,11 @@
-import 'dart:developer';
-
-import 'package:befit/screens/home/home_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
 import 'package:befit/screens/workout/common_screens/congratulation_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_complete_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/rest_time_for_butt_workout_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/take_break_for_butt_workout_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/full_body_workout_type_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_complete_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_controller.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/rest_time_for_plan_beginner_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/take_break_for_plan_beginner_screen.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
-import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
@@ -25,10 +16,8 @@ import 'package:sizer/sizer.dart';
 
 class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
   static const routeName = '/PlanBeginnerWorkoutStartScreen';
-  // final WorkoutController workoutController = Get.find();
   PlanBeginnerController planBeginnerController = Get.find();
 
-  // PageController pageController = PageController(viewportFraction: 1, keepPage: true);
   WorkoutAllDataModel modelData = WorkoutAllDataModel();
   final String? dayCountForWorkoutStartForPlanBeginner;
 
@@ -36,7 +25,6 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // buttWorkoutController.customTimerController.start();
     return WillPopScope(
       onWillPop: () async {
         showDialog(
@@ -59,10 +47,9 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              // Get.back();
-                              // Get.back();
                               planBeginnerController.isCountDownAnimationHideForPlanBeginner.value = true;
-                              Get.offAndToNamed(PlanBeginnerScreen.routeName);
+                              // Get.offAndToNamed(PlanBeginnerScreen.routeName);
+                              Get.offNamedUntil(PlanBeginnerScreen.routeName, ModalRoute.withName(FullBodyWorkoutTypeScreen.routeName));
                               // Get.offAllNamed(ButtWorkoutScreen.routeName);
                               Navigator.of(context).pop();
                             },
@@ -75,13 +62,12 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                         const SizedBox(width: 15),
                         Expanded(
                             child: ElevatedButton(
-                              onPressed: () {
-                                // print('no selected');
-                                Navigator.of(context).pop();
-                              },
-                              style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
-                              child: const Text("Continue", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
-                            ))
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
+                          child: const Text("Continue", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                        ))
                       ],
                     )
                   ],
@@ -90,7 +76,6 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
             );
           },
         );
-
         return false;
       },
       child: Scaffold(
@@ -100,30 +85,16 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
           controller: planBeginnerController.pageControllerForPlanBeginner,
           onPageChanged: (int index) {
             planBeginnerController.isExerciseChangeIndexForPlanBeginner.value = index;
-            // Get.toNamed(CongratulationsScreen.routeName);
-            // Future.delayed(const Duration(seconds: 3)).then((value) {
-            //   return Get.to(WorkoutCompleteScreen(
-            //     dayNumber: dayCountForWorkoutStart,
-            //     exerciseTotalCount: buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ?? 0,
-            //     kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
-            //     duration: buttWorkoutController.timeList[int.parse(dayCountForWorkoutStart!) - 1],
-            //   ));
-            // });
-            // }
-            //   buttWorkoutController.customTimerController.start();
-            // examStartController.start == 0;
-            // buttWorkoutController.isExerciseChangeIndex.value++;
-            // pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
           },
           itemBuilder: (BuildContext context, int index) {
             ///
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Future.delayed(Duration(seconds: 4)).then((value) {
-                planBeginnerController.customTimerControllerForPlanBeginner.start();
-                planBeginnerController.controllerForPlanBeginner.start();
-                planBeginnerController.isCountDownAnimationHideForPlanBeginner.value = false;
-              });
+            // WidgetsBinding.instance.addPostFrameCallback((_) {
+            Future.delayed(const Duration(seconds: 4)).then((value) {
+              planBeginnerController.customTimerControllerForPlanBeginner.start();
+              planBeginnerController.controllerForPlanBeginner.start();
+              planBeginnerController.isCountDownAnimationHideForPlanBeginner.value = false;
             });
+            // });
 
             ///
             return Stack(
@@ -142,13 +113,14 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                           CustomTimer(
                               controller: planBeginnerController.customTimerControllerForPlanBeginner,
                               begin: Duration(
-                                  seconds:
-                                  planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].time ?? 0),
+                                  seconds: planBeginnerController
+                                          .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].time ??
+                                      0),
                               // seconds: 10),
-                              end: Duration(),
+                              end: const Duration(),
                               builder: (time) {
                                 return Text("${time.minutes}:${time.seconds}",
-                                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: ColorRes.greenColor));
+                                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: ColorRes.greenColor));
                               }),
                           Icon(
                             Icons.more_vert_sharp,
@@ -164,8 +136,8 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                               height: 4.w,
                             ),
                             Lottie.asset(
-                              planBeginnerController
-                                  .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].workoutAllDataModel?.filePath ??
+                              planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index]
+                                      .workoutAllDataModel?.filePath ??
                                   '',
                               width: 60.w,
                               height: 60.w,
@@ -189,7 +161,6 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                                   child: Padding(
                                                     padding: EdgeInsets.symmetric(horizontal: 4.w),
                                                     child: Column(
-                                                      // crossAxisAlignment: CrossAxisAlignment.start,
                                                       mainAxisSize: MainAxisSize.min,
                                                       children: [
                                                         SizedBox(
@@ -207,27 +178,37 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                                                   color: ColorRes.blackColor.withOpacity(0.5),
                                                                 ))),
                                                         Lottie.asset(
-                                                          planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
-                                                              .exercise?[index].workoutAllDataModel?.filePath ??
+                                                          planBeginnerController
+                                                                  .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                                  .exercise?[index]
+                                                                  .workoutAllDataModel
+                                                                  ?.filePath ??
                                                               '',
                                                           width: 50.w,
                                                           height: 50.w,
                                                           // fit: BoxFit.fill,
                                                         ),
                                                         Text(
-                                                          planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
-                                                              .exercise?[index].workoutAllDataModel?.name ??
+                                                          planBeginnerController
+                                                                  .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                                  .exercise?[index]
+                                                                  .workoutAllDataModel
+                                                                  ?.name ??
                                                               '',
-                                                          style: TextStyle(fontSize: 20, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
+                                                          style:
+                                                              const TextStyle(fontSize: 20, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
                                                         ),
                                                         SizedBox(
                                                           height: 3.w,
                                                         ),
                                                         Text(
-                                                          planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
-                                                              .exercise?[index].workoutAllDataModel?.introduce ??
+                                                          planBeginnerController
+                                                                  .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                                  .exercise?[index]
+                                                                  .workoutAllDataModel
+                                                                  ?.introduce ??
                                                               '',
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               fontSize: 16, color: ColorRes.blackColor, fontWeight: FontWeight.w400, height: 1.5),
                                                         ),
                                                         const SizedBox(height: 20),
@@ -240,25 +221,33 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                           },
                                         );
                                       },
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.question_mark_outlined,
                                         color: ColorRes.greyColor,
                                       ),
                                     )),
                                 Text(
-                                  planBeginnerController
-                                      .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].workoutAllDataModel?.name ??
+                                  planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index]
+                                          .workoutAllDataModel?.name ??
                                       '',
                                   style: const TextStyle(fontSize: 19, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
                                 ),
                                 SizedBox(
                                   height: 4.w,
                                 ),
-                                Text(
-                                  // 'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index+1].workoutAllDataModel?.name ?? ''}',
-                                  'Next: ${planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].workoutAllDataModel?.name ?? ''}',
-                                  style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
-                                ),
+                                ((planBeginnerController
+                                                .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length) ??
+                                            0) >
+                                        index + 1
+                                    ? Text(
+                                        // 'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index+1].workoutAllDataModel?.name ?? ''}',
+                                        'Next: ${planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index + 1].workoutAllDataModel?.name ?? ''}',
+                                        style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
+                                      )
+                                    : Text(
+                                        'After this completed',
+                                        style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
+                                      ),
                               ],
                             ),
                           ],
@@ -275,20 +264,21 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   planBeginnerController.isExerciseChangeIndexForPlanBeginner.value--;
-                                  planBeginnerController.pageControllerForPlanBeginner.jumpToPage(planBeginnerController.isExerciseChangeIndexForPlanBeginner.value);
+                                  planBeginnerController.pageControllerForPlanBeginner
+                                      .jumpToPage(planBeginnerController.isExerciseChangeIndexForPlanBeginner.value);
                                   planBeginnerController.customTimerControllerForPlanBeginner.pause();
                                   planBeginnerController.controllerForPlanBeginner.pause();
                                   planBeginnerController.isCountDownAnimationHideForPlanBeginner.value = true;
                                 },
                                 child: planBeginnerController.isExerciseChangeIndexForPlanBeginner.value == 0
                                     ? SizedBox(
-                                  width: 10.w,
-                                )
+                                        width: 10.w,
+                                      )
                                     : Icon(
-                                  Icons.arrow_back_ios_outlined,
-                                  size: 10.w,
-                                  color: ColorRes.darkLightGreenColor,
-                                ),
+                                        Icons.arrow_back_ios_outlined,
+                                        size: 10.w,
+                                        color: ColorRes.darkLightGreenColor,
+                                      ),
                               ),
                               Stack(
                                 alignment: Alignment.center,
@@ -296,8 +286,9 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                   NeonCircularTimer(
                                     width: 30.w,
                                     // strokeWidth: 10,
-                                    duration:
-                                    planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].time ?? 0,
+                                    duration: planBeginnerController
+                                            .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].time ??
+                                        0,
                                     // duration: 10,
                                     isReverse: true,
                                     autoStart: false,
@@ -313,7 +304,9 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                     ]),
                                     onComplete: () {
                                       if (planBeginnerController.isExerciseChangeIndexForPlanBeginner.value <
-                                          ((planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ?? 0) -
+                                          ((planBeginnerController
+                                                      .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                                  0) -
                                               1)) {
                                         // buttWorkoutController.isExerciseChangeIndex.value++;
                                         // buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
@@ -321,59 +314,65 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                         planBeginnerController.controllerForPlanBeginner.pause();
 
                                         Get.to(RestTimeForPlanBeginnerScreen(
-                                            exerciseTotalCountForPlanBeginner:
-                                            planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                            exerciseTotalCountForPlanBeginner: planBeginnerController
+                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
                                                 0,
                                             exerciseNumberForPlanBeginner: planBeginnerController.isExerciseChangeIndexForPlanBeginner.value + 1,
-                                            exerciseNameForPlanBeginner: planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
-                                                .exercise?[index].workoutAllDataModel?.name ??
+                                            exerciseNameForPlanBeginner: planBeginnerController
+                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                    .exercise?[index]
+                                                    .workoutAllDataModel
+                                                    ?.name ??
                                                 '',
-                                            exerciseImageForPlanBeginner: planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
-                                                .exercise?[index].workoutAllDataModel?.thumbnails));
+                                            exerciseImageForPlanBeginner: planBeginnerController
+                                                .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                .exercise?[index]
+                                                .workoutAllDataModel
+                                                ?.thumbnails));
                                       } else {
                                         Get.toNamed(CongratulationsScreen.routeName);
                                         Future.delayed(const Duration(seconds: 3)).then((value) {
                                           return Get.to(PlanBeginnerCompleteScreen(
                                             dayNumberForPlanBeginner: dayCountForWorkoutStartForPlanBeginner,
-                                            exerciseTotalCountForPlanBeginner:
-                                            planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                            exerciseTotalCountForPlanBeginner: planBeginnerController
+                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
                                                 0,
                                             // kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
-                                            kcalCountForPlanBeginner: planBeginnerController.totalListOfKcalForPlanBeginner[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].toString(),
-                                            durationForPlanBeginner: planBeginnerController.timeListForPlanBeginner[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1],
+                                            kcalCountForPlanBeginner: planBeginnerController
+                                                .totalListOfKcalForPlanBeginner[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                .toString(),
+                                            durationForPlanBeginner: planBeginnerController
+                                                .timeListForPlanBeginner[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1],
                                           ));
                                         });
                                       }
-                                      // Get.toNamed(CongratulationsScreen.routeName);
-                                      // Future.delayed(const Duration(seconds: 3)).then((value) {
-                                      //   return Get.to(WorkoutCompleteScreen(
-                                      //     dayNumber: dayCountForWorkoutStart,
-                                      //     exerciseTotalCount: buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?.length ?? 0,
-                                      //     kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
-                                      //     duration: buttWorkoutController.timeList[int.parse(dayCountForWorkoutStart!) - 1],
-                                      //   ));
-                                      // });
-                                      // buttWorkoutController.isExerciseChangeIndex.value = 0;
                                     },
                                   ),
 
                                   ///
                                   GestureDetector(
                                       onTap: () {
-                                        planBeginnerController.isPlayTimerForPlanBeginner.value = !planBeginnerController.isPlayTimerForPlanBeginner.value;
+                                        planBeginnerController.isPlayTimerForPlanBeginner.value =
+                                            !planBeginnerController.isPlayTimerForPlanBeginner.value;
                                         planBeginnerController.customTimerControllerForPlanBeginner.pause();
                                         planBeginnerController.controllerForPlanBeginner.pause();
                                         Get.to(
                                           TakeBreakForPlanBeginnerScreen(
-                                            exerciseTotalCountForPlanBeginner:
-                                            planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                            exerciseTotalCountForPlanBeginner: planBeginnerController
+                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
                                                 0,
                                             exerciseNumberForPlanBeginner: planBeginnerController.isExerciseChangeIndexForPlanBeginner.value + 1,
-                                            exerciseNameForPlanBeginner: planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
-                                                .exercise?[index].workoutAllDataModel?.name ??
+                                            exerciseNameForPlanBeginner: planBeginnerController
+                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                    .exercise?[index]
+                                                    .workoutAllDataModel
+                                                    ?.name ??
                                                 '',
-                                            exerciseImageForPlanBeginner: planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
-                                                .exercise?[index].workoutAllDataModel?.thumbnails ??
+                                            exerciseImageForPlanBeginner: planBeginnerController
+                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                    .exercise?[index]
+                                                    .workoutAllDataModel
+                                                    ?.thumbnails ??
                                                 '',
                                           ),
                                         );
@@ -388,7 +387,8 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   planBeginnerController.isExerciseChangeIndexForPlanBeginner.value++;
-                                  planBeginnerController.pageControllerForPlanBeginner.jumpToPage(planBeginnerController.isExerciseChangeIndexForPlanBeginner.value);
+                                  planBeginnerController.pageControllerForPlanBeginner
+                                      .jumpToPage(planBeginnerController.isExerciseChangeIndexForPlanBeginner.value);
 
                                   // Future.delayed(Duration(seconds: 4)).then((value) {
                                   planBeginnerController.customTimerControllerForPlanBeginner.pause();
@@ -397,15 +397,18 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                   // });
                                 },
                                 child: planBeginnerController.isExerciseChangeIndexForPlanBeginner.value ==
-                                    ((planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ?? 0) - 1)
+                                        ((planBeginnerController
+                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                                0) -
+                                            1)
                                     ? SizedBox(
-                                  width: 10.w,
-                                )
+                                        width: 10.w,
+                                      )
                                     : Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  size: 10.w,
-                                  color: ColorRes.darkLightGreenColor,
-                                ),
+                                        Icons.arrow_forward_ios_rounded,
+                                        size: 10.w,
+                                        color: ColorRes.darkLightGreenColor,
+                                      ),
                               ),
                             ],
                           ),
@@ -418,7 +421,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                   ),
                 ),
                 Obx(
-                      () => Visibility(
+                  () => Visibility(
                     visible: planBeginnerController.isCountDownAnimationHideForPlanBeginner.value,
                     child: Container(
                       color: Colors.transparent,

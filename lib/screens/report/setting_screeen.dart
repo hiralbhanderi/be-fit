@@ -84,7 +84,8 @@ class SettingScreen extends StatelessWidget {
                                               ),
                                               Text(
                                                 'Change Your Intake Goal',
-                                                style: TextStyle(fontSize: 20, color: ColorRes.blueColor.withOpacity(0.7), fontWeight: FontWeight.w500),
+                                                style:
+                                                    TextStyle(fontSize: 20, color: ColorRes.blueColor.withOpacity(0.7), fontWeight: FontWeight.w500),
                                               ),
                                               SizedBox(
                                                 height: 9.w,
@@ -118,13 +119,14 @@ class SettingScreen extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Obx(
-                                                        () => Row(
+                                                    () => Row(
                                                       children: [
                                                         Text(
                                                           '${waterCountController.waterDrunkOfUserStore.value.round()} ml',
                                                           // '${waterTotalOfUser.value.round()} ml',
                                                           // weightOfUser.value,
-                                                          style: const TextStyle(fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
+                                                          style:
+                                                              const TextStyle(fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                                                         ),
                                                       ],
                                                     ),
@@ -154,24 +156,25 @@ class SettingScreen extends StatelessWidget {
                                               ),
                                               SizedBox(height: 2.w),
                                               Obx(() => SliderTheme(
-                                                data: SliderThemeData(trackHeight: 0.7.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
-                                                child: Slider(
-                                                  value: waterCountController.waterDrunkOfUserStore.value,
-                                                  //value: waterTotalOfUser.value,
-                                                  max: 5000,
-                                                  activeColor: ColorRes.blueColor.withOpacity(0.7),
-                                                  inactiveColor: ColorRes.greyColor.withOpacity(0.5),
-                                                  // divisions: 5,
-                                                  label: waterCountController.waterDrunkOfUserStore.value.round().toString(),
-                                                  // label: waterTotalOfUser.value.round().toString(),
-                                                  onChanged: (double value) {
-                                                    // setState(() {
-                                                    waterCountController.waterDrunkOfUserStore.value = value;
-                                                    //waterTotalOfUser.value = value;
-                                                    // });
-                                                  },
-                                                ),
-                                              )),
+                                                    data: SliderThemeData(
+                                                        trackHeight: 0.7.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6)),
+                                                    child: Slider(
+                                                      value: waterCountController.waterDrunkOfUserStore.value,
+                                                      //value: waterTotalOfUser.value,
+                                                      max: 5000,
+                                                      activeColor: ColorRes.blueColor.withOpacity(0.7),
+                                                      inactiveColor: ColorRes.greyColor.withOpacity(0.5),
+                                                      // divisions: 5,
+                                                      label: waterCountController.waterDrunkOfUserStore.value.round().toString(),
+                                                      // label: waterTotalOfUser.value.round().toString(),
+                                                      onChanged: (double value) {
+                                                        // setState(() {
+                                                        waterCountController.waterDrunkOfUserStore.value = value;
+                                                        //waterTotalOfUser.value = value;
+                                                        // });
+                                                      },
+                                                    ),
+                                                  )),
                                               SizedBox(
                                                 height: 4.w,
                                               ),
@@ -185,24 +188,23 @@ class SettingScreen extends StatelessWidget {
                                                       style: ElevatedButton.styleFrom(
                                                         backgroundColor: ColorRes.whiteColor,
                                                       ),
-                                                      child: Text("CANCEL", style: TextStyle(color: ColorRes.blueColor.withOpacity(0.7), fontSize: 15)),
+                                                      child:
+                                                          Text("CANCEL", style: TextStyle(color: ColorRes.blueColor.withOpacity(0.7), fontSize: 15)),
                                                     ),
                                                   ),
                                                   const SizedBox(width: 15),
                                                   Expanded(
                                                       child: ElevatedButton(
-                                                        onPressed: () async {
-                                                          // print('no selected');
-                                                          // selectedWaterGoal.value = waterChangeValue.value;
-                                                          ///
-                                                          storeWaterTotalOfUser.value = waterCountController.waterDrunkOfUserStore.value;
-                                                          await SharedPreferencesConst.setChangeWaterTotalOfUser(storeWaterTotalOfUser.value);
-                                                          waterTotalOfUser.value = storeWaterTotalOfUser.value;
-                                                          Navigator.of(context).pop();
-                                                        },
-                                                        style: ElevatedButton.styleFrom(backgroundColor: ColorRes.blueColor.withOpacity(0.7)),
-                                                        child: const Text("SAVE", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
-                                                      ))
+                                                    onPressed: () async {
+                                                      ///
+                                                      storeWaterTotalOfUser.value = waterCountController.waterDrunkOfUserStore.value;
+                                                      await SharedPreferencesConst.setChangeWaterTotalOfUser(storeWaterTotalOfUser.value);
+                                                      waterTotalOfUser.value = storeWaterTotalOfUser.value;
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    style: ElevatedButton.styleFrom(backgroundColor: ColorRes.blueColor.withOpacity(0.7)),
+                                                    child: const Text("SAVE", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                                                  ))
                                                 ],
                                               ),
                                               SizedBox(
@@ -273,7 +275,7 @@ class SettingScreen extends StatelessWidget {
                                               Text(
                                                 'Reset Progress',
                                                 style:
-                                                TextStyle(fontSize: 18, color: ColorRes.blackColor.withOpacity(0.7), fontWeight: FontWeight.w500),
+                                                    TextStyle(fontSize: 18, color: ColorRes.blackColor.withOpacity(0.7), fontWeight: FontWeight.w500),
                                               ),
                                               SizedBox(
                                                 height: 6.w,
@@ -281,7 +283,7 @@ class SettingScreen extends StatelessWidget {
                                               Text(
                                                 'Click to reset all workout plan.',
                                                 style:
-                                                TextStyle(fontSize: 16, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
+                                                    TextStyle(fontSize: 16, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
                                               ),
                                               SizedBox(
                                                 height: 6.w,
@@ -296,27 +298,26 @@ class SettingScreen extends StatelessWidget {
                                                       style: ElevatedButton.styleFrom(
                                                         backgroundColor: ColorRes.whiteColor,
                                                       ),
-                                                      child:
-                                                      const Text("CANCEL", style: TextStyle(color: ColorRes.greenColor, fontSize: 15)),
+                                                      child: const Text("CANCEL", style: TextStyle(color: ColorRes.greenColor, fontSize: 15)),
                                                     ),
                                                   ),
                                                   SizedBox(width: 6.w),
                                                   Expanded(
                                                       child: ElevatedButton(
-                                                        onPressed: () async {
-                                                          // print('no selected');
-                                                          // selectedWaterGoal.value = waterChangeValue.value;
-                                                          ///
-                                                          SharedPreferencesConst.setChangeDayForButtWorkout(0);
-                                                          SharedPreferencesConst.setChangeDayForAbsWorkout(0);
-                                                          SharedPreferencesConst.setChangeDayForPlanIntermediateWorkout(0);
-                                                          SharedPreferencesConst.setChangeDayForPlanBeginnerWorkout(0);
-                                                          SharedPreferencesConst.setChangeDayForPlanAdvancedWorkout(0);
-                                                          Navigator.of(context).pop();
-                                                        },
-                                                        style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
-                                                        child: const Text("OK", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
-                                                      ))
+                                                    onPressed: () async {
+                                                      // print('no selected');
+                                                      // selectedWaterGoal.value = waterChangeValue.value;
+                                                      ///
+                                                      SharedPreferencesConst.setChangeDayForButtWorkout(0);
+                                                      SharedPreferencesConst.setChangeDayForAbsWorkout(0);
+                                                      SharedPreferencesConst.setChangeDayForPlanIntermediateWorkout(0);
+                                                      SharedPreferencesConst.setChangeDayForPlanBeginnerWorkout(0);
+                                                      SharedPreferencesConst.setChangeDayForPlanAdvancedWorkout(0);
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
+                                                    child: const Text("OK", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                                                  ))
                                                 ],
                                               ),
                                               SizedBox(
@@ -330,7 +331,6 @@ class SettingScreen extends StatelessWidget {
                                   );
                                 },
                               );
-
                             },
                             child: settingView(
                               title: 'Reset Progress',

@@ -5,9 +5,13 @@ class FoodScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-
-      Container(height: 70,color: Colors.red,)
-    ],);
+    return Column(
+      children: [
+        Container(
+          height: 70,
+          color: Colors.red,
+        )
+      ],
+    );
   }
 }

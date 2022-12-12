@@ -45,37 +45,6 @@ class AbsWorkoutController extends GetxController {
     '11:20',
   ];
 
-  List<String> kcalListForAbsWorkout = [
-    '41',
-    '44',
-    '47',
-    '39',
-    '45',
-    '44',
-    '44',
-    '50',
-    '49',
-    '50',
-    '52',
-    '53',
-    '55',
-    '53',
-    '64',
-    '59',
-    '64',
-    '62',
-    '65',
-    '62',
-    '65',
-    '77',
-    '72',
-    '81',
-    '85',
-    '78',
-    '85',
-    '80',
-  ];
-
   RxList<AbsWorkoutModel> absWorkoutModel = <AbsWorkoutModel>[].obs;
   List<Exercise> selectedAbsWorkoutModel = <Exercise>[];
   RxBool isPlayTimerForAbsWorkout = false.obs;
@@ -105,10 +74,9 @@ class AbsWorkoutController extends GetxController {
         exerciseData?[j].workoutAllDataModel = xyz;
       }
     }
-    log('absWorkoutModel First Data : actionId: ${absWorkoutModel.first.exercise?.first.time} \n workout: ${absWorkoutModel.first.exercise?.first.workoutAllDataModel?.toJson()}');
   }
 
-  getKcalTotalForAbsWorkout(){
+  getKcalTotalForAbsWorkout() {
     double totalKcal = 0.0;
     for (var element in absWorkoutModel) {
       totalKcal = 0;

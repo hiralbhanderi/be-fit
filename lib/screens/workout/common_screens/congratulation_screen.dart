@@ -5,12 +5,13 @@ import 'package:sizer/sizer.dart';
 
 class CongratulationsScreen extends StatelessWidget {
   static const routeName = '/CongratulationsScreen';
+
   const CongratulationsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
+      onWillPop: () async {
         return false;
       },
       child: Scaffold(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-List<WorkoutAllDataModel> workoutAllDataModelFromJson(String str) => List<WorkoutAllDataModel>.from(json.decode(str).map((x) => WorkoutAllDataModel.fromJson(x)));
+List<WorkoutAllDataModel> workoutAllDataModelFromJson(String str) =>
+    List<WorkoutAllDataModel>.from(json.decode(str).map((x) => WorkoutAllDataModel.fromJson(x)));
 
 String workoutAllDataModelToJson(List<WorkoutAllDataModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
@@ -14,15 +15,7 @@ class WorkoutAllDataModel {
   String? filePath;
   String? thumbnails;
 
-  WorkoutAllDataModel(
-      {this.id,
-        this.name,
-        this.unit,
-        this.type,
-        this.relation,
-        this.introduce,
-        this.filePath,
-        this.thumbnails});
+  WorkoutAllDataModel({this.id, this.name, this.unit, this.type, this.relation, this.introduce, this.filePath, this.thumbnails});
 
   WorkoutAllDataModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

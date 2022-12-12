@@ -127,19 +127,31 @@ class YourTargetWeightView extends StatelessWidget {
                 if (yourTargetWeightController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter height')));
                 } else {
-                  // if ((int.parse(heightController.text) < 12 && int.parse(heightController.text) < 11) || ((double.parse(heightController.text).round()) < 395)) {
-                  //   selectedIndex.value++;
-                  //   pageController.jumpToPage(selectedIndex.value);
-                  Get.toNamed(HomeScreen.routeName);
-                  // } else {
-                  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
-                  // }
+                  storeTargetWeightOfUser.value =
+                      isSelectedWeightKGType.value ? '${yourTargetWeightController.text} kg' : '${yourTargetWeightController.text} lbs';
+                  await SharedPreferencesConst.setTargetWeightOfUser(storeTargetWeightOfUser.value);
+                  targetWeightOfUser.value = storeTargetWeightOfUser.value;
+                  var targetWeightValue = targetWeightOfUser.value.split(' ');
+
+                  if (targetWeightValue[1] == 'lbs') {
+                    if (int.parse(targetWeightValue[0]) <= 1400) {
+                      Get.toNamed(HomeScreen.routeName);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
+                    }
+                  } else if (targetWeightValue[1] == 'kg') {
+                    if (int.parse(targetWeightValue[0]) <= 635) {
+                      Get.toNamed(HomeScreen.routeName);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
+                    }
+                  }
                 }
 
-                storeTargetWeightOfUser.value =
-                    isSelectedWeightKGType.value ? '${yourTargetWeightController.text} kg' : '${yourTargetWeightController.text} lbs';
-                await SharedPreferencesConst.setTargetWeightOfUser(storeTargetWeightOfUser.value);
-                targetWeightOfUser.value = storeTargetWeightOfUser.value;
+                // storeTargetWeightOfUser.value =
+                //     isSelectedWeightKGType.value ? '${yourTargetWeightController.text} kg' : '${yourTargetWeightController.text} lbs';
+                // await SharedPreferencesConst.setTargetWeightOfUser(storeTargetWeightOfUser.value);
+                // targetWeightOfUser.value = storeTargetWeightOfUser.value;
               },
               buttonNameColor: ColorRes.whiteColor,
               buttonName: 'NEXT',

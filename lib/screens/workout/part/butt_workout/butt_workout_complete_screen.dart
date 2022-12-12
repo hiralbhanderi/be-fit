@@ -22,16 +22,12 @@ class WorkoutCompleteScreen extends StatelessWidget {
 
   ButtWorkoutController buttWorkoutController = Get.find();
   RxBool isSwitchOn = true.obs;
-  // RxString weightChangeValue = weightOfUser.value.obs;
   RxDouble weightChangeValue = double.parse(weightOfUser.value.split(' ').first).obs;
-  // RxDouble currentSliderValue = 20.0.obs;
-  // RxDouble selectedWeight = 20.0.obs;
   List goalLIst = ['Too easy', 'Easy', 'Comfortable', 'Hard', 'Very hard'];
   RxInt selectedGoal = 2.obs;
 
   @override
   Widget build(BuildContext context) {
-    print('weightOfUser weight ===>>>${weightOfUser.value.split(' ').first}');
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -52,7 +48,6 @@ class WorkoutCompleteScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
@@ -63,7 +58,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                             children: [
                               Text(
                                 'Day $dayNumber',
-                                style: TextStyle(fontSize: 24, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                style: const TextStyle(fontSize: 24, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                               ),
                               SizedBox(
                                 height: 3.w,
@@ -84,7 +79,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     '$exerciseTotalCount',
-                                    style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                    style: const TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
                                     height: 2.w,
@@ -99,7 +94,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     '$kcalCount',
-                                    style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                    style: const TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
                                     height: 2.w,
@@ -114,7 +109,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     '$duration',
-                                    style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                    style: const TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
                                     height: 2.w,
@@ -165,19 +160,14 @@ class WorkoutCompleteScreen extends StatelessWidget {
                           ),
                           Obx(
                             () => Switch(
-                              // thumb color (round icon)
                               activeColor: ColorRes.greenColor,
                               activeTrackColor: ColorRes.greenColor.withOpacity(0.3),
                               inactiveThumbColor: ColorRes.greyColor,
                               inactiveTrackColor: ColorRes.greyColor.withOpacity(0.4),
                               splashRadius: 50.0,
-                              // boolean variable value
                               value: isSwitchOn.value,
-                              // changes the state of the switch
                               onChanged: (value) {
-                                // setState(() {
                                 isSwitchOn.value = value;
-                                // });
                               },
                             ),
                           )
@@ -227,7 +217,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                               children: [
                                 Obx(
                                   () => Text(
-                                    '${weightChangeValue.value.round().toString()} ${changeWeightTypesOfUser.value?'kg':'lbs'}',
+                                    '${weightChangeValue.value.round().toString()} ${changeWeightTypesOfUser.value ? 'kg' : 'lbs'}',
                                     // '${selectedWeight.value.round()} lbs',
                                     // weightOfUser.value,
                                     style: const TextStyle(fontSize: 17, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
@@ -289,31 +279,11 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                             ),
                                                           ),
                                                           Obx(
-                                                            () => Row(
-                                                              children: [
-                                                                Text(
-                                                                  '${weightChangeValue.value.round()} ${changeWeightTypesOfUser.value?'kg':'lbs'}',
-                                                                  // weightOfUser.value,
-                                                                  style: const TextStyle(
-                                                                      fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
-                                                                ),
-                                                                // Text(
-                                                                //   ' lbs',
-                                                                //   style: TextStyle(
-                                                                //       fontSize: 18,
-                                                                //       color: ColorRes.blackColor.withOpacity(0.5),
-                                                                //       fontWeight: FontWeight.w500),
-                                                                // ),
-                                                                // Obx(() => targetWeightOfUser.value.contains('kg')
-                                                                //     ? Text(
-                                                                //   'KG',
-                                                                //   style: TextStyle(color: ColorRes.blackColor, fontWeight: FontWeight.w600, fontSize: 24),
-                                                                // )
-                                                                //     : Text(
-                                                                //   'LBS',
-                                                                //   style: TextStyle(color: ColorRes.blackColor, fontWeight: FontWeight.w600, fontSize: 24),
-                                                                // ))
-                                                              ],
+                                                            () => Text(
+                                                              '${weightChangeValue.value.round()} ${changeWeightTypesOfUser.value ? 'kg' : 'lbs'}',
+                                                              // weightOfUser.value,
+                                                              style: const TextStyle(
+                                                                  fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                                                             ),
                                                           ),
                                                           GestureDetector(
@@ -350,9 +320,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                               // divisions: 5,
                                                               label: weightChangeValue.value.round().toString(),
                                                               onChanged: (double value) {
-                                                                // setState(() {
                                                                 weightChangeValue.value = value;
-                                                                // });
                                                               },
                                                             ),
                                                           )),
@@ -366,20 +334,20 @@ class WorkoutCompleteScreen extends StatelessWidget {
                                                               onPressed: () {
                                                                 Navigator.of(context).pop();
                                                               },
-                                                              child: const Text("CANCEL", style: TextStyle(color: ColorRes.greenColor, fontSize: 15)),
                                                               style: ElevatedButton.styleFrom(
                                                                 backgroundColor: ColorRes.whiteColor,
                                                               ),
+                                                              child: const Text("CANCEL", style: TextStyle(color: ColorRes.greenColor, fontSize: 15)),
                                                             ),
                                                           ),
                                                           const SizedBox(width: 15),
                                                           Expanded(
                                                               child: ElevatedButton(
                                                             onPressed: () async {
-                                                              // print('no selected');
-                                                              // selectedWeight.value = weightChangeValue.value;
                                                               ///
-                                                              storeWeightOfUser.value = isSelectedWeightKGType.value ? '${weightChangeValue.value} kg' : '${weightChangeValue.value} lbs';
+                                                              storeWeightOfUser.value = isSelectedWeightKGType.value
+                                                                  ? '${weightChangeValue.value} kg'
+                                                                  : '${weightChangeValue.value} lbs';
                                                               await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
                                                               weightOfUser.value = storeWeightOfUser.value;
                                                               Navigator.of(context).pop();
@@ -545,9 +513,7 @@ class WorkoutCompleteScreen extends StatelessWidget {
                         // buttWorkoutController.carouselController.jumpToPage(nextIndex.value + 1);
                         // Get.offAndToNamed(ButtWorkoutScreen.routeName);
                         // homeController.isSelectedBottom.value == 0;
-                        Get.offNamedUntil(ButtWorkoutScreen.routeName,
-                            ModalRoute.withName(HomeScreen.routeName));
-
+                        Get.offNamedUntil(ButtWorkoutScreen.routeName, ModalRoute.withName(HomeScreen.routeName));
                       },
                       child: Container(
                         height: 11.w,

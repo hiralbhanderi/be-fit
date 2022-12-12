@@ -7,13 +7,11 @@ import 'package:befit/screens/workout/part/abs_workout/abs_workout_complete_scre
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_list_screen.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_screen.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_start_screen.dart';
-import 'package:befit/screens/workout/part/abs_workout/rest_time_for_abs_workout_screen.dart';
 import 'package:befit/screens/workout/part/abs_workout/take_break_for_abs_workout_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
 import 'package:befit/screens/workout/common_screens/congratulation_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_complete_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_list_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/rest_time_for_butt_workout_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/take_break_for_butt_workout_screen.dart';
 import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';

@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final buttWorkoutModel = buttWorkoutModelFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:befit/screens/workout/workout_all_data_model.dart';
@@ -20,14 +16,14 @@ class AbsWorkoutModel {
   List<Exercise>? exercise;
 
   factory AbsWorkoutModel.fromJson(Map<String, dynamic> json) => AbsWorkoutModel(
-    day: json["day"],
-    exercise: List<Exercise>.from(json["exercise"].map((x) => Exercise.fromJson(x))),
-  );
+        day: json["day"],
+        exercise: List<Exercise>.from(json["exercise"].map((x) => Exercise.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "day": day,
-    "exercise": List<dynamic>.from(exercise!.map((x) => x.toJson())),
-  };
+        "day": day,
+        "exercise": List<dynamic>.from(exercise!.map((x) => x.toJson())),
+      };
 }
 
 class Exercise {
@@ -44,14 +40,14 @@ class Exercise {
   WorkoutAllDataModel? workoutAllDataModel;
 
   factory Exercise.fromJson(Map<String, dynamic> json) => Exercise(
-    actionId: json["actionId"],
-    kcal: json["kcal"].toDouble(),
-    time: json["time"],
-  );
+        actionId: json["actionId"],
+        kcal: json["kcal"].toDouble(),
+        time: json["time"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "actionId": actionId,
-    "kcal": kcal,
-    "time": time,
-  };
+        "actionId": actionId,
+        "kcal": kcal,
+        "time": time,
+      };
 }

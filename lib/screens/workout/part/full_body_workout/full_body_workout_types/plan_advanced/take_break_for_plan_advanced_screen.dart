@@ -1,5 +1,4 @@
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
+import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/full_body_workout_type_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/plan_advanced_controller.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_advanced/plan_advanced_screen.dart';
 import 'package:befit/utils/color_res.dart';
@@ -10,7 +9,11 @@ import 'package:sizer/sizer.dart';
 class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
   static const routeName = '/TakeBreakForPlanAdvancedScreen';
 
-  TakeBreakForPlanAdvancedScreen({this.exerciseNumberForPlanAdvanced, this.exerciseTotalCountForPlanAdvanced, this.exerciseNameForPlanAdvanced, this.exerciseImageForPlanAdvanced});
+  TakeBreakForPlanAdvancedScreen(
+      {this.exerciseNumberForPlanAdvanced,
+      this.exerciseTotalCountForPlanAdvanced,
+      this.exerciseNameForPlanAdvanced,
+      this.exerciseImageForPlanAdvanced});
 
   final int? exerciseNumberForPlanAdvanced;
   final int? exerciseTotalCountForPlanAdvanced;
@@ -23,8 +26,6 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        // buttWorkoutController.customTimerController.start();
-        // buttWorkoutController.controller1.resume();
         return false;
       },
       child: Scaffold(
@@ -40,10 +41,7 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // SizedBox(
-                    //   height: 12.w,
-                    // ),
-                    Text(
+                    const Text(
                       'Take a break, continue later',
                       style: TextStyle(fontSize: 22, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                     ),
@@ -53,7 +51,7 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
                         Column(
                           children: [
                             GestureDetector(
-                              onTap:(){
+                              onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -64,37 +62,37 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            const Text("Are you sure to quite?",style: TextStyle(fontSize: 17),),
+                                            const Text(
+                                              "Are you sure to quite?",
+                                              style: TextStyle(fontSize: 17),
+                                            ),
                                             const SizedBox(height: 20),
                                             Row(
                                               children: [
                                                 Expanded(
                                                   child: ElevatedButton(
                                                     onPressed: () {
-                                                      // Get.back();
-                                                      // Get.back();
-                                                      // Get.back();
-                                                      Get.offAndToNamed(PlanAdvancedScreen.routeName);
+                                                      // Get.offAndToNamed(PlanAdvancedScreen.routeName);
+                                                      Get.offNamedUntil(
+                                                          PlanAdvancedScreen.routeName, ModalRoute.withName(FullBodyWorkoutTypeScreen.routeName));
                                                       // Get.offAllNamed(ButtWorkoutScreen.routeName);
                                                       Navigator.of(context).pop();
                                                     },
-
-                                                    child: const Text("Quit", style: TextStyle(color: ColorRes.greenColor,fontSize: 15)),
                                                     style: ElevatedButton.styleFrom(
                                                       backgroundColor: ColorRes.whiteColor,
                                                     ),
+                                                    child: const Text("Quit", style: TextStyle(color: ColorRes.greenColor, fontSize: 15)),
                                                   ),
                                                 ),
                                                 const SizedBox(width: 15),
                                                 Expanded(
                                                     child: ElevatedButton(
-                                                      onPressed: () {
-                                                        // print('no selected');
-                                                        Navigator.of(context).pop();
-                                                      },
-                                                      style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
-                                                      child: const Text("Continue",style: TextStyle(color: ColorRes.whiteColor,fontSize: 15)),
-                                                    ))
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
+                                                  child: const Text("Continue", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                                                ))
                                               ],
                                             )
                                           ],
@@ -133,7 +131,7 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
                         Column(
                           children: [
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 planAdvancedController.customTimerControllerForPlanAdvanced.start();
                                 planAdvancedController.controllerForPlanAdvanced.resume();
                                 Get.back();
@@ -141,7 +139,7 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
                               child: Container(
                                 height: 20.w,
                                 width: 20.w,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: ColorRes.whiteColor,
                                   shape: BoxShape.circle,
                                 ),
@@ -155,7 +153,7 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
                             SizedBox(
                               height: 3.w,
                             ),
-                            Text(
+                            const Text(
                               'Continue',
                               style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                             ),
@@ -168,8 +166,9 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only( left: 4.w, right: 4.w),
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              padding: EdgeInsets.only(left: 4.w, right: 4.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,11 +183,14 @@ class TakeBreakForPlanAdvancedScreen extends StatelessWidget {
                       ),
                       Text(
                         '$exerciseNameForPlanAdvanced',
-                        style: TextStyle(fontSize: 18, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
+                        style: const TextStyle(fontSize: 18, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
-                  Image.asset('$exerciseImageForPlanAdvanced',scale: 10,)
+                  Image.asset(
+                    '$exerciseImageForPlanAdvanced',
+                    scale: 10,
+                  )
                 ],
               ),
             )

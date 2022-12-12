@@ -55,20 +55,23 @@ class HeightView extends StatelessWidget {
               ),
               width: double.infinity,
               onTap: () async {
+                var heightValue = heightController.text.split(' ');
                 if (heightController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter height')));
                 } else {
-                  // if ((int.parse(heightController.text) < 12 && int.parse(heightController.text) < 11) || ((double.parse(heightController.text).round()) < 395)) {
-                  selectedIndex.value++;
+                  if ((int.parse(heightValue[0]) <= 12 && int.parse(heightValue[2]) <= 11) || (int.parse(heightValue[0]) <= 255)) {
+                    selectedIndex.value++;
                     pageController.jumpToPage(selectedIndex.value);
-                  // }
-                  // else {
-                  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
-                  // }
+                    storeHeightOfUser.value = selectedUnit == HeightUnit.ft ? heightController.text : '${heightController.text} cm';
+                    await SharedPreferencesConst.setHeightOfUser(storeHeightOfUser.value);
+                    heightOfUser.value = storeHeightOfUser.value;
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
+                  }
                 }
-                storeHeightOfUser.value = selectedUnit == HeightUnit.ft?heightController.text:'${heightController.text} cm';
-                await SharedPreferencesConst.setHeightOfUser(storeHeightOfUser.value);
-                heightOfUser.value = storeHeightOfUser.value;
+                // storeHeightOfUser.value = selectedUnit == HeightUnit.ft?heightController.text:'${heightController.text} cm';
+                // await SharedPreferencesConst.setHeightOfUser(storeHeightOfUser.value);
+                // heightOfUser.value = storeHeightOfUser.value;
               },
               buttonNameColor: ColorRes.whiteColor,
               buttonName: 'NEXT',

@@ -1,7 +1,4 @@
 import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
-import 'package:befit/screens/workout/common_screens/congratulation_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_complete_screen.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,14 +22,10 @@ class RestTimeForButtWorkoutScreen extends StatelessWidget {
 
   ButtWorkoutController buttWorkoutController = Get.find();
 
-  // RxInt addTime = 15.obs;
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        // buttWorkoutController.customTimerController.start();
-        // buttWorkoutController.controller1.resume();
         return false;
       },
       child: Scaffold(
@@ -51,7 +44,7 @@ class RestTimeForButtWorkoutScreen extends StatelessWidget {
                     // SizedBox(
                     //   height: 12.w,
                     // ),
-                    Text(
+                    const Text(
                       'Rest Time',
                       style: TextStyle(fontSize: 22, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                     ),
@@ -82,7 +75,7 @@ class RestTimeForButtWorkoutScreen extends StatelessWidget {
 
                             strokeWidth: 5,
                             duration: 30,
-                            textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 35, color: ColorRes.whiteColor),
+                            textStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 35, color: ColorRes.whiteColor),
                             isReverse: true,
                             autoStart: true,
                             textFormat: TextFormat.S,
@@ -122,7 +115,7 @@ class RestTimeForButtWorkoutScreen extends StatelessWidget {
                                 width: 20.w,
                                 decoration: BoxDecoration(
                                     border: Border.all(color: ColorRes.whiteColor, width: 0.7), borderRadius: BorderRadius.circular(10)),
-                                child: Center(
+                                child: const Center(
                                   child: Text(
                                     'skip',
                                     style: TextStyle(color: ColorRes.whiteColor, fontSize: 18, fontWeight: FontWeight.w400),
@@ -154,7 +147,7 @@ class RestTimeForButtWorkoutScreen extends StatelessWidget {
                       ),
                       Text(
                         '$exerciseName',
-                        style: TextStyle(fontSize: 18, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
+                        style: const TextStyle(fontSize: 18, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),

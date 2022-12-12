@@ -1,7 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesConst{
-
+class SharedPreferencesConst {
   static late SharedPreferences _prefs;
 
   static Future initMySharedPreferences() async {
@@ -54,7 +53,6 @@ class SharedPreferencesConst{
   }
 
   /// for height and weight and target weight data store
-
 
   /// for height
   static Future<void> setHeightOfUser(String isHeightOfUser) async {

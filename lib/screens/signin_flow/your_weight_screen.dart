@@ -131,20 +131,37 @@ class YourWeightView extends StatelessWidget {
                 if (yourWeightController.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter height')));
                 } else {
-                  // if ((int.parse(heightController.text) < 12 && int.parse(heightController.text) < 11) || ((double.parse(heightController.text).round()) < 395)) {
-                  selectedIndex.value++;
-                  pageController.jumpToPage(selectedIndex.value);
-                  // } else {
-                  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
-                  // }
-                }
-                storeWeightOfUser.value = isSelectedWeightKGType.value ? '${yourWeightController.text} kg' : '${yourWeightController.text} lbs';
-                await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
-                weightOfUser.value = storeWeightOfUser.value;
+                  storeWeightOfUser.value = isSelectedWeightKGType.value ? '${yourWeightController.text} kg' : '${yourWeightController.text} lbs';
+                  await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
+                  weightOfUser.value = storeWeightOfUser.value;
+                  var yourWeightValue = weightOfUser.value.split(' ');
+                  if (yourWeightValue[1] == 'lbs') {
+                    if (int.parse(yourWeightValue[0]) <= 1400) {
+                      selectedIndex.value++;
+                      pageController.jumpToPage(selectedIndex.value);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
+                    }
+                  } else if (yourWeightValue[1] == 'kg') {
+                    if (int.parse(yourWeightValue[0]) <= 635) {
+                      selectedIndex.value++;
+                      pageController.jumpToPage(selectedIndex.value);
 
-                ///
-                isSelectedWeightLBSType.value = true;
-                isSelectedWeightKGType.value = false;
+                      ///
+                      isSelectedWeightLBSType.value = true;
+                      isSelectedWeightKGType.value = false;
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter valid height')));
+                    }
+                  }
+                }
+                // storeWeightOfUser.value = isSelectedWeightKGType.value ? '${yourWeightController.text} kg' : '${yourWeightController.text} lbs';
+                // await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
+                // weightOfUser.value = storeWeightOfUser.value;
+
+                // ///
+                // isSelectedWeightLBSType.value = true;
+                // isSelectedWeightKGType.value = false;
               },
               buttonNameColor: ColorRes.whiteColor,
               buttonName: 'NEXT',

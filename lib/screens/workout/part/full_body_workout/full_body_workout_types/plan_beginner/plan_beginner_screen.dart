@@ -1,14 +1,8 @@
-import 'dart:developer';
 import 'dart:ui';
-
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_list_screen.dart';
 import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_controller.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_workout_list_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_workout_start_screen.dart';
-import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
@@ -17,16 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-
 class PlanBeginnerScreen extends StatelessWidget {
   static const routeName = '/PlanBeginnerScreen';
 
   PlanBeginnerController planBeginnerController = Get.put(PlanBeginnerController());
-  // WorkoutController workoutController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: ColorRes.blackColor.withOpacity(0.1),
       body: Stack(
@@ -66,7 +57,7 @@ class PlanBeginnerScreen extends StatelessWidget {
                               SizedBox(
                                 width: 6.w,
                               ),
-                              Text(
+                              const Text(
                                 'Plan For Beginner',
                                 style: TextStyle(fontSize: 21, color: ColorRes.greyColor, fontWeight: FontWeight.w500),
                               ),
@@ -75,7 +66,7 @@ class PlanBeginnerScreen extends StatelessWidget {
                           SizedBox(
                             height: 4.w,
                           ),
-                          Text(
+                          const Text(
                             'Help to Shape Your Perfect Body',
                             style: TextStyle(fontSize: 17, color: ColorRes.greyColor, fontWeight: FontWeight.w400),
                           ),
@@ -88,7 +79,7 @@ class PlanBeginnerScreen extends StatelessWidget {
                   ],
                 ),
                 Obx(
-                      () => CarouselSlider.builder(
+                  () => CarouselSlider.builder(
                     carouselController: planBeginnerController.carouselControllerForPlanBeginner,
                     options: CarouselOptions(
                       // height: (boxConstraints.maxHeight / 100) * 82,
@@ -171,20 +162,15 @@ class PlanBeginnerScreen extends StatelessWidget {
                                       onTap: () {
                                         if (isDayChangeForPlanBeginnerWorkout >= indexFirst) {
                                           Get.toNamed(WarmUpScreen.routeName);
-                                          Future.delayed(Duration(seconds: 3)).then((value) {
+                                          Future.delayed(const Duration(seconds: 3)).then((value) {
                                             return Get.to(
                                               PlanBeginnerWorkoutStartScreen(
-                                                dayCountForWorkoutStartForPlanBeginner: planBeginnerController.planBeginnerModel[indexFirst].day.toString(),
+                                                dayCountForWorkoutStartForPlanBeginner:
+                                                    planBeginnerController.planBeginnerModel[indexFirst].day.toString(),
                                               ),
                                             );
                                           });
                                         }
-
-                                        // Get.to(
-                                        //   WorkoutStartScreen(
-                                        //     dayCountForWorkoutStart: buttWorkoutController.buttWorkoutModel1[indexFirst].day.toString(),
-                                        //   ),
-                                        // );
                                         planBeginnerController.isExerciseChangeIndexForPlanBeginner.value = 0;
                                       },
                                       buttonNameColor: ColorRes.whiteColor,
@@ -202,7 +188,6 @@ class PlanBeginnerScreen extends StatelessWidget {
                                         Get.to(PlanBeginnerWorkoutListScreen(
                                           dayCountForPlanBeginner: planBeginnerController.planBeginnerModel[indexFirst].day.toString(),
                                           timeDataForPlanBeginner: planBeginnerController.timeListForPlanBeginner[indexFirst],
-                                          // kcalData: buttWorkoutController.kcalList[indexFirst],
                                           kcalDataForPlanBeginner: planBeginnerController.totalListOfKcalForPlanBeginner[indexFirst].toString(),
                                         ));
                                       }
@@ -218,11 +203,10 @@ class PlanBeginnerScreen extends StatelessWidget {
                           ),
                         ),
                       );
-                      // return workoutController.signUpViewsList[indexFirst];
                     },
                   ),
                 ),
-                Text('')
+                const Text('')
               ],
             ),
           ),

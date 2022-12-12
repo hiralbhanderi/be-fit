@@ -1,11 +1,6 @@
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_model.dart';
 import 'package:befit/screens/workout/common_screens/warm_up_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_start_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_controller.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_workout_start_screen.dart';
-import 'package:befit/screens/workout/workout_all_data_model.dart';
-import 'package:befit/screens/workout/workout_controller.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/common_button.dart';
@@ -18,16 +13,13 @@ class PlanBeginnerWorkoutListScreen extends StatelessWidget {
   final String? dayCountForPlanBeginner;
   final String? timeDataForPlanBeginner;
   final String? kcalDataForPlanBeginner;
-  // WorkoutController workoutController = Get.find();
   PlanBeginnerController planBeginnerController = Get.find();
 
   PlanBeginnerWorkoutListScreen({this.dayCountForPlanBeginner, this.timeDataForPlanBeginner, this.kcalDataForPlanBeginner});
 
   @override
   Widget build(BuildContext context) {
-    print('element value ---->>>$dayCountForPlanBeginner');
     return Scaffold(
-      // backgroundColor:ColorRes.blackColor.withOpacity(0.1),
       body: Column(
         children: [
           Stack(
@@ -122,7 +114,7 @@ class PlanBeginnerWorkoutListScreen extends StatelessWidget {
               child: Column(
                 children: List.generate(
                   planBeginnerController.planBeginnerModel[int.parse(dayCountForPlanBeginner!) - 1].exercise?.length ?? 0,
-                      (index) {
+                  (index) {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 3.w, top: 3.w, left: 4.w, right: 4.w),
                       child: Container(
@@ -138,7 +130,6 @@ class PlanBeginnerWorkoutListScreen extends StatelessWidget {
                           padding: EdgeInsets.only(left: 6.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Expanded(
                                 child: Column(
@@ -146,7 +137,8 @@ class PlanBeginnerWorkoutListScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      planBeginnerController.planBeginnerModel[int.parse(dayCountForPlanBeginner!) - 1].exercise?[index].workoutAllDataModel?.name ??
+                                      planBeginnerController.planBeginnerModel[int.parse(dayCountForPlanBeginner!) - 1].exercise?[index]
+                                              .workoutAllDataModel?.name ??
                                           "",
                                       style: const TextStyle(fontSize: 17, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
                                     ),
@@ -161,7 +153,7 @@ class PlanBeginnerWorkoutListScreen extends StatelessWidget {
                                 ),
                               ),
                               Image.asset(planBeginnerController
-                                  .planBeginnerModel[int.parse(dayCountForPlanBeginner!) - 1].exercise?[index].workoutAllDataModel?.thumbnails ??
+                                      .planBeginnerModel[int.parse(dayCountForPlanBeginner!) - 1].exercise?[index].workoutAllDataModel?.thumbnails ??
                                   "")
                             ],
                           ),
@@ -180,7 +172,7 @@ class PlanBeginnerWorkoutListScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: CommonButton(
               height: 45,
-              buttonColor: LinearGradient(
+              buttonColor: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
                 colors: [
@@ -191,8 +183,10 @@ class PlanBeginnerWorkoutListScreen extends StatelessWidget {
               width: double.infinity,
               onTap: () {
                 Get.toNamed(WarmUpScreen.routeName);
-                Future.delayed(Duration(seconds: 3)).then((value) {
-                  return Get.to(PlanBeginnerWorkoutStartScreen(dayCountForWorkoutStartForPlanBeginner: dayCountForPlanBeginner,));
+                Future.delayed(const Duration(seconds: 3)).then((value) {
+                  return Get.to(PlanBeginnerWorkoutStartScreen(
+                    dayCountForWorkoutStartForPlanBeginner: dayCountForPlanBeginner,
+                  ));
                 });
 
                 planBeginnerController.isExerciseChangeIndexForPlanBeginner.value = 0;

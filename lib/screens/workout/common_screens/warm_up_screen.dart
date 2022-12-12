@@ -5,12 +5,13 @@ import 'package:sizer/sizer.dart';
 
 class WarmUpScreen extends StatelessWidget {
   static const routeName = '/WarmUpScreen';
+
   const WarmUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
+      onWillPop: () async {
         return false;
       },
       child: Scaffold(

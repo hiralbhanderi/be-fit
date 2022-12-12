@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:befit/screens/water_goal/water_conut_controller.dart';
 import 'package:befit/screens/water_goal/water_goal_list_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
@@ -7,10 +5,8 @@ import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/shared_preferences_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
-import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 
 class WaterCountScreen extends StatefulWidget {
@@ -36,20 +32,12 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
     final String formatted = formatter.format(currentItem);
 
     var data = SharedPreferencesConst.getsChangeDate();
-    print('data --->>>$data');
     if (data.isEmpty) {
       await SharedPreferencesConst.setChangeDate(formatted);
     }
     var data1 = SharedPreferencesConst.getsChangeDate();
     final DateFormat formatter1 = DateFormat('yyyy-MM-dd');
     final String formatted1 = formatter1.format(DateTime.parse(data1));
-    // print('formatted 01 ===>>>$formatted');
-    // print('formatted1 02 ===>>>$formatted1');
-    // if (data.isEmpty) {
-    //   print('formatted1 03 ===>>>$formatted1');
-    //
-    // await SharedPreferencesConst.setChangeDate(formatted);
-    // }else
     if (formatted1 != formatted) {
       SharedPreferencesConst.setChangeWaterDrunkOfUser(0.0);
       SharedPreferencesConst.setChangeDate(formatted);
@@ -62,12 +50,6 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
     isAchieveGoalDay.value = SharedPreferencesConst.getsAchieveGoalDay();
 
     // waterCountController.waterDrunkOfUserStore.value = waterTotalOfUser.value;
-
-    // if(waterDrunkOfUser.value.round()>waterTotalOfUser.value.round()){
-    //   print('come in loop');
-    //   waterCountController.achieveGoalDays.value++;
-    //   print('come in -->>>${waterCountController.achieveGoalDays.value}');
-    // }
   }
 
   // RxDouble waterChangeValue = 2300.0.obs;
@@ -167,7 +149,6 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                 value: waterCountController.waterDrunkOfUser.value * 100 / waterCountController.waterDrunkOfUserStore.value / 100,
                 // value: waterDrunkOfUser.value * 100 / waterTotalOfUser.value / 100,
                 //currentTotal.value = ketlu pidhu // waterChangeValue.value ketlu pivanu che
-                // Defaults to 0.5.
                 valueColor: AlwaysStoppedAnimation(ColorRes.blueColor.withOpacity(0.7)),
                 backgroundColor: Colors.white,
                 borderColor: ColorRes.blueColor.withOpacity(0.7),
@@ -434,8 +415,6 @@ class _WaterCountScreenState extends State<WaterCountScreen> {
                                         Expanded(
                                             child: ElevatedButton(
                                           onPressed: () async {
-                                            // print('no selected');
-                                            // selectedWaterGoal.value = waterChangeValue.value;
                                             ///
                                             storeWaterTotalOfUser.value = waterCountController.waterDrunkOfUserStore.value;
                                             await SharedPreferencesConst.setChangeWaterTotalOfUser(storeWaterTotalOfUser.value);

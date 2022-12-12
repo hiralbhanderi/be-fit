@@ -25,6 +25,7 @@ import 'package:sizer/sizer.dart';
 
 class AbsWorkoutStartScreen extends StatelessWidget {
   static const routeName = '/AbsWorkoutStartScreen';
+
   // final WorkoutController workoutController = Get.find();
   AbsWorkoutController absWorkoutController = Get.find();
 
@@ -58,10 +59,9 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              // Get.back();
-                              // Get.back();
                               absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = true;
-                              Get.offAndToNamed(AbsWorkoutScreen.routeName);
+                              // Get.offAndToNamed(AbsWorkoutScreen.routeName);
+                              Get.offNamedUntil(AbsWorkoutScreen.routeName, ModalRoute.withName(HomeScreen.routeName));
                               // Get.offAllNamed(ButtWorkoutScreen.routeName);
                               Navigator.of(context).pop();
                             },
@@ -74,13 +74,13 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                         const SizedBox(width: 15),
                         Expanded(
                             child: ElevatedButton(
-                              onPressed: () {
-                                // print('no selected');
-                                Navigator.of(context).pop();
-                              },
-                              style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
-                              child: const Text("Continue", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
-                            ))
+                          onPressed: () {
+                            // print('no selected');
+                            Navigator.of(context).pop();
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
+                          child: const Text("Continue", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                        ))
                       ],
                     )
                   ],
@@ -102,13 +102,13 @@ class AbsWorkoutStartScreen extends StatelessWidget {
           },
           itemBuilder: (BuildContext context, int index) {
             ///
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Future.delayed(Duration(seconds: 4)).then((value) {
-                absWorkoutController.customTimerControllerForAbsWorkout.start();
-                absWorkoutController.controllerForAbsWorkout.start();
-                absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = false;
-              });
+            // WidgetsBinding.instance.addPostFrameCallback((_) {
+            Future.delayed(Duration(seconds: 4)).then((value) {
+              absWorkoutController.customTimerControllerForAbsWorkout.start();
+              absWorkoutController.controllerForAbsWorkout.start();
+              absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = false;
             });
+            // });
 
             ///
             return Stack(
@@ -127,8 +127,9 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                           CustomTimer(
                               controller: absWorkoutController.customTimerControllerForAbsWorkout,
                               begin: Duration(
-                                  seconds:
-                                  absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index].time ?? 0),
+                                  seconds: absWorkoutController
+                                          .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index].time ??
+                                      0),
                               // seconds: 10),
                               end: Duration(),
                               builder: (time) {
@@ -149,8 +150,8 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                               height: 4.w,
                             ),
                             Lottie.asset(
-                              absWorkoutController
-                                  .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index].workoutAllDataModel?.filePath ??
+                              absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index]
+                                      .workoutAllDataModel?.filePath ??
                                   '',
                               width: 60.w,
                               height: 60.w,
@@ -193,7 +194,7 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                                                                 ))),
                                                         Lottie.asset(
                                                           absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
-                                                              .exercise?[index].workoutAllDataModel?.filePath ??
+                                                                  .exercise?[index].workoutAllDataModel?.filePath ??
                                                               '',
                                                           width: 50.w,
                                                           height: 50.w,
@@ -201,7 +202,7 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                                                         ),
                                                         Text(
                                                           absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
-                                                              .exercise?[index].workoutAllDataModel?.name ??
+                                                                  .exercise?[index].workoutAllDataModel?.name ??
                                                               '',
                                                           style: TextStyle(fontSize: 20, color: ColorRes.greenColor, fontWeight: FontWeight.w500),
                                                         ),
@@ -210,7 +211,7 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                                                         ),
                                                         Text(
                                                           absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
-                                                              .exercise?[index].workoutAllDataModel?.introduce ??
+                                                                  .exercise?[index].workoutAllDataModel?.introduce ??
                                                               '',
                                                           style: TextStyle(
                                                               fontSize: 16, color: ColorRes.blackColor, fontWeight: FontWeight.w400, height: 1.5),
@@ -231,19 +232,25 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                                       ),
                                     )),
                                 Text(
-                                  absWorkoutController
-                                      .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index].workoutAllDataModel?.name ??
+                                  absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index]
+                                          .workoutAllDataModel?.name ??
                                       '',
                                   style: const TextStyle(fontSize: 19, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
                                 ),
                                 SizedBox(
                                   height: 4.w,
                                 ),
-                                Text(
-                                  // 'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index+1].workoutAllDataModel?.name ?? ''}',
-                                  'Next: ${absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index].workoutAllDataModel?.name ?? ''}',
-                                  style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
-                                ),
+                                ((absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length) ?? 0) >
+                                        index + 1
+                                    ? Text(
+                                        // 'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index+1].workoutAllDataModel?.name ?? ''}',
+                                        'Next: ${absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index + 1].workoutAllDataModel?.name ?? ''}',
+                                        style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
+                                      )
+                                    : Text(
+                                        'After this completed',
+                                        style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
+                                      ),
                               ],
                             ),
                           ],
@@ -260,20 +267,21 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   absWorkoutController.isExerciseChangeIndexForAbsWorkout.value--;
-                                  absWorkoutController.pageControllerForAbsWorkout.jumpToPage(absWorkoutController.isExerciseChangeIndexForAbsWorkout.value);
+                                  absWorkoutController.pageControllerForAbsWorkout
+                                      .jumpToPage(absWorkoutController.isExerciseChangeIndexForAbsWorkout.value);
                                   absWorkoutController.customTimerControllerForAbsWorkout.pause();
                                   absWorkoutController.controllerForAbsWorkout.pause();
                                   absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = true;
-                                  },
+                                },
                                 child: absWorkoutController.isExerciseChangeIndexForAbsWorkout.value == 0
                                     ? SizedBox(
-                                  width: 10.w,
-                                )
+                                        width: 10.w,
+                                      )
                                     : Icon(
-                                  Icons.arrow_back_ios_outlined,
-                                  size: 10.w,
-                                  color: ColorRes.darkLightGreenColor,
-                                ),
+                                        Icons.arrow_back_ios_outlined,
+                                        size: 10.w,
+                                        color: ColorRes.darkLightGreenColor,
+                                      ),
                               ),
                               Stack(
                                 alignment: Alignment.center,
@@ -281,8 +289,9 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                                   NeonCircularTimer(
                                     width: 30.w,
                                     // strokeWidth: 10,
-                                    duration:
-                                    absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index].time ?? 0,
+                                    duration: absWorkoutController
+                                            .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?[index].time ??
+                                        0,
                                     // duration: 10,
                                     isReverse: true,
                                     autoStart: false,
@@ -298,31 +307,42 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                                     ]),
                                     onComplete: () {
                                       if (absWorkoutController.isExerciseChangeIndexForAbsWorkout.value <
-                                          ((absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ?? 0) -
+                                          ((absWorkoutController
+                                                      .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ??
+                                                  0) -
                                               1)) {
                                         absWorkoutController.customTimerControllerForAbsWorkout.pause();
                                         absWorkoutController.controllerForAbsWorkout.pause();
 
                                         Get.to(RestTimeForAbsWorkoutScreen(
-                                            exerciseTotalCountForAbsWorkout:
-                                            absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ??
+                                            exerciseTotalCountForAbsWorkout: absWorkoutController
+                                                    .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ??
                                                 0,
                                             exerciseNumberForAbsWorkout: absWorkoutController.isExerciseChangeIndexForAbsWorkout.value + 1,
-                                            exerciseNameForAbsWorkout: absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
-                                                .exercise?[index].workoutAllDataModel?.name ??
+                                            exerciseNameForAbsWorkout: absWorkoutController
+                                                    .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
+                                                    .exercise?[index]
+                                                    .workoutAllDataModel
+                                                    ?.name ??
                                                 '',
-                                            exerciseImageForAbsWorkout: absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
-                                                .exercise?[index].workoutAllDataModel?.thumbnails));
+                                            exerciseImageForAbsWorkout: absWorkoutController
+                                                .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
+                                                .exercise?[index]
+                                                .workoutAllDataModel
+                                                ?.thumbnails));
                                       } else {
                                         Get.toNamed(CongratulationsScreen.routeName);
                                         Future.delayed(const Duration(seconds: 3)).then((value) {
                                           return Get.to(AbsWorkoutCompleteScreen(
                                             dayNumberForAbsWorkout: dayCountForWorkoutStartForAbsWorkout,
-                                            exerciseTotalCountForAbsWorkout:
-                                            absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ??
+                                            exerciseTotalCountForAbsWorkout: absWorkoutController
+                                                    .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ??
                                                 0,
-                                            kcalCountForAbsWorkout: absWorkoutController.totalListOfKcalForAbsWorkout[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].toString(),
-                                            durationForAbsWorkout: absWorkoutController.timeListForAbsWorkout[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1],
+                                            kcalCountForAbsWorkout: absWorkoutController
+                                                .totalListOfKcalForAbsWorkout[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
+                                                .toString(),
+                                            durationForAbsWorkout:
+                                                absWorkoutController.timeListForAbsWorkout[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1],
                                           ));
                                         });
                                       }
@@ -337,15 +357,21 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                                         absWorkoutController.controllerForAbsWorkout.pause();
                                         Get.to(
                                           TakeBreakForAbsWorkoutScreen(
-                                            exerciseTotalCountForAbsWorkout:
-                                            absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ??
+                                            exerciseTotalCountForAbsWorkout: absWorkoutController
+                                                    .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ??
                                                 0,
                                             exerciseNumberForAbsWorkout: absWorkoutController.isExerciseChangeIndexForAbsWorkout.value + 1,
-                                            exerciseNameForAbsWorkout: absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
-                                                .exercise?[index].workoutAllDataModel?.name ??
+                                            exerciseNameForAbsWorkout: absWorkoutController
+                                                    .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
+                                                    .exercise?[index]
+                                                    .workoutAllDataModel
+                                                    ?.name ??
                                                 '',
-                                            exerciseImageForAbsWorkout: absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
-                                                .exercise?[index].workoutAllDataModel?.thumbnails ??
+                                            exerciseImageForAbsWorkout: absWorkoutController
+                                                    .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1]
+                                                    .exercise?[index]
+                                                    .workoutAllDataModel
+                                                    ?.thumbnails ??
                                                 '',
                                           ),
                                         );
@@ -360,24 +386,26 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {
                                   absWorkoutController.isExerciseChangeIndexForAbsWorkout.value++;
-                                  absWorkoutController.pageControllerForAbsWorkout.jumpToPage(absWorkoutController.isExerciseChangeIndexForAbsWorkout.value);
+                                  absWorkoutController.pageControllerForAbsWorkout
+                                      .jumpToPage(absWorkoutController.isExerciseChangeIndexForAbsWorkout.value);
 
-                                  // Future.delayed(Duration(seconds: 4)).then((value) {
                                   absWorkoutController.customTimerControllerForAbsWorkout.pause();
                                   absWorkoutController.controllerForAbsWorkout.pause();
                                   absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = true;
-                                  // });
                                 },
                                 child: absWorkoutController.isExerciseChangeIndexForAbsWorkout.value ==
-                                    ((absWorkoutController.absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ?? 0) - 1)
+                                        ((absWorkoutController
+                                                    .absWorkoutModel[int.parse(dayCountForWorkoutStartForAbsWorkout!) - 1].exercise?.length ??
+                                                0) -
+                                            1)
                                     ? SizedBox(
-                                  width: 10.w,
-                                )
+                                        width: 10.w,
+                                      )
                                     : Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  size: 10.w,
-                                  color: ColorRes.darkLightGreenColor,
-                                ),
+                                        Icons.arrow_forward_ios_rounded,
+                                        size: 10.w,
+                                        color: ColorRes.darkLightGreenColor,
+                                      ),
                               ),
                             ],
                           ),
@@ -390,7 +418,7 @@ class AbsWorkoutStartScreen extends StatelessWidget {
                   ),
                 ),
                 Obx(
-                      () => Visibility(
+                  () => Visibility(
                     visible: absWorkoutController.isCountDownAnimationHideForAbsWorkout.value,
                     child: Container(
                       color: Colors.transparent,

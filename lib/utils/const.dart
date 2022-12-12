@@ -13,7 +13,9 @@ RxList<Widget> signUpViewsList = [
   YourTargetWeightView(),
 ].obs;
 PageController pageController = PageController(viewportFraction: 1, keepPage: true);
+
 enum HeightUnit { ft, cm }
+
 HeightUnit selectedUnit = HeightUnit.ft;
 int ft = 0;
 int inches = 0;
@@ -27,4 +29,4 @@ TextEditingController heightController = TextEditingController();
 TextEditingController yourWeightController = TextEditingController();
 TextEditingController yourTargetWeightController = TextEditingController();
 String changeYourWeightType = '';
-String changeYourTargetWeightType= '';
+String changeYourTargetWeightType = '';

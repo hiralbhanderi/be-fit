@@ -23,9 +23,7 @@ class ButtWorkoutListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('element value ---->>>$dayCount');
     return Scaffold(
-      // backgroundColor:ColorRes.blackColor.withOpacity(0.1),
       body: Column(
         children: [
           Stack(
@@ -136,7 +134,6 @@ class ButtWorkoutListScreen extends StatelessWidget {
                           padding: EdgeInsets.only(left: 6.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Expanded(
                                 child: Column(
@@ -178,7 +175,7 @@ class ButtWorkoutListScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: CommonButton(
               height: 45,
-              buttonColor: LinearGradient(
+              buttonColor: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
                 colors: [
@@ -189,8 +186,10 @@ class ButtWorkoutListScreen extends StatelessWidget {
               width: double.infinity,
               onTap: () {
                 Get.toNamed(WarmUpScreen.routeName);
-                Future.delayed(Duration(seconds: 3)).then((value) {
-                  return Get.to(ButtWorkoutStartScreen(dayCountForWorkoutStart: dayCount,));
+                Future.delayed(const Duration(seconds: 3)).then((value) {
+                  return Get.to(ButtWorkoutStartScreen(
+                    dayCountForWorkoutStart: dayCount,
+                  ));
                 });
 
                 buttWorkoutController.isExerciseChangeIndex.value = 0;

@@ -35,8 +35,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
           height: 10.w,
         ),
         Padding(
-          padding:  EdgeInsets.only(left: 6.w,right: 6.w),
-
+          padding: EdgeInsets.only(left: 6.w, right: 6.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -48,11 +47,13 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     style: TextStyle(fontSize: 7.w, color: ColorRes.blackColor, fontWeight: FontWeight.w600),
                   ),
                   GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(WaterCountScreen.routeName);
-
                       },
-                      child: Image.asset(ImagesAsset.waterGlassImage,scale: 2.5,))
+                      child: Image.asset(
+                        ImagesAsset.waterGlassImage,
+                        scale: 2.5,
+                      ))
                 ],
               ),
               SizedBox(

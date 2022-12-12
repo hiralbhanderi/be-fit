@@ -1,9 +1,6 @@
 import 'package:befit/screens/home/home_screen.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_controller.dart';
 import 'package:befit/screens/workout/part/abs_workout/abs_workout_screen.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_controller.dart';
-import 'package:befit/screens/workout/part/butt_workout/butt_workout_screen.dart';
-import 'package:befit/screens/workout/workout_screen.dart';
 import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:befit/utils/const.dart';
@@ -53,7 +50,6 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
@@ -64,7 +60,7 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                             children: [
                               Text(
                                 'Day $dayNumberForAbsWorkout',
-                                style: TextStyle(fontSize: 24, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                style: const TextStyle(fontSize: 24, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                               ),
                               SizedBox(
                                 height: 3.w,
@@ -85,7 +81,7 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     '$exerciseTotalCountForAbsWorkout',
-                                    style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                    style: const TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
                                     height: 2.w,
@@ -100,7 +96,7 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     '$kcalCountForAbsWorkout',
-                                    style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                    style: const TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
                                     height: 2.w,
@@ -115,7 +111,7 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     '$durationForAbsWorkout',
-                                    style: TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                                    style: const TextStyle(fontSize: 17, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
                                     height: 2.w,
@@ -166,19 +162,14 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                           ),
                           Obx(
                             () => Switch(
-                              // thumb color (round icon)
                               activeColor: ColorRes.greenColor,
                               activeTrackColor: ColorRes.greenColor.withOpacity(0.3),
                               inactiveThumbColor: ColorRes.greyColor,
                               inactiveTrackColor: ColorRes.greyColor.withOpacity(0.4),
                               splashRadius: 50.0,
-                              // boolean variable value
                               value: isSwitchOn.value,
-                              // changes the state of the switch
                               onChanged: (value) {
-                                // setState(() {
                                 isSwitchOn.value = value;
-                                // });
                               },
                             ),
                           )
@@ -291,17 +282,10 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                                                             () => Row(
                                                               children: [
                                                                 Text(
-                                                                  '${weightChangeValue.value.round()} ${changeWeightTypesOfUser.value?'kg':'lbs'}',
+                                                                  '${weightChangeValue.value.round()} ${changeWeightTypesOfUser.value ? 'kg' : 'lbs'}',
                                                                   style: const TextStyle(
                                                                       fontSize: 24, color: ColorRes.blackColor, fontWeight: FontWeight.w500),
                                                                 ),
-                                                                // Text(
-                                                                //   ' lbs',
-                                                                //   style: TextStyle(
-                                                                //       fontSize: 18,
-                                                                //       color: ColorRes.blackColor.withOpacity(0.5),
-                                                                //       fontWeight: FontWeight.w500),
-                                                                // ),
                                                               ],
                                                             ),
                                                           ),
@@ -339,9 +323,7 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                                                               // divisions: 5,
                                                               label: weightChangeValue.value.round().toString(),
                                                               onChanged: (double value) {
-                                                                // setState(() {
                                                                 weightChangeValue.value = value;
-                                                                // });
                                                               },
                                                             ),
                                                           )),
@@ -355,20 +337,20 @@ class AbsWorkoutCompleteScreen extends StatelessWidget {
                                                               onPressed: () {
                                                                 Navigator.of(context).pop();
                                                               },
-                                                              child: const Text("CANCEL", style: TextStyle(color: ColorRes.greenColor, fontSize: 15)),
                                                               style: ElevatedButton.styleFrom(
                                                                 backgroundColor: ColorRes.whiteColor,
                                                               ),
+                                                              child: const Text("CANCEL", style: TextStyle(color: ColorRes.greenColor, fontSize: 15)),
                                                             ),
                                                           ),
                                                           const SizedBox(width: 15),
                                                           Expanded(
                                                               child: ElevatedButton(
                                                             onPressed: () async {
-                                                              // print('no selected');
-                                                              // selectedWeight.value = currentSliderValue.value;
                                                               ///
-                                                              storeWeightOfUser.value = isSelectedWeightKGType.value ? '${weightChangeValue.value} kg' : '${weightChangeValue.value} lbs';
+                                                              storeWeightOfUser.value = isSelectedWeightKGType.value
+                                                                  ? '${weightChangeValue.value} kg'
+                                                                  : '${weightChangeValue.value} lbs';
                                                               await SharedPreferencesConst.setWeightOfUser(storeWeightOfUser.value);
                                                               weightOfUser.value = storeWeightOfUser.value;
                                                               Navigator.of(context).pop();

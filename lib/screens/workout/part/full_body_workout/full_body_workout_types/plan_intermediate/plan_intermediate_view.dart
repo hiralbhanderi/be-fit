@@ -16,37 +16,46 @@ class PlanIntermediateView extends StatelessWidget {
       child: Stack(
         children: [
           ClipRRect(
-              borderRadius: BorderRadius.circular(12),child: Image.asset(ImagesAsset.fullBodyImage,fit: BoxFit.fitHeight,height: double.infinity,)),
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                ImagesAsset.fullBodyImage,
+                fit: BoxFit.fitHeight,
+                height: double.infinity,
+              )),
           Padding(
-            padding:  EdgeInsets.only(left: 4.w,right: 4.w,top: 6.w,bottom: 10.w),
+            padding: EdgeInsets.only(left: 4.w, right: 4.w, top: 6.w, bottom: 10.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Plan For\nIntermediate',
                   style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(height: 2.h,),
+                SizedBox(
+                  height: 2.h,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '${isDayChangeForPlanIntermediateWorkout.value}/28 DAYS',
-                      style: TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
+                      style: const TextStyle(fontSize: 20, color: ColorRes.whiteColor, fontWeight: FontWeight.w500),
                     ),
-                    SizedBox(height: 2.h,),
-                    Text(
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    const Text(
                       'Step-by-Step Exercise Guide to Strengthen your Muscles of Full Body.',
                       style: TextStyle(fontSize: 15, color: ColorRes.whiteColor, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(left: 6.w,right:6.w),
+                  padding: EdgeInsets.only(left: 6.w, right: 6.w),
                   child: CommonButton(
                     height: 40,
-                    buttonColor: LinearGradient(
+                    buttonColor: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.topRight,
                       colors: [
@@ -57,7 +66,6 @@ class PlanIntermediateView extends StatelessWidget {
                     width: double.infinity,
                     onTap: () {
                       Get.toNamed(PlanIntermediateScreen.routeName);
-
                     },
                     buttonNameColor: ColorRes.whiteColor,
                     buttonName: 'OPEN WORKOUT',

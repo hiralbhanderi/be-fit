@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/plan_beginner_model.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -10,9 +9,6 @@ import 'package:get/get.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 
 class PlanBeginnerController extends GetxController {
-  // ButtWorkoutModel selectedButtWorkoutModel = ButtWorkoutModel();
-  // String selectedDay = '0';
-  // List<Exercise> buttWorkoutModelDataPass = <Exercise>[];
   CarouselController carouselControllerForPlanBeginner = CarouselController();
   final CountDownController controllerForPlanBeginner = CountDownController();
   final CustomTimerController customTimerControllerForPlanBeginner = CustomTimerController();
@@ -48,40 +44,7 @@ class PlanBeginnerController extends GetxController {
     '06:35',
   ];
 
-  List<String> kcalListForPlanBeginner = [
-    '41',
-    '38',
-    '34',
-    '39',
-    '35',
-    '37',
-    '42',
-    '42',
-    '44',
-    '43',
-    '45',
-    '43',
-    '42',
-    '47',
-    '56',
-    '53',
-    '51',
-    '57',
-    '46',
-    '55',
-    '53',
-    '69',
-    '72',
-    '85',
-    '76',
-    '81',
-    '87',
-    '78',
-  ];
-
-  // RxList<ButtWorkoutModel> buttWorkoutModel = <ButtWorkoutModel>[].obs;
   RxList<PlanBeginnerModel> planBeginnerModel = <PlanBeginnerModel>[].obs;
-  // WorkoutAllDataModel buttWorkoutModelDataPass = WorkoutAllDataModel();
   List<Exercise> selectedForPlanBeginner = <Exercise>[];
   RxBool isPlayTimerForPlanBeginner = false.obs;
   RxBool isCountDownAnimationHideForPlanBeginner = true.obs;
@@ -110,11 +73,9 @@ class PlanBeginnerController extends GetxController {
         exerciseData?[j].workoutAllDataModel = xyz;
       }
     }
-    log('buttWorkoutModel1 First Data : actionId: ${planBeginnerModel.first.exercise?.first.time} \n workout: ${planBeginnerModel.first.exercise?.first.workoutAllDataModel?.toJson()}');
-    // getKcalTotal();
   }
 
-  getKcalTotalForForPlanBeginner(){
+  getKcalTotalForForPlanBeginner() {
     double totalKcal = 0.0;
     for (var element in planBeginnerModel) {
       totalKcal = 0;
