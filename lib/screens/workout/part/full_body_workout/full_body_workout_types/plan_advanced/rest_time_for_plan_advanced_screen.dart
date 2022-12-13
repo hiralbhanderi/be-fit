@@ -96,6 +96,7 @@ class RestTimeForPlanAdvancedScreen extends StatelessWidget {
                               planAdvancedController.pageControllerForPlanAdvanced
                                   .jumpToPage(planAdvancedController.isExerciseChangeIndexForPlanAdvanced.value);
                               planAdvancedController.isCountDownAnimationHideForPlanAdvanced.value = true;
+                              planAdvancedController.playerForPlanAdvanced!.play();
                               Get.back();
                             },
                           ),
@@ -107,6 +108,7 @@ class RestTimeForPlanAdvancedScreen extends StatelessWidget {
                                 planAdvancedController.pageControllerForPlanAdvanced
                                     .jumpToPage(planAdvancedController.isExerciseChangeIndexForPlanAdvanced.value);
                                 planAdvancedController.isCountDownAnimationHideForPlanAdvanced.value = true;
+                                planAdvancedController.playerForPlanAdvanced!.play();
                                 Get.back();
                               },
                               child: Container(

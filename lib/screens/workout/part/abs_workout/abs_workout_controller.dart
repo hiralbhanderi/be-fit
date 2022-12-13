@@ -7,6 +7,7 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 
 class AbsWorkoutController extends GetxController {
@@ -14,6 +15,11 @@ class AbsWorkoutController extends GetxController {
   final CountDownController controllerForAbsWorkout = CountDownController();
   final CustomTimerController customTimerControllerForAbsWorkout = CustomTimerController();
   PageController pageControllerForAbsWorkout = PageController(viewportFraction: 1, keepPage: true);
+  AudioPlayer? playerForAbsWorkout = AudioPlayer();
+  RxDouble audioGuideValueForAbsWorkout = 50.0.obs;
+  RxDouble bgAudioValueForAbsWorkout = 30.0.obs;
+  RxDouble setAudioVolumeForAbsWorkout = 0.5.obs;
+  RxBool isBGVoiceOnForAbsWorkout = true.obs;
   List<String> timeListForAbsWorkout = [
     '06:20',
     '06:40',

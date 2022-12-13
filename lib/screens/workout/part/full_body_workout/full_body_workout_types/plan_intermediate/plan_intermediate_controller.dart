@@ -6,6 +6,7 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 
 class PlanIntermediateController extends GetxController {
@@ -13,6 +14,11 @@ class PlanIntermediateController extends GetxController {
   final CountDownController controllerForPlanIntermediate = CountDownController();
   final CustomTimerController customTimerControllerForPlanIntermediate = CustomTimerController();
   PageController pageControllerForPlanIntermediate = PageController(viewportFraction: 1, keepPage: true);
+  AudioPlayer? playerForPlanIntermediate = AudioPlayer();
+  RxDouble audioGuideValueForPlanIntermediate = 50.0.obs;
+  RxDouble bgAudioValueForPlanIntermediate = 30.0.obs;
+  RxDouble setAudioVolumeForPlanIntermediate = 0.5.obs;
+  RxBool isBGVoiceOnForPlanIntermediate = true.obs;
   List<String> timeListForPlanIntermediate = [
     '05:40',
     '06:01',

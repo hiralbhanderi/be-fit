@@ -129,6 +129,7 @@ class TakeBreakForButtWorkoutScreen extends StatelessWidget {
                               onTap: () {
                                 buttWorkoutController.customTimerController.start();
                                 buttWorkoutController.controller1.resume();
+                                buttWorkoutController.player!.play();
                                 Get.back();
                               },
                               child: Container(

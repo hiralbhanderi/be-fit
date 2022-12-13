@@ -131,6 +131,7 @@ class TakeBreakForAbsWorkoutScreen extends StatelessWidget {
                               onTap: () {
                                 absWorkoutController.customTimerControllerForAbsWorkout.start();
                                 absWorkoutController.controllerForAbsWorkout.resume();
+                                absWorkoutController.playerForAbsWorkout!.play();
                                 Get.back();
                               },
                               child: Container(

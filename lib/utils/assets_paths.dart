@@ -28,6 +28,8 @@ class ImagesAsset {
   static const String dwSuccessImage = '$images/dw_success_image.png';
   static const String editImage = '$images/edit_image.png';
   static const String reportImageForWaterGoal = '$images/report_image_for_water_goal.png';
+  static const String iconBgmLittle = '$images/icon_bgm_little.png';
+  static const String iconBgmBig = '$images/icon_bgm_big.png';
 }
 
 ///for butt workout

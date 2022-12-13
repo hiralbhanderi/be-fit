@@ -6,6 +6,7 @@ import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_t
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/rest_time_for_plan_beginner_screen.dart';
 import 'package:befit/screens/workout/part/full_body_workout/full_body_workout_types/plan_beginner/take_break_for_plan_beginner_screen.dart';
 import 'package:befit/screens/workout/workout_all_data_model.dart';
+import 'package:befit/utils/assets_paths.dart';
 import 'package:befit/utils/color_res.dart';
 import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,38 @@ import 'package:lottie/lottie.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 import 'package:sizer/sizer.dart';
 
-class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
+class PlanBeginnerWorkoutStartScreen extends StatefulWidget {
   static const routeName = '/PlanBeginnerWorkoutStartScreen';
-  PlanBeginnerController planBeginnerController = Get.find();
-
-  WorkoutAllDataModel modelData = WorkoutAllDataModel();
   final String? dayCountForWorkoutStartForPlanBeginner;
 
   PlanBeginnerWorkoutStartScreen({this.dayCountForWorkoutStartForPlanBeginner});
+
+  @override
+  State<PlanBeginnerWorkoutStartScreen> createState() => _PlanBeginnerWorkoutStartScreenState();
+}
+
+class _PlanBeginnerWorkoutStartScreenState extends State<PlanBeginnerWorkoutStartScreen> {
+  PlanBeginnerController planBeginnerController = Get.find();
+
+  WorkoutAllDataModel modelData = WorkoutAllDataModel();
+
+  @override
+  void initState() {
+    audioStart();
+    super.initState();
+  }
+
+  audioStart() async {
+    if (planBeginnerController.isBGVoiceOnForPlanBeginner.value) {
+      await planBeginnerController.playerForPlanBeginner!.setAsset(
+        'assets/music_file/fitness_bgm.mp3',
+      );
+      planBeginnerController.playerForPlanBeginner!.play();
+      planBeginnerController.playerForPlanBeginner!.setVolume(planBeginnerController.setAudioVolumeForPlanBeginner.value);
+    }else{
+      planBeginnerController.playerForPlanBeginner!.stop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +77,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                               Get.offNamedUntil(PlanBeginnerScreen.routeName, ModalRoute.withName(FullBodyWorkoutTypeScreen.routeName));
                               // Get.offAllNamed(ButtWorkoutScreen.routeName);
                               Navigator.of(context).pop();
+                              planBeginnerController.playerForPlanBeginner!.stop();
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: ColorRes.whiteColor,
@@ -80,7 +106,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
       },
       child: Scaffold(
         body: PageView.builder(
-          itemCount: planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ?? 0,
+          itemCount: planBeginnerController.planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ?? 0,
           physics: const NeverScrollableScrollPhysics(),
           controller: planBeginnerController.pageControllerForPlanBeginner,
           onPageChanged: (int index) {
@@ -114,7 +140,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                               controller: planBeginnerController.customTimerControllerForPlanBeginner,
                               begin: Duration(
                                   seconds: planBeginnerController
-                                          .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].time ??
+                                          .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].time ??
                                       0),
                               // seconds: 10),
                               end: const Duration(),
@@ -122,10 +148,194 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                 return Text("${time.minutes}:${time.seconds}",
                                     style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w500, color: ColorRes.greenColor));
                               }),
-                          Icon(
-                            Icons.more_vert_sharp,
-                            color: ColorRes.greyColor,
-                            size: 10.w,
+                          GestureDetector(
+                            onTap: (){
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SimpleDialog(
+                                    insetPadding: EdgeInsets.zero,
+                                    contentPadding: EdgeInsets.zero,
+                                    children: [
+                                      Container(
+                                        // height: 90,
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(horizontal: 4.w),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              SizedBox(
+                                                height: 6.w,
+                                              ),
+                                              Text(
+                                                'Guide Voice',
+                                                style:
+                                                TextStyle(fontSize: 18, color: ColorRes.blackColor.withOpacity(0.6), fontWeight: FontWeight.w500),
+                                              ),
+                                              SizedBox(height: 2.w),
+                                              Row(
+                                                children: [
+                                                  Image.asset(
+                                                    ImagesAsset.iconBgmLittle,
+                                                    color: ColorRes.greenColor,
+                                                    scale: 3,
+                                                  ),
+                                                  Expanded(
+                                                    child: Obx(
+                                                          () => SliderTheme(
+                                                        data: SliderThemeData(
+                                                            trackHeight: 0.6.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 5)),
+                                                        child: Slider(
+                                                          value: planBeginnerController.audioGuideValueForPlanBeginner.value,
+                                                          //value: waterTotalOfUser.value,
+                                                          max: 100,
+                                                          activeColor: ColorRes.greenColor.withOpacity(0.7),
+                                                          inactiveColor: ColorRes.greenColor.withOpacity(0.2),
+                                                          // divisions: 5,
+                                                          label: planBeginnerController.audioGuideValueForPlanBeginner.value.round().toString(),
+                                                          // label: waterTotalOfUser.value.round().toString(),
+                                                          onChanged: (double value) {
+                                                            // setState(() {
+                                                            planBeginnerController.audioGuideValueForPlanBeginner.value = value;
+                                                            // buttWorkoutController.setAudioVolume.value =
+                                                            //     buttWorkoutController.audioGuideValue.value.round() / 100;
+                                                            //waterTotalOfUser.value = value;
+                                                            // });
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Image.asset(
+                                                    ImagesAsset.iconBgmBig,
+                                                    color: ColorRes.greenColor,
+                                                    scale: 3,
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: 6.w),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    'Background Voice',
+                                                    style: TextStyle(
+                                                        fontSize: 18, color: ColorRes.blackColor.withOpacity(0.6), fontWeight: FontWeight.w500),
+                                                  ),
+                                                  Obx(() => Switch(
+                                                    onChanged: (value) {
+                                                      planBeginnerController.isBGVoiceOnForPlanBeginner.value = value;
+                                                    },
+                                                    value: planBeginnerController.isBGVoiceOnForPlanBeginner.value,
+                                                    inactiveThumbColor: ColorRes.whiteColor,
+                                                    inactiveTrackColor: ColorRes.blackColor.withOpacity(0.2),
+                                                    activeColor: ColorRes.greenColor.withOpacity(0.7),
+                                                    activeTrackColor: ColorRes.greenColor.withOpacity(0.2),
+                                                    // ...
+                                                  ))
+                                                ],
+                                              ),
+                                              SizedBox(height: 2.w),
+                                              Row(
+                                                children: [
+                                                  Image.asset(
+                                                    ImagesAsset.iconBgmLittle,
+                                                    color: ColorRes.greenColor,
+                                                    scale: 3,
+                                                  ),
+                                                  Expanded(
+                                                    child: Obx(
+                                                          () => SliderTheme(
+                                                        data: SliderThemeData(
+                                                            trackHeight: 0.6.w, thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 5)),
+                                                        child: Slider(
+                                                          value: planBeginnerController.bgAudioValueForPlanBeginner.value,
+                                                          //value: waterTotalOfUser.value,
+                                                          max: 100,
+                                                          activeColor: ColorRes.greenColor.withOpacity(0.7),
+                                                          inactiveColor: ColorRes.greenColor.withOpacity(0.2),
+                                                          // divisions: 5,
+                                                          label: planBeginnerController.bgAudioValueForPlanBeginner.value.round().toString(),
+                                                          // label: waterTotalOfUser.value.round().toString(),
+                                                          onChanged: (double value) {
+                                                            // setState(() {
+                                                            planBeginnerController.bgAudioValueForPlanBeginner.value = value;
+                                                            planBeginnerController.setAudioVolumeForPlanBeginner.value =
+                                                                planBeginnerController.bgAudioValueForPlanBeginner.value.round() / 100;
+                                                            //waterTotalOfUser.value = value;
+                                                            // });
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Image.asset(
+                                                    ImagesAsset.iconBgmBig,
+                                                    color: ColorRes.greenColor,
+                                                    scale: 3,
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 4.w,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: ElevatedButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop();
+                                                      },
+                                                      style: ElevatedButton.styleFrom(
+                                                        backgroundColor: ColorRes.whiteColor,
+                                                      ),
+                                                      child: Text("CANCEL", style: TextStyle(color: ColorRes.greenColor, fontSize: 15)),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 15),
+                                                  Expanded(
+                                                      child: ElevatedButton(
+                                                        onPressed: () async {
+                                                          ///
+                                                          // storeWaterTotalOfUser.value = waterCountController.waterDrunkOfUserStore.value;
+                                                          // await SharedPreferencesConst.setChangeWaterTotalOfUser(storeWaterTotalOfUser.value);
+                                                          // waterTotalOfUser.value = storeWaterTotalOfUser.value;
+                                                          if (planBeginnerController.isBGVoiceOnForPlanBeginner.value) {
+                                                            await planBeginnerController.playerForPlanBeginner!.setAsset(
+                                                              'assets/music_file/fitness_bgm.mp3',
+                                                            );
+                                                            planBeginnerController.playerForPlanBeginner!.play();
+                                                            planBeginnerController.playerForPlanBeginner!.setVolume(planBeginnerController.setAudioVolumeForPlanBeginner.value);
+                                                            print('volume value is --->>>${planBeginnerController.setAudioVolumeForPlanBeginner.value}');
+                                                          }else{
+                                                            planBeginnerController.playerForPlanBeginner!.stop();
+                                                          }
+
+                                                          Navigator.of(context).pop();
+                                                        },
+                                                        style: ElevatedButton.styleFrom(backgroundColor: ColorRes.greenColor),
+                                                        child: const Text("SAVE", style: TextStyle(color: ColorRes.whiteColor, fontSize: 15)),
+                                                      ))
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 4.w,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Icon(
+                              Icons.more_vert_sharp,
+                              color: ColorRes.greyColor,
+                              size: 10.w,
+                            ),
                           )
                         ],
                       ),
@@ -136,7 +346,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                               height: 4.w,
                             ),
                             Lottie.asset(
-                              planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index]
+                              planBeginnerController.planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index]
                                       .workoutAllDataModel?.filePath ??
                                   '',
                               width: 60.w,
@@ -179,7 +389,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                                                 ))),
                                                         Lottie.asset(
                                                           planBeginnerController
-                                                                  .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                                  .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1]
                                                                   .exercise?[index]
                                                                   .workoutAllDataModel
                                                                   ?.filePath ??
@@ -190,7 +400,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                                         ),
                                                         Text(
                                                           planBeginnerController
-                                                                  .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                                  .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1]
                                                                   .exercise?[index]
                                                                   .workoutAllDataModel
                                                                   ?.name ??
@@ -203,7 +413,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                                         ),
                                                         Text(
                                                           planBeginnerController
-                                                                  .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                                  .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1]
                                                                   .exercise?[index]
                                                                   .workoutAllDataModel
                                                                   ?.introduce ??
@@ -227,7 +437,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                       ),
                                     )),
                                 Text(
-                                  planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index]
+                                  planBeginnerController.planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index]
                                           .workoutAllDataModel?.name ??
                                       '',
                                   style: const TextStyle(fontSize: 19, color: ColorRes.blackColor, fontWeight: FontWeight.w400),
@@ -236,12 +446,12 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                   height: 4.w,
                                 ),
                                 ((planBeginnerController
-                                                .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length) ??
+                                                .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length) ??
                                             0) >
                                         index + 1
                                     ? Text(
                                         // 'Next: ${buttWorkoutController.buttWorkoutModel1[int.parse(dayCountForWorkoutStart!) - 1].exercise?[index+1].workoutAllDataModel?.name ?? ''}',
-                                        'Next: ${planBeginnerController.planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index + 1].workoutAllDataModel?.name ?? ''}',
+                                        'Next: ${planBeginnerController.planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index + 1].workoutAllDataModel?.name ?? ''}',
                                         style: TextStyle(fontSize: 17, color: ColorRes.blackColor.withOpacity(0.5), fontWeight: FontWeight.w400),
                                       )
                                     : Text(
@@ -287,7 +497,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                     width: 30.w,
                                     // strokeWidth: 10,
                                     duration: planBeginnerController
-                                            .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].time ??
+                                            .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?[index].time ??
                                         0,
                                     // duration: 10,
                                     isReverse: true,
@@ -305,27 +515,27 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                     onComplete: () {
                                       if (planBeginnerController.isExerciseChangeIndexForPlanBeginner.value <
                                           ((planBeginnerController
-                                                      .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                                      .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
                                                   0) -
                                               1)) {
                                         // buttWorkoutController.isExerciseChangeIndex.value++;
                                         // buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
                                         planBeginnerController.customTimerControllerForPlanBeginner.pause();
                                         planBeginnerController.controllerForPlanBeginner.pause();
-
+                                        planBeginnerController.playerForPlanBeginner!.stop();
                                         Get.to(RestTimeForPlanBeginnerScreen(
                                             exerciseTotalCountForPlanBeginner: planBeginnerController
-                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                                    .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
                                                 0,
                                             exerciseNumberForPlanBeginner: planBeginnerController.isExerciseChangeIndexForPlanBeginner.value + 1,
                                             exerciseNameForPlanBeginner: planBeginnerController
-                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                    .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1]
                                                     .exercise?[index]
                                                     .workoutAllDataModel
                                                     ?.name ??
                                                 '',
                                             exerciseImageForPlanBeginner: planBeginnerController
-                                                .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1]
                                                 .exercise?[index]
                                                 .workoutAllDataModel
                                                 ?.thumbnails));
@@ -333,16 +543,16 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                         Get.toNamed(CongratulationsScreen.routeName);
                                         Future.delayed(const Duration(seconds: 3)).then((value) {
                                           return Get.to(PlanBeginnerCompleteScreen(
-                                            dayNumberForPlanBeginner: dayCountForWorkoutStartForPlanBeginner,
+                                            dayNumberForPlanBeginner: widget.dayCountForWorkoutStartForPlanBeginner,
                                             exerciseTotalCountForPlanBeginner: planBeginnerController
-                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                                    .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
                                                 0,
                                             // kcalCount: buttWorkoutController.kcalList[int.parse(dayCountForWorkoutStart!) - 1],
                                             kcalCountForPlanBeginner: planBeginnerController
-                                                .totalListOfKcalForPlanBeginner[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                .totalListOfKcalForPlanBeginner[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1]
                                                 .toString(),
                                             durationForPlanBeginner: planBeginnerController
-                                                .timeListForPlanBeginner[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1],
+                                                .timeListForPlanBeginner[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1],
                                           ));
                                         });
                                       }
@@ -356,20 +566,21 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                             !planBeginnerController.isPlayTimerForPlanBeginner.value;
                                         planBeginnerController.customTimerControllerForPlanBeginner.pause();
                                         planBeginnerController.controllerForPlanBeginner.pause();
+                                        planBeginnerController.playerForPlanBeginner!.stop();
                                         Get.to(
                                           TakeBreakForPlanBeginnerScreen(
                                             exerciseTotalCountForPlanBeginner: planBeginnerController
-                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                                    .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
                                                 0,
                                             exerciseNumberForPlanBeginner: planBeginnerController.isExerciseChangeIndexForPlanBeginner.value + 1,
                                             exerciseNameForPlanBeginner: planBeginnerController
-                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                    .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1]
                                                     .exercise?[index]
                                                     .workoutAllDataModel
                                                     ?.name ??
                                                 '',
                                             exerciseImageForPlanBeginner: planBeginnerController
-                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1]
+                                                    .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1]
                                                     .exercise?[index]
                                                     .workoutAllDataModel
                                                     ?.thumbnails ??
@@ -398,7 +609,7 @@ class PlanBeginnerWorkoutStartScreen extends StatelessWidget {
                                 },
                                 child: planBeginnerController.isExerciseChangeIndexForPlanBeginner.value ==
                                         ((planBeginnerController
-                                                    .planBeginnerModel[int.parse(dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
+                                                    .planBeginnerModel[int.parse(widget.dayCountForWorkoutStartForPlanBeginner!) - 1].exercise?.length ??
                                                 0) -
                                             1)
                                     ? SizedBox(

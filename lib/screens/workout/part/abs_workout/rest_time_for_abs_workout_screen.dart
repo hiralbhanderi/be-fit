@@ -96,6 +96,7 @@ class RestTimeForAbsWorkoutScreen extends StatelessWidget {
                               absWorkoutController.pageControllerForAbsWorkout
                                   .jumpToPage(absWorkoutController.isExerciseChangeIndexForAbsWorkout.value);
                               absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = true;
+                              absWorkoutController.playerForAbsWorkout!.play();
                               Get.back();
                             },
                           ),
@@ -107,6 +108,7 @@ class RestTimeForAbsWorkoutScreen extends StatelessWidget {
                                 absWorkoutController.pageControllerForAbsWorkout
                                     .jumpToPage(absWorkoutController.isExerciseChangeIndexForAbsWorkout.value);
                                 absWorkoutController.isCountDownAnimationHideForAbsWorkout.value = true;
+                                absWorkoutController.playerForAbsWorkout!.play();
                                 Get.back();
                               },
                               child: Container(

@@ -5,12 +5,18 @@ import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 
 class ButtWorkoutController extends GetxController {
   CarouselController carouselController = CarouselController();
   final CountDownController controller1 = CountDownController();
   final CustomTimerController customTimerController = CustomTimerController();
+  AudioPlayer? player = AudioPlayer();
+  RxDouble audioGuideValue = 50.0.obs;
+  RxDouble bgAudioValue = 30.0.obs;
+  RxDouble setAudioVolume = 0.5.obs;
+  RxBool isBGVoiceOn = true.obs;
   PageController pageController = PageController(viewportFraction: 1, keepPage: true);
   List<String> timeList = [
     '07:15',

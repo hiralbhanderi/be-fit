@@ -98,6 +98,7 @@ class RestTimeForButtWorkoutScreen extends StatelessWidget {
                               buttWorkoutController.isExerciseChangeIndex.value++;
                               buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
                               buttWorkoutController.isCountDownAnimationHide.value = true;
+                              buttWorkoutController.player!.play();
                               Get.back();
                             },
                           ),
@@ -108,6 +109,7 @@ class RestTimeForButtWorkoutScreen extends StatelessWidget {
                                 buttWorkoutController.isExerciseChangeIndex.value++;
                                 buttWorkoutController.pageController.jumpToPage(buttWorkoutController.isExerciseChangeIndex.value);
                                 buttWorkoutController.isCountDownAnimationHide.value = true;
+                                buttWorkoutController.player!.play();
                                 Get.back();
                               },
                               child: Container(

@@ -134,6 +134,7 @@ class TakeBreakForPlanBeginnerScreen extends StatelessWidget {
                               onTap: () {
                                 planBeginnerController.customTimerControllerForPlanBeginner.start();
                                 planBeginnerController.controllerForPlanBeginner.resume();
+                                planBeginnerController.playerForPlanBeginner!.play();
                                 Get.back();
                               },
                               child: Container(
